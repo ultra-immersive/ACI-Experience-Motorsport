@@ -1,0 +1,119 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["M_LanciaStratos", "MM_TransitionPBR", "MI_TRA_A_CarBodyFront", "MI_TRA_A_CarBodyBack", "MI_TRA_B_BlackLightsGlass", "MI_TRA_C_BackWheels", "MI_TRA_D_SeatBelt", "MI_TRA_E_AcessoriesFuel", "MI_TRA_Z_CarBottom"]
+    def "MM_TransitionPBR" (
+        active = true
+        references = @../../MasterMaterials.usda@</Root/MM_TransitionPBR>
+    )
+    {
+        float inputs:TransitionAmount = 0
+        float inputs:TransitionLocationHigh = 1.1
+        float inputs:TransitionSpan = 0.5
+        color3f inputs:WireframeColor = (0.9411765, 0.99607843, 1) (
+            colorSpace = "srgb_displayp3"
+        )
+    }
+
+    def "MI_TRA_A_CarBodyFront" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/A-CarBodyFront_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/A-CarBodyFront_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/A-CarBodyFront_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/A-CarBodyFront_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/A-CarBodyFront_Roughness.png@
+    }
+
+    def "MI_TRA_A_CarBodyBack" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/A-CarBodyBack_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/A-CarBodyBack_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/A-CarBodyBack_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/A-CarBodyBack_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/A-CarBodyBack_Roughness.png@
+    }
+
+    def "MI_TRA_B_BlackLightsGlass" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/B-Transparent_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/B-Transparent_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/B-Transparent_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/B-Transparent_Normal.png@
+        asset inputs:OpacityMap = @../../Textures/LanciaStratos/B-Transparent_Alpha.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/B-Transparent_Roughness.png@
+    }
+
+    def "MI_TRA_C_BackWheels" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/C-Wheels_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/C-Wheels_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/C-Wheels_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/C-Wheels_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/C-Wheels_Roughness.png@
+    }
+
+    def "MI_TRA_D_SeatBelt" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/D-Interiors_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/D-Interiors_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/D-Interiors_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/D-Interiors_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/D-Interiors_Roughness.png@
+    }
+
+    def "MI_TRA_E_AcessoriesFuel" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/E-SmallObjects_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/E-SmallObjects_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/E-SmallObjects_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/E-SmallObjects_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/E-SmallObjects_Roughness.png@
+    }
+
+    def "MI_TRA_Z_CarBottom" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/LanciaStratos/Z-Covers_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/LanciaStratos/Z-Covers_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/LanciaStratos/Z-Covers_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/LanciaStratos/Z-Covers_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/LanciaStratos/Z-Covers_Roughness.png@
+    }
+}
+

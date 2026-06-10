@@ -1,0 +1,1558 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["RCP_BehaviorsContainer", "OnAddedToScene", "OnNotification", "OnNotification2", "Title_Holder", "MI_3DText", "HDRI", "OnNotification3", "OnNotification4", "OnNotification5", "OnNotification6", "HierarchicalFade", "OnNotification7", "OnNotification8", "GeneralOpacity", "MI_Bubble", "PopSphere_wav", "driverTouchStart", "M_GroundMask", "Spin", "OnAppear", "StartSphere_Touched", "Module_A_Start", "Module_B_Start", "Module_BPlus_Start", "Module_C_Start", "Module_D_Start", "Experience_Completed", "PanelsAnimation"]
+    def RealityKitTimeline "Spin"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Spin"
+            {
+                string actionKind = "spin"
+                int blendLayer = 400
+                double duration = 40
+                uniform token info:id = "465E44A5-B48B-4E53-84E5-5A69AAE38570"
+                double startTime = 0
+                rel target = </Root/GeneralOpacity/ReducedCarModel_Holder>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            reorder nameChildren = ["spinTatuus", "LenghtTimeline"]
+        }
+    }
+
+    def RealityKitTimeline "OnAppear"
+    {
+        reorder nameChildren = ["Track3", "Track", "Track2", "Track4", "Track5"]
+        def RealityKitTrack "Track"
+        {
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Start_Preparation"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "BE8DECFB-E45C-4978-9056-10F5458144CF"
+                bool isActive = 1
+                string notificationName = "Start_Preparation"
+                double startTime = 0.014374910331623402
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            reorder nameChildren = ["Show", "opacityGuideIn"]
+            def RealityKitAction "opacityGuideIn"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "40F595C6-1E66-426F-A539-1FC7907DE59D"
+                string notificationName = "opacityGuideIn"
+                double startTime = 2
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track5"
+        {
+            def RealityKitAction "opacityTouchStartIn"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "F11748A1-2307-4AF6-9915-D88B2C247331"
+                string notificationName = "opacityTouchStartIn"
+                double startTime = 3.0695529861854114
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = [
+            </Root/OnAddedToScene>,
+            </Root/OnNotification>,
+            </Root/OnNotification3>,
+            </Root/OnNotification4>,
+            </Root/OnNotification5>,
+            </Root/OnNotification6>,
+            </Root/OnNotification7>,
+            </Root/OnNotification8>,
+            </Root/OnNotification2>,
+        ]
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/OnAppear>
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "StartSphere_Touched"
+    {
+        reorder nameChildren = ["Track", "Track3", "Track4", "Track2", "Track5"]
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["RemoveStartSphere", "ShowFloatingPlane", "ShowImages"]
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            reorder nameChildren = ["Hide", "StartGuideMovement"]
+            def RealityKitAction "StartGuideMovement"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "F36D010C-7A15-41AC-898D-1DB1C831746A"
+                string notificationName = "StartGuideMovement"
+                double startTime = 2.006712442206351
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            reorder nameChildren = ["Animation", "StartGuideMovement"]
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "ShowGuideGear"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "627E0733-892C-4695-B056-8887D27493A5"
+                string notificationName = "ShowGuideGear"
+                double startTime = 3.8363924999677814
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track5"
+        {
+            reorder nameChildren = ["audio_PopSphere", "opacityTouchStartOut", "opacityGearIn"]
+            def RealityKitAction "audio_PopSphere"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "0CB31EB1-8727-4FE0-87A9-B04BB1D83418"
+                bool isActive = 1
+                string notificationName = "audio_PopSphere"
+                double startTime = 0
+                rel target = </Root>
+            }
+
+            def RealityKitAction "opacityTouchStartOut"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "D4E284D0-B32D-4B90-811A-AC917F67D8AF"
+                string notificationName = "opacityTouchStartOut"
+                double startTime = 0.7935978586072764
+                rel target = </Root>
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "StartSphere_Touched"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/StartSphere_Touched>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Material "MI_3DText" (
+        references = @Materials/MasterMaterials.usda@</Root/MM_Bubble>
+    )
+    {
+        reorder nameChildren = ["GenerateNoise_1", "Add", "GenerateNoise_2", "GenerateNoise_3", "Add_1", "Position", "Multiply", "Remap_2", "Step", "Remap_1", "PopHolesScale", "Noise3D", "Add_2", "PreviewSurface", "Position_1", "Add_3", "Add_4", "Add_5"]
+        token outputs:mtlx:surface.connect = </Root/MI_3DText/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:node:pos = (-777.8896, 140.28719)
+        int ui:nodegraph:node:stackingOrder = 1
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (687.71875, 137.53516)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 612
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat = 0
+            color3f inputs:diffuseColor = (1, 1, 1) (
+                colorSpace = "lin_srgb"
+            )
+            color3f inputs:emissiveColor = (0.999996, 1, 1) (
+                colorSpace = "srgb_texture"
+            )
+            float inputs:ior = 4
+            float inputs:occlusion.connect = None
+            float inputs:roughness = 0
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (368.98438, 88.0625)
+            int ui:nodegraph:node:stackingOrder = 642
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+        }
+
+        over "Remap_2"
+        {
+            float inputs:outhigh = 0.5
+            int ui:nodegraph:node:stackingOrder = 622
+        }
+
+        over "PopHolesScale"
+        {
+            float inputs:value = 10
+            int ui:nodegraph:node:stackingOrder = 641
+        }
+    }
+
+    def Xform "HDRI" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0)
+        }
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1.4842727, 1.4842727, 1.4842727)
+        float3 xformOp:translate = (0.10239291, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "ImageBasedLight" (
+            active = false
+        )
+        {
+            float blendIBLsFactor = 0.654375
+            token blendMode = "single"
+            bool enableBlend = 0
+            asset ibl = @HDRI/mud_road_puresky_1k.hdr@
+            asset iblBlend = @HDRI/snow_field_2_puresky_2k copy.hdr@
+            uniform token info:id = "RealityKit.ImageBasedLight"
+            float intensityExponent = 0
+            bool isGlobalIBL = 0
+        }
+    }
+
+    def RealityKitTimeline "Module_B_Start"
+    {
+        reorder nameChildren = ["Track2", "Track"]
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "StartModule_B"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "905312FB-2D7C-44CD-AA7D-84375ACA34E7"
+                bool isActive = 1
+                string notificationName = "StartModule_B"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (-777.8896, 140.28719)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification3"
+    {
+        rel actions = </Root/OnNotification3/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification3/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Module_A_Start"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Module_A_Start>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification3/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "Module_A_Start"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "StartModule_A"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "43B63929-9A12-4C94-A991-4DA0B7C3B7EE"
+                bool isActive = 1
+                string notificationName = "StartModule_A"
+                double startTime = 0.03647629310344828
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (-777.8896, 140.28719)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+
+    def RealityKitTimeline "Module_C_Start"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "StartModule_C"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "346A4D83-8596-4B13-82C6-BE4FF0C91941"
+                string notificationName = "StartModule_C"
+                double startTime = 0
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "Module_D_Start"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "StartModule_D"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "1DBA9936-77E5-4C1E-A57B-EBCA38F80A90"
+                string notificationName = "StartModule_D"
+                double startTime = 0
+                rel target = </Root>
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification4"
+    {
+        rel actions = </Root/OnNotification4/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification4/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Module_B_Start"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Module_B_Start>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification4/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification5"
+    {
+        rel actions = </Root/OnNotification5/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification5/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Module_C_Start"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Module_C_Start>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification5/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification6"
+    {
+        rel actions = </Root/OnNotification6/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification6/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Module_D_Start"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Module_D_Start>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification6/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "Experience_Completed"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["RestartExperience", "Hide"]
+            def RealityKitAction "RestartExperience"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "80BCAB9A-1F9B-46AD-B6D7-93DA1A9E1B72"
+                string notificationName = "RestartExperience"
+                double startTime = 1.1411721515190112
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "hideMainScene"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "528C6ADC-DF39-42EE-8AE3-EBD09D9078EA"
+                string notificationName = "hideMainScene"
+                double startTime = 0
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitComponent "HierarchicalFade"
+    {
+        uniform token info:id = "RealityKit.HierarchicalFade"
+    }
+
+    def Preliminary_Behavior "OnNotification7"
+    {
+        rel actions = </Root/OnNotification7/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification7/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Experience_Completed"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Experience_Completed>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification7/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "PanelsAnimation"
+    {
+        reorder nameChildren = ["Track3", "Track4", "Track", "Track2", "Track5", "Track6", "Track7", "Track8"]
+        bool isActive = 1
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "opacityPanelsIn"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "B0493D15-773F-4801-838C-7FA5B6E9A9A6"
+                string notificationName = "opacityPanelsIn"
+                double startTime = 0.837801724137931
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+        }
+
+        def RealityKitTrack "Track"
+        {
+        }
+
+        def RealityKitTrack "Track2"
+        {
+        }
+
+        def RealityKitTrack "Track5"
+        {
+        }
+
+        def RealityKitTrack "Track6"
+        {
+        }
+
+        def RealityKitTrack "Track7"
+        {
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification8"
+    {
+        rel actions = </Root/OnNotification8/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification8/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "PanelsAnimation"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/PanelsAnimation>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification8/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Material "MI_Bubble" (
+        references = @Materials/MasterMaterials.usda@</Root/MasterMaterials/MM_Bubble>
+    )
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        float3 inputs:NoiseOffset_2 = (2, 2, 2)
+        float3 inputs:NoiseOffset_3 = (4, 4, 4)
+        float inputs:Pop = 0
+        token outputs:mtlx:surface.connect = </Root/MI_Bubble/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (93.5, 100.5)
+        }
+    }
+
+    def RealityKitAudioFile "PopSphere_wav"
+    {
+        uniform asset file = @Audio/AudioFiles/PopSphere.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def Xform "GeneralOpacity"
+    {
+        reorder nameChildren = ["HierarchicalFade", "RingTransform", "AllRows", "CarModel_Holder", "ReducedCarModel_Holder", "Diorama_Holder", "FloatingPlane", "Title_Holder"]
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 1
+        }
+
+        def Xform "AllRows" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["panels12_Idle", "HierarchicalFade", "panels10_Idle", "panels10_VideoPosition"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 1.3, -1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0
+            }
+
+            def "panels12_Idle" (
+                active = false
+                references = @Geometry/AnimationsPanels/panels12_Idle.usdc@
+            )
+            {
+                quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+                float3 xformOp:scale = (1, 1, 1)
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "AnimationLibrary"
+                {
+                    def RealityKitClipDefinition "Clip_panels12_Opening"
+                    {
+                        uniform string[] clipNames = ["Opening", "Clip 1"]
+                        uniform string sourceAnimationName = "panels12_Opening"
+                        uniform double[] startTimes = [0, 6.633333333333334]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel08"
+                    {
+                        uniform string[] clipNames = ["Activation_08", "Clip 2"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel08"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel12"
+                    {
+                        uniform string[] clipNames = ["Activation_12", "Clip 3"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel12"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel01"
+                    {
+                        uniform string[] clipNames = ["Activation_01", "Clip 4"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel01"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel10"
+                    {
+                        uniform string[] clipNames = ["Activation_10", "Clip 5"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel10"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel02"
+                    {
+                        uniform string[] clipNames = ["Activation_02", "Clip 6"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel02"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel03"
+                    {
+                        uniform string[] clipNames = ["Activation_03", "Clip 7"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel03"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel04"
+                    {
+                        uniform string[] clipNames = ["Activation_04", "Clip 8"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel04"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel05"
+                    {
+                        uniform string[] clipNames = ["Activation_05", "Clip 9"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel05"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel06"
+                    {
+                        uniform string[] clipNames = ["Activation_06", "Clip 10"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel06"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel07"
+                    {
+                        uniform string[] clipNames = ["Activation_07", "Clip 11"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel07"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel09"
+                    {
+                        uniform string[] clipNames = ["Activation_09", "Clip 12"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel09"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel12_ActivationPanel11"
+                    {
+                        uniform string[] clipNames = ["Activation_11", "Clip 13"]
+                        uniform string sourceAnimationName = "panel12_ActivationPanel11"
+                        uniform double[] startTimes = [0, 3.3]
+                    }
+                }
+            }
+
+            def "panels10_Idle" (
+                active = true
+                references = @Geometry/AnimationsPanels/panels10_Idle.usdc@
+            )
+            {
+                quatf xformOp:orient = (0.70710677, -0.7071067, 0, 0)
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                float3 xformOp:translate = (0, 0, 0.013540685)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "Panels"
+                {
+                    over "Image_8"
+                    {
+                        reorder nameChildren = ["A_BorderPanel", "ImageScreen_003", "Cube"]
+                        over "Cube" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_2"
+                    {
+                        reorder nameChildren = ["A_BorderPanel", "ImageScreen_006", "Cube_1"]
+                        over "Cube_1" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_9"
+                    {
+                        reorder nameChildren = ["A_BorderPanel", "ImageScreen_004", "Cube_2"]
+                        over "Cube_2" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_10"
+                    {
+                        reorder nameChildren = ["borderPanel", "ImageScreen_007", "Cube_3"]
+                        over "Cube_3" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_3"
+                    {
+                        reorder nameChildren = ["A_BorderPanel", "ImageScreen_002", "Cube_4"]
+                        over "Cube_4" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_5"
+                    {
+                        reorder nameChildren = ["borderPanel", "ImageScreen_008", "Cube_5"]
+                        over "Cube_5" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_7"
+                    {
+                        reorder nameChildren = ["borderPanel", "ImageScreen_005", "Cube_6"]
+                        over "Cube_6" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_6"
+                    {
+                        reorder nameChildren = ["borderPanel", "ImageScreen_009", "Cube_7"]
+                        over "Cube_7" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_4"
+                    {
+                        reorder nameChildren = ["borderPanel", "ImageScreen_001", "Cube_8"]
+                        over "Cube_8" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+
+                    over "Image_1"
+                    {
+                        reorder nameChildren = ["A_BorderPanel", "ImageScreen", "Cube_9"]
+                        over "Cube_9" (
+                            active = false
+                        )
+                        {
+                        }
+                    }
+                }
+
+                over "AnimationLibrary"
+                {
+                    reorder nameChildren = ["panels10_Opening", "panel10_ActivationPanel01", "panel10_ActivationPanel02", "panel10_ActivationPanel03", "panel10_ActivationPanel04", "panel10_ActivationPanel05", "panel10_ActivationPanel06", "panel10_ActivationPanel07", "panel10_ActivationPanel08", "panel10_ActivationPanel09", "panel10_ActivationPanel10", "Clip_panels10_Opening", "Clip_panel10_ActivationPanel01", "Clip_panel10_ActivationPanel02", "Clip_panel10_ActivationPanel03", "Clip_panel10_ActivationPanel04", "Clip_panel10_ActivationPanel05", "Clip_panel10_ActivationPanel06", "Clip_panel10_ActivationPanel07", "Clip_panel10_ActivationPanel08", "Clip_panel10_ActivationPanel09", "Clip_panel10_ActivationPanel10", "panels10_Opening_1"]
+                    def RealityKitClipDefinition "Clip_panels10_Opening"
+                    {
+                        uniform string[] clipNames = ["Opening", "Clip 1"]
+                        uniform string sourceAnimationName = "panels10_Opening"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel01"
+                    {
+                        uniform string[] clipNames = ["Activation_01", "Clip 2"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel01"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel02"
+                    {
+                        uniform string[] clipNames = ["Activation_02", "Clip 3"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel02"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel03"
+                    {
+                        uniform string[] clipNames = ["Activation_03", "Clip 4"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel03"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel04"
+                    {
+                        uniform string[] clipNames = ["Activation_04", "Clip 5"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel04"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel05"
+                    {
+                        uniform string[] clipNames = ["Activation_05", "Clip 6"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel05"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel06"
+                    {
+                        uniform string[] clipNames = ["Activation_06", "Clip 7"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel06"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel07"
+                    {
+                        uniform string[] clipNames = ["Activation_07", "Clip 8"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel07"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel08"
+                    {
+                        uniform string[] clipNames = ["Activation_08", "Clip 9"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel08"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel09"
+                    {
+                        uniform string[] clipNames = ["Activation_09", "Clip 10"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel09"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panel10_ActivationPanel10"
+                    {
+                        uniform string[] clipNames = ["Activation_10", "Clip 11"]
+                        uniform string sourceAnimationName = "panel10_ActivationPanel10"
+                        uniform double[] startTimes = [0, 1.9666666666666666]
+                    }
+
+                    def RealityKitClipDefinition "Clip_panels10_Opening_1"
+                    {
+                        uniform string[] clipNames = []
+                        uniform string sourceAnimationName = "panels10_Opening 1"
+                        uniform double[] startTimes = []
+                    }
+                }
+            }
+
+            def "panels10_VideoPosition" (
+                active = false
+                references = @Geometry/AnimationsPanels/panels10_VideoPosition.usdc@
+            )
+            {
+                quatf xformOp:orient = (0.70710677, -0.7071067, 0, 0)
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                float3 xformOp:translate = (0, 0, 0.01354)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "VideosPosition"
+                {
+                    over "Image_7"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_9"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_3"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_2"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_1"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_10"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_5"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_4"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_6"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+
+                    over "Image_8"
+                    {
+                        over "A_BorderPanelShapekey"
+                        {
+                            over "M_BorderPanel"
+                            {
+                                float inputs:Fill = 1
+                            }
+                        }
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+        }
+
+        def Xform "RingTransform" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 1, -1.5)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def Xform "ReducedCarModel_Holder" (
+            active = true
+            customData = {
+                float3 rotationEulerHint = (0, 4.712389, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.70710677, 0, -0.7071067, 0)
+            float3 xformOp:scale = (0.24999999, 0.24999999, 0.24999999)
+            float3 xformOp:translate = (0, 0.75, -1.1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0
+            }
+
+            def RealityKitComponent "ImageBasedLightReceiver" (
+                active = false
+            )
+            {
+                rel iblEntity = </Root/HDRI>
+                uniform token info:id = "RealityKit.ImageBasedLightReceiver"
+            }
+        }
+
+        def Xform "Diorama_Holder" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0.7, -1.1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0
+            }
+        }
+
+        def Sphere "FloatingPlane" (
+            active = false
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["Collider", "InputTarget", "HierarchicalFade"]
+            rel material:binding = </Root/M_GroundMask> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            double radius = 0.1
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (5.0000005, 0.5, 5.0000005)
+            float3 xformOp:translate = (0, 0.9, -1.5)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "Collider" (
+                active = false
+            )
+            {
+                uint group = 1
+                uniform token info:id = "RealityKit.Collider"
+                uint mask = 4294967295
+                token type = "Default"
+
+                def RealityKitStruct "Shape"
+                {
+                    float3 extent = (0.2, 0.2, 0.2)
+                    token shapeType = "Box"
+
+                    def RealityKitStruct "pose"
+                    {
+                    }
+                }
+            }
+
+            def RealityKitComponent "InputTarget" (
+                active = false
+            )
+            {
+                uniform token info:id = "RealityKit.InputTarget"
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 1
+            }
+        }
+
+        def Xform "CarModel_Holder" (
+            active = true
+            customData = {
+                float3 rotationEulerHint = (0, 2.3561945, 0)
+            }
+        )
+        {
+            quatf xformOp:orient = (0.38268337, 0, 0.92387956, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, -2.5)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0
+            }
+
+            def RealityKitComponent "ImageBasedLightReceiver" (
+                active = false
+            )
+            {
+                rel iblEntity = </Root/HDRI>
+                uniform token info:id = "RealityKit.ImageBasedLightReceiver"
+            }
+        }
+
+        def Xform "Title_Holder" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["A_OpenningTitle", "HierarchicalFade"]
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 1.5, -1.5)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0
+            }
+        }
+    }
+
+    def "driverTouchStart" (
+        customData = {
+            float3 rotationEulerHint = (-1.5707963, 0, 0)
+        }
+        references = @Geometry/DriversAnimations/driverTouchStart.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.7071067, -0.70710677, 0, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+        float3 xformOp:translate = (0, 1, -0.6)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "driver_TouchStartSphere"
+        {
+            reorder nameChildren = ["Guide", "TouchToStart"]
+            def "Guide" (
+                active = true
+                customData = {
+                    float3 rotationEulerHint = (1.5707964, 0, 0.01745329)
+                }
+                references = @Assets/Guide.usda@
+            )
+            {
+                quatf xformOp:orient = (0.7070798, 0.7070798, 0.0061705913, 0.0061705913)
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "GuideGear"
+                {
+                    def RealityKitComponent "HierarchicalFade"
+                    {
+                        uniform token info:id = "RealityKit.HierarchicalFade"
+                        float opacity = 1
+                    }
+
+                    over "GuideGear"
+                    {
+                        over "HierarchicalFade"
+                        {
+                            float opacity = 0
+                        }
+                    }
+
+                    over "GuideSphere"
+                    {
+                        def RealityKitComponent "InputTarget"
+                        {
+                            uniform token info:id = "RealityKit.InputTarget"
+                        }
+
+                        def RealityKitComponent "Collider"
+                        {
+                            uint group = 1
+                            uniform token info:id = "RealityKit.Collider"
+                            uint mask = 4294967295
+                            token type = "Default"
+
+                            def RealityKitStruct "Shape"
+                            {
+                                float3 extent = (0.19932584, 0.19932584, 0.19932584)
+                                float radius = 0.09966292
+                                token shapeType = "Sphere"
+
+                                def RealityKitStruct "pose"
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+
+                over "MF_Floating"
+                {
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1079.8055, 118.752556)
+                    int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 695
+
+                    over "Noise2D"
+                    {
+                        float2 ui:nodegraph:node:pos = (616.60406, 84.82062)
+                        int ui:nodegraph:node:stackingOrder = 697
+                    }
+
+                    over "Multiply_2"
+                    {
+                        float2 ui:nodegraph:node:pos = (806.9047, 112.54888)
+                        int ui:nodegraph:node:stackingOrder = 699
+                    }
+
+                    over "Time_1"
+                    {
+                        float2 ui:nodegraph:node:pos = (-87.55002, 171.3804)
+                        int ui:nodegraph:node:stackingOrder = 708
+                    }
+
+                    over "Combine2"
+                    {
+                        float inputs:in1.connect = None
+                        float inputs:in2.connect = </Root/driverTouchStart/driver_TouchStartSphere/Guide/MF_Floating/Multiply.outputs:out>
+                        int ui:nodegraph:node:stackingOrder = 711
+                    }
+
+                    def Shader "Multiply"
+                    {
+                        uniform token info:id = "ND_multiply_float"
+                        float inputs:in1.connect = </Root/driverTouchStart/driver_TouchStartSphere/Guide/MF_Floating/Time_1.outputs:out>
+                        float inputs:in2 = 0.25
+                        float outputs:out
+                        float2 ui:nodegraph:node:pos = (178.37772, 233.3134)
+                        int ui:nodegraph:node:stackingOrder = 702
+                    }
+                }
+
+                over "M_GuideGear"
+                {
+                    float inputs:Animation (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-2225.9136, 188.95323)
+                                int stackingOrderInSubgraph = 1155
+                            }
+                        }
+                    )
+
+                    over "Combine3_1"
+                    {
+                        float2 ui:nodegraph:node:pos = (-1374.4088, 783.03564)
+                        int ui:nodegraph:node:stackingOrder = 1153
+                    }
+                }
+
+                def RealityKitComponent "AudioLibrary"
+                {
+                    uniform token info:id = "RealityKit.AudioLibrary"
+
+                    def RealityKitDict "resources"
+                    {
+                        string[] keys = ["PopSphere_wav"]
+                        rel values = </Root/PopSphere_wav>
+                    }
+                }
+
+                over "M_GuideSphere"
+                {
+                    over "ConstantFloat"
+                    {
+                        float2 ui:nodegraph:node:pos = (-2215.1074, 450.77786)
+                        int ui:nodegraph:node:stackingOrder = 962
+                    }
+                }
+
+                over "A_GuideLogo"
+                {
+                    over "ParticleEmitter" (
+                        active = false
+                    )
+                    {
+                    }
+
+                    over "A_LogoAci"
+                    {
+                        over "HierarchicalFade"
+                        {
+                            float opacity = 1
+                        }
+
+                        over "guideLogoAci"
+                        {
+                            over "sphereAci"
+                            {
+                                over "Cube_001"
+                                {
+                                }
+                            }
+                        }
+
+                        over "Materials"
+                        {
+                            over "M_LogoSphere"
+                            {
+                                float inputs:Pop = 1
+                            }
+                        }
+                    }
+
+                    over "HDRI"
+                    {
+                        over "ImageBasedLight"
+                        {
+                            bool isGlobalIBL = 0
+                        }
+                    }
+
+                    over "GuideWireframe"
+                    {
+                    }
+
+                    over "GuideGear"
+                    {
+                        over "GuideSphere"
+                        {
+                            float3 xformOp:translate = (0, 0, 0)
+                            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                            over "HierarchicalFade"
+                            {
+                                float opacity = 0
+                            }
+                        }
+                    }
+                }
+            }
+
+            def "TouchToStart" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                references = @Assets/TouchToStart.usdc@
+            )
+            {
+                rel material:binding = </Root/MI_3DText> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                quatf xformOp:orient = (0.70710677, 0.70710677, 0, 0)
+                float3 xformOp:scale = (0.7499999, 0.7499999, 0.7499999)
+                float3 xformOp:translate = (7.549789e-8, 0, -0.26249987)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "Billboard"
+                {
+                    float blendFactor = 1
+                    uniform token info:id = "RealityKit.Billboard"
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+        }
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+
+            def RealityKitAnimationFile "driverEndExperience"
+            {
+                uniform asset file = @Geometry/DriversAnimations/driverEndExperience.usdc@
+                uniform string name = "driverEndExperience"
+            }
+
+            def RealityKitAnimationFile "driverResponse"
+            {
+                uniform asset file = @Geometry/DriversAnimations/driverResponse.usdc@
+                uniform string name = "driverResponse"
+            }
+        }
+    }
+
+    def "M_GroundMask" (
+        active = true
+        references = @Materials/MasterMaterials.usda@</Root/M_GroundMask>
+    )
+    {
+        float inputs:Pop = 0
+    }
+
+    def RealityKitTimeline "Module_BPlus_Start"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "StartModule_B"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "905312FB-2D7C-44CD-AA7D-84375ACA34E7"
+                bool isActive = 1
+                string notificationName = "StartModule_BPlus"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (-757.8896, 160.28719)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification2"
+    {
+        rel actions = </Root/OnNotification2/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification2/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Module_BPlus_Start"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Module_BPlus_Start>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification2/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+}
+

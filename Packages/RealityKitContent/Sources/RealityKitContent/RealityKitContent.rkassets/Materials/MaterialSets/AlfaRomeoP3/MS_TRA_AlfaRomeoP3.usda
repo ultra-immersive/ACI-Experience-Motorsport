@@ -1,0 +1,109 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["MM_TransitionPBR", "MI_TRA_A_CarBody", "MI_TRA_B_NonMetal", "MI_TRA_C_Transparent", "MI_TRA_D_Metal", "MI_TRA_E_Screws", "MI_TRA_Z_Cover"]
+    def "MM_TransitionPBR" (
+        active = true
+        references = @../../MasterMaterials.usda@</Root/MM_TransitionPBR>
+    )
+    {
+        float inputs:TransitionAmount = 0
+        float inputs:TransitionLocationHigh = 1.275
+        float inputs:TransitionSpan = 0.5
+        color3f inputs:WireframeColor = (0.9137255, 0.23921569, 0.19215687) (
+            colorSpace = "srgb_displayp3"
+        )
+    }
+
+    def "MI_TRA_A_CarBody" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/AlfaRomeoP3/A-Carbody_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/AlfaRomeoP3/A-Carbody_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/AlfaRomeoP3/A-Carbody_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/AlfaRomeoP3/A-Carbody_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/AlfaRomeoP3/A-Carbody_Roughness.png@
+    }
+
+    def "MI_TRA_B_NonMetal" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/AlfaRomeoP3/B-NonMetal_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/AlfaRomeoP3/B-NonMetal_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/AlfaRomeoP3/B-NonMetal_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/AlfaRomeoP3/B-NonMetal_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/AlfaRomeoP3/B-NonMetal_Roughness.png@
+    }
+
+    def "MI_TRA_C_Transparent" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        asset inputs:AOMap = @../../Textures/AlfaRomeoP3/C-Transparent_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/AlfaRomeoP3/C-Transparent_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/AlfaRomeoP3/C-Transparent_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/AlfaRomeoP3/C-Transparent_Normal.png@
+        asset inputs:OpacityMap = @../../Textures/AlfaRomeoP3/C-Transparent_Alpha.png@
+        asset inputs:RoughnessMap = @../../Textures/AlfaRomeoP3/C-Transparent_Roughness.png@
+    }
+
+    def "MI_TRA_D_Metal" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/AlfaRomeoP3/D-Metal_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/AlfaRomeoP3/D-Metal_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/AlfaRomeoP3/D-Metal_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/AlfaRomeoP3/D-Metal_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/AlfaRomeoP3/D-Metal_Roughness.png@
+    }
+
+    def "MI_TRA_E_Screws" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/AlfaRomeoP3/E-Screws_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/AlfaRomeoP3/E-Screws_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/AlfaRomeoP3/E-Screws_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/AlfaRomeoP3/E-Screws_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/AlfaRomeoP3/E-Screws_Roughness.png@
+    }
+
+    def "MI_TRA_Z_Cover" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/AlfaRomeoP3/Z-Cover_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/AlfaRomeoP3/Z-Cover_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/AlfaRomeoP3/Z-Cover_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/AlfaRomeoP3/Z-Cover_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/AlfaRomeoP3/Z-Cover_Roughness.png@
+    }
+}
+

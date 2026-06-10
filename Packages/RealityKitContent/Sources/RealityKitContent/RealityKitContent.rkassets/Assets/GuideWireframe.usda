@@ -1,0 +1,266 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["guideOutlineTatuus", "Outlines", "guideOutlineDioramaVallelunga", "GuideGearWireframe", "HierarchicalFade", "M_GuideWireframe"]
+    def Material "M_GuideWireframe"
+    {
+        reorder nameChildren = ["UnlitSurface", "Position", "Separate3", "Abs", "Clamp", "Oneminus", "Divide", "Rotate3D", "Time", "Multiply", "Multiply_1", "Add", "Multiply_2", "MF_EpochColors_1"]
+        int inputs:ID = 3 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-871.7246, 38.375084)
+                    int stackingOrderInSubgraph = 541
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/M_GuideWireframe/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (460.68124, 95.207886)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 35
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            color3f inputs:color.connect = </Root/M_GuideWireframe/Multiply_3.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (200.93907, 92.49304)
+            int ui:nodegraph:node:stackingOrder = 35
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-1570.2462, 178.58284)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/M_GuideWireframe/Rotate3D.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-1145.1814, 242.8648)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Abs"
+        {
+            uniform token info:id = "ND_absval_float"
+            float inputs:in.connect = </Root/M_GuideWireframe/Divide.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-803.7681, 266.02127)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Clamp"
+        {
+            uniform token info:id = "ND_clamp_float"
+            float inputs:high
+            float inputs:in.connect = </Root/M_GuideWireframe/Abs.outputs:out>
+            float inputs:low
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-633.1887, 243.99265)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Oneminus"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_GuideWireframe/Clamp.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-514.68945, 296.55356)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_float"
+            float inputs:in1.connect = </Root/M_GuideWireframe/Separate3.outputs:outz>
+            float inputs:in2 = 0.15
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-955.62366, 267.1015)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Rotate3D"
+        {
+            uniform token info:id = "ND_rotate3d_vector3"
+            float inputs:amount.connect = </Root/M_GuideWireframe/Multiply.outputs:out>
+            float3 inputs:axis
+            float3 inputs:in.connect = </Root/M_GuideWireframe/Position.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-1376.3251, 243.88554)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1676.9258, 290.0685)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GuideWireframe/Time.outputs:out>
+            float inputs:in2 = 100
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1527.852, 299.3484)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            color3f inputs:in1.connect = </Root/M_GuideWireframe/MF_EpochColors_1.outputs:Color>
+            float inputs:in2.connect = </Root/M_GuideWireframe/Add.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-84.45997, 137.51938)
+            int ui:nodegraph:node:stackingOrder = 546
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_GuideWireframe/Multiply_2.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-202.52669, 311.8307)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GuideWireframe/Oneminus.outputs:out>
+            float inputs:in2 = 5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-346.08347, 303.60248)
+            int ui:nodegraph:node:stackingOrder = 495
+        }
+
+        def "MF_EpochColors_1" (
+            active = true
+            instanceable = true
+            references = </Root/MF_EpochColors>
+        )
+        {
+            int inputs:ID = 3
+            int inputs:ID.connect = </Root/M_GuideWireframe.inputs:ID>
+            float2 ui:nodegraph:node:pos = (-591.3086, 27.0625)
+            int ui:nodegraph:node:stackingOrder = 541
+        }
+
+        def Shader "ConstantFloat"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 1.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-127.7135, 27.957855)
+            int ui:nodegraph:node:stackingOrder = 552
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            prepend color3f inputs:in1.connect = </Root/M_GuideWireframe/MF_EpochColors_1.outputs:Color>
+            float inputs:in2.connect = </Root/M_GuideWireframe/ConstantFloat.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-68.94494, -36.60202)
+            int ui:nodegraph:node:stackingOrder = 544
+        }
+    }
+
+    def "GuideGearWireframe" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/GuideGearWireframe.usdc@
+    )
+    {
+        rel material:binding = </Root/M_GuideWireframe> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def RealityKitComponent "HierarchicalFade"
+    {
+        uniform token info:id = "RealityKit.HierarchicalFade"
+        float opacity = 1
+    }
+
+    def Scope "Outlines" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["guideOutlineDioramaMonza", "guideOutlineTatuus", "guideOutlineDioramaVallelunga"]
+        def "guideOutlineTatuus" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../Geometry/Guide/guideOutlineTatuus.usdc@
+        )
+        {
+            rel material:binding = </Root/M_GuideWireframe> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (0.70710677, -0.7071067, 0, 0)
+            float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "guideOutlineDioramaVallelunga" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../Geometry/Guide/guideOutlineDioramaVallelunga.usdc@
+        )
+        {
+            rel material:binding = </Root/M_GuideWireframe> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (0.70710677, -0.7071067, 0, 0)
+            float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "guideOutlineDioramaMonza" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            prepend references = @../Geometry/Guide/guideOutlineDioramaMonza.usdc@
+        )
+        {
+            rel material:binding = </Root/M_GuideWireframe> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def "MF_EpochColors" (
+        active = true
+        references = @../Materials/EpochMaterial.usda@</Root/MF_EpochColors>
+    )
+    {
+    }
+}
+

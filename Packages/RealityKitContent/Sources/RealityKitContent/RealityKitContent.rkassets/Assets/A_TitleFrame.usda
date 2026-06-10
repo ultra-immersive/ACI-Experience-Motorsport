@@ -1,0 +1,175 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["TitleFrame", "M_Frame", "M_TitleV1", "Monza01", "M_TitleV2", "M_Title"]
+    def "TitleFrame" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0)
+        }
+        references = @../Geometry/TitleFrame.usdc@
+    )
+    {
+        rel material:binding = </Root/M_Frame> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Sphere"
+        {
+            over "Sphere" (
+                customData = {
+                    dictionary RE = {
+                        dictionary mesh = {
+                            dictionary v1 = {
+                                bool reorderVertexCaching = 1
+                            }
+                        }
+                    }
+                }
+            )
+            {
+                uniform token subdivisionScheme = "catmullClark"
+            }
+        }
+    }
+
+    def Material "M_Frame"
+    {
+        token outputs:mtlx:surface.connect = </Root/M_Frame/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap
+            color3f inputs:color.connect = </Root/M_Frame/BlurredBackground.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/M_Frame/Power.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (95.90625, 49.628906)
+            int ui:nodegraph:node:stackingOrder = 3
+        }
+
+        def Shader "TransformNormal"
+        {
+            uniform token info:id = "ND_transformnormal_vector3"
+            string inputs:fromspace = "object"
+            float3 inputs:in.connect = </Root/M_Frame/Normal.outputs:out>
+            string inputs:tospace = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-730.6932, -72.791626)
+            int ui:nodegraph:node:stackingOrder = 841
+        }
+
+        def Shader "Normalize"
+        {
+            uniform token info:id = "ND_normalize_vector3"
+            float3 inputs:in.connect = </Root/M_Frame/TransformNormal.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-502.27228, -72.77948)
+            int ui:nodegraph:node:stackingOrder = 810
+        }
+
+        def Shader "Normal"
+        {
+            uniform token info:id = "ND_normal_vector3"
+            string inputs:space = "object"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-927.47833, -91.31506)
+            int ui:nodegraph:node:stackingOrder = 838
+        }
+
+        def Shader "DotProduct"
+        {
+            uniform token info:id = "ND_dotproduct_vector3"
+            float3 inputs:in1.connect = </Root/M_Frame/Normalize.outputs:out>
+            float3 inputs:in2.connect = </Root/M_Frame/Normalize_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-296.3424, -23.599693)
+            int ui:nodegraph:node:stackingOrder = 810
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+        }
+
+        def Shader "Normalize_1"
+        {
+            uniform token info:id = "ND_normalize_vector3"
+            float3 inputs:in.connect = </Root/M_Frame/TransformNormal_1.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-499.1834, 25.999466)
+            int ui:nodegraph:node:stackingOrder = 810
+        }
+
+        def Shader "ConstantFloat3"
+        {
+            uniform token info:id = "ND_constant_vector3"
+            float3 inputs:value = (0, 0, 1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-977.23047, 24.105469)
+            int ui:nodegraph:node:stackingOrder = 840
+        }
+
+        def Shader "Power"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/M_Frame/DotProduct.outputs:out>
+            float inputs:in2 = 251
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-130.53516, 53.01953)
+            int ui:nodegraph:node:stackingOrder = 867
+        }
+
+        def Shader "BlurredBackground"
+        {
+            uniform token info:id = "ND_realitykit_background_blur_color3"
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-270.66016, -117.97266)
+            int ui:nodegraph:node:stackingOrder = 846
+        }
+
+        def Shader "TransformNormal_1"
+        {
+            uniform token info:id = "ND_transformnormal_vector3"
+            string inputs:fromspace = "object"
+            float3 inputs:in.connect = </Root/M_Frame/ConstantFloat3.outputs:out>
+            string inputs:tospace = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-738.8564, 26.95575)
+            int ui:nodegraph:node:stackingOrder = 844
+        }
+    }
+
+    def Material "M_Title"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token outputs:mtlx:surface.connect = </Root/M_Title/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:node:pos = (100.953125, 17.925781)
+        int ui:nodegraph:node:stackingOrder = 1
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (82.12109, 45.30078)
+            int ui:nodegraph:node:stackingOrder = 3
+        }
+    }
+}
+

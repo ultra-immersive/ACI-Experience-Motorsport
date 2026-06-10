@@ -1,0 +1,108 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["MM_TransitionPBR", "MI_TRA_A_CarBody1", "MI_TRA_B_CarBody2", "MI_TRA_C_Wheels", "MI_TRA_D_Common", "MI_TRA_E_Transparent", "MI_TRA_Z_Covers"]
+    def "MM_TransitionPBR" (
+        active = true
+        references = @../../MasterMaterials.usda@</Root/MM_TransitionPBR>
+    )
+    {
+        float inputs:TransitionAmount = 0
+        float inputs:TransitionLocationHigh = 1.15
+        color3f inputs:WireframeColor = (0.9137255, 0.23921569, 0.19215687) (
+            colorSpace = "srgb_displayp3"
+        )
+    }
+
+    def "MI_TRA_A_CarBody1" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Ferrari375plus/A-CarBody1_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Ferrari375plus/A-CarBody1_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Ferrari375plus/A-CarBody1_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Ferrari375plus/A-CarBody1_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Ferrari375plus/A-CarBody1_Roughness.png@
+    }
+
+    def "MI_TRA_B_CarBody2" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Ferrari375plus/B-CarBody2_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Ferrari375plus/B-CarBody2_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Ferrari375plus/B-CarBody2_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Ferrari375plus/B-CarBody2_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Ferrari375plus/B-CarBody2_Roughness.png@
+    }
+
+    def "MI_TRA_C_Wheels" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Ferrari375plus/C-Wheels_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Ferrari375plus/C-Wheels_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Ferrari375plus/C-Wheels_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Ferrari375plus/C-Wheels_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Ferrari375plus/C-Wheels_Roughness.png@
+    }
+
+    def "MI_TRA_D_Common" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Ferrari375plus/D-Common_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Ferrari375plus/D-Common_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Ferrari375plus/D-Common_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Ferrari375plus/D-Common_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Ferrari375plus/D-Common_Roughness.png@
+    }
+
+    def "MI_TRA_E_Transparent" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        asset inputs:AOMap = @../../Textures/Ferrari375plus/E-Transparent_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Ferrari375plus/E-Transparent_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Ferrari375plus/E-Transparent_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Ferrari375plus/E-Transparent_Normal.png@
+        asset inputs:OpacityMap = @../../Textures/Ferrari375plus/E-Transparent_Alpha.png@
+        asset inputs:RoughnessMap = @../../Textures/Ferrari375plus/E-Transparent_Roughness.png@
+    }
+
+    def "MI_TRA_Z_Covers" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Ferrari375plus/Z-Cover_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Ferrari375plus/Z-Cover_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Ferrari375plus/Z-Cover_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Ferrari375plus/Z-Cover_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Ferrari375plus/Z-Cover_Roughness.png@
+    }
+}
+

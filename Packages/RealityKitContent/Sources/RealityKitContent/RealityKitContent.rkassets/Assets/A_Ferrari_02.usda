@@ -1,0 +1,1126 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["A_FloatingPlane", "A_ShadowCatcher", "A_SoundIcon_A_Ferrari", "Billboards", "Engine_A_Ferrari", "M_Ferrari375plus", "Materials", "Model_Sorting_Group", "MusicAudioSource_Ferrari_1", "VoiceAudioSource_A_Ferrari", "Begin_A_Ferrari", "Begin_A_Ferrari_FullSize", "RCP_BehaviorsContainer", "OnNotification", "OnNotification2", "OnNotification3", "BillboardSequence_A_Ferrari", "BillboardSequence_A_Ferrari_FullSize", "OnNotification4", "End_A_Ferrari", "OnNotification5", "Transform"]
+    def "A_FloatingPlane" (
+        active = true
+        references = @A_FloatingPlane.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (80, 80)
+        int ui:nodegraph:node:stackingOrder = 4
+        float3 xformOp:scale = (5, 1, 5)
+        float3 xformOp:translate = (0, -0.0364, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "M_FloatingPlane"
+        {
+            over "FloatingPlane"
+            {
+                over "Mesh"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+
+                over "ME_FloatingPlane"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+            }
+
+            over "FloatingPOutline"
+            {
+                over "FloatingPlane_001"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 1
+                    }
+                }
+            }
+        }
+
+        over "MI_GroundMask"
+        {
+            int inputs:ID = 0
+            float inputs:Pop (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-500.23923, 225.74406)
+                        int stackingOrderInSubgraph = 3233
+                    }
+                }
+            )
+        }
+
+        over "SpotLight"
+        {
+            over "SpotLight"
+            {
+                float intensity = 0
+            }
+        }
+    }
+
+    def "A_ShadowCatcher" (
+        active = true
+        references = @A_ShadowCatcher.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "MM_ShadowCatcher"
+        {
+            asset inputs:ShadowCatcher = @../Materials/Textures/ShadowCatchers/T_SC_Ferrari375Plus.png@
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def "A_SoundIcon_A_Ferrari" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.5707963, 0)
+        }
+        references = @A_SoundIcon.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (0.7139868, 0, 0.70015913, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.01164, 1.1151599, -0.69213)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def Scope "Billboards" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Xform "BillboardsOpacity" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["A_Billboard_01", "A_Billboard_02", "A_Billboard_03", "A_Billboard_04", "A_Billboard_05", "HierarchicalFade"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "A_Billboard_02" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0, 1.1488609, -0.9302347)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    asset inputs:Mask = @../Textures/BillboardFerrari375/T_Billboard_Ferraru375_01.jpg@
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_03" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (-0.26600346, 1.1488609, 0.7017149)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    asset inputs:Mask = @../Textures/BillboardFerrari375/T_Billboard_Ferraru375_02.jpg@
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_04" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0.48122847, 1.0415328, -1.0427816)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    asset inputs:Mask = @../Textures/BillboardFerrari375/T_Billboard_Ferraru375_03.jpg@
+                }
+
+                over "billboardDiorama_Line"
+                {
+                    float3 xformOp:scale = (1, 1, 0.75)
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:translate = (0, 0.33450973, 0)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_01" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0.3614356, 1.1488609, -0.15577829)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    asset inputs:Mask = @../Textures/BillboardFerrari375/T_Billboard_Ferraru375_04.jpg@
+                }
+
+                over "billboardDiorama_Line"
+                {
+                    float3 xformOp:scale = (1, 1, 0.625)
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:translate = (0, 0.27195203, 0)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_05" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (80, 80)
+                int ui:nodegraph:node:stackingOrder = 4
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0, 1.1488609, 1.615103)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    asset inputs:Mask = @../Textures/BillboardFerrari375/T_Billboard_Ferraru375_05.jpg@
+                }
+
+                over "billboardDiorama_Line"
+                {
+                    float3 xformOp:scale = (1, 1, 0.625)
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:translate = (0, 0.2717648, 0)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+    }
+
+    def Cube "Engine_A_Ferrari" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-1.8189894e-12, 0, 0)
+        }
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "Collider", "VFXEmitter", "ParticleRingusda"]
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0
+        float2 ui:nodegraph:node:pos = (-5598.4956, -1103.4943)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (4.5, 0.3, 5)
+        float3 xformOp:translate = (-0.01164261, 1.0081463, -0.6921263)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Engine_A_Ferrari/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.3, 2, 0.25)
+                float height = 3
+                float radius = 0.08
+                token shapeType = "Capsule"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def "ParticleRingusda" (
+            active = true
+            references = @ParticleRingusda.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.22222222, 3.3333333, 0.2)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Particle"
+            {
+                float3 xformOp:translate = (-2.0768493e-7, 0.093695164, 0)
+
+                over "VFXEmitter"
+                {
+                    over "currentState"
+                    {
+                        bool isEmitting = 0
+                        float3 shapeSize = (0.1, 0.1001, 0.1)
+                    }
+                }
+            }
+        }
+    }
+
+    def "M_Ferrari375plus" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/M_Ferrari375plus.usdc@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "A_CarBody1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_A_CarBody1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "A_ME_CarBody1"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 5
+                }
+            }
+        }
+
+        over "B_CarBody2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_B_CarBody2> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "B_ME_CarBody2"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 4
+                }
+            }
+        }
+
+        over "C_NewWheelsBack_001" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_C_Wheels> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "C_ME_NewWheelsBack_001"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 2
+                }
+            }
+        }
+
+        over "D_Common" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_D_Common> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "D_ME_Common"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 3
+                }
+            }
+        }
+
+        over "E_Transparent" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_E_Transparent> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "E_ME_Transparent"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 6
+                }
+            }
+        }
+
+        over "Z_Covers" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_Z_Covers> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "Z_ME_Covers"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 1
+                }
+            }
+        }
+    }
+
+    def Scope "Materials" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def "M_Transition" (
+            active = true
+            references = @../Materials/MaterialSets/Ferrari375/MS_TRA_Ferrari375plus.usda@
+        )
+        {
+            float3 xformOp:scale = (1, 1, 1)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_TRA_A_CarBody1"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_B_CarBody2"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_C_Wheels"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_D_Common"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_E_Transparent"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_Z_Covers"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MM_TransitionPBR"
+            {
+                float inputs:TransitionAmount = 0
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+        }
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+    }
+
+    def Xform "MusicAudioSource_Ferrari_1" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 1.5, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "VoiceAudioSource_A_Ferrari" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 1.5, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def RealityKitTimeline "Begin_A_Ferrari"
+    {
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Show_Ferrari375", "BillboardSequence_A_Ferrari", "SwitchFerrari375Phy", "RemoveFerrari375Phy"]
+            def RealityKitAction "Show_Ferrari375"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "CFA8D2E2-6207-45B7-BE39-A061044B434F"
+                string notificationName = "Show_Ferrari375"
+                double startTime = 0
+                rel target = </Root>
+            }
+
+            def RealityKitAction "BillboardSequence_A_Ferrari"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "A539F757-6021-4248-A3E0-FE1DB2CA34E9"
+                string notificationName = "BillboardSequence_A_Ferrari"
+                double startTime = 5
+                rel target = </Root>
+            }
+
+            def RealityKitAction "SwitchFerrari375Phy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "E29106C6-3451-4308-ABAA-7D7D59CDD7BA"
+                string notificationName = "SwitchFerrari375Phy"
+                double startTime = 5.1
+                rel target = </Root>
+            }
+
+            def RealityKitAction "RemoveFerrari375Phy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "68D18D02-B12E-49D4-8B82-D9BF7596F220"
+                string notificationName = "RemoveFerrari375Phy"
+                double startTime = 10.5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "Begin_A_Ferrari_FullSize"
+    {
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Show_Ferrari375", "BillboardSequence_A_Ferrari_FullSize", "SwitchFerrari375Phy", "RemoveFerrari375Phy"]
+            def RealityKitAction "Show_Ferrari375"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "50B9CF76-16E6-4FCB-83F8-BDC3744CCE50"
+                string notificationName = "Show_Ferrari375"
+                double startTime = 0
+                rel target = </Root>
+            }
+
+            def RealityKitAction "BillboardSequence_A_Ferrari_FullSize"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "EF88E46B-CEA9-40AB-BA30-B75982399416"
+                string notificationName = "BillboardSequence_A_Ferrari_FullSize"
+                double startTime = 5
+                rel target = </Root>
+            }
+
+            def RealityKitAction "SwitchFerrari375Phy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "01327627-CB4F-4B18-955F-FF817D73F006"
+                string notificationName = "SwitchFerrari375Phy"
+                double startTime = 5.1
+                rel target = </Root>
+            }
+
+            def RealityKitAction "RemoveFerrari375Phy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "E6876688-BCA7-4535-AEDC-EDE48C028F7D"
+                string notificationName = "RemoveFerrari375Phy"
+                double startTime = 10.5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = [
+            </Root/OnNotification>,
+            </Root/OnNotification2>,
+            </Root/OnNotification3>,
+            </Root/OnNotification4>,
+            </Root/OnNotification5>,
+        ]
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_Ferrari_02"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_Ferrari>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification2"
+    {
+        rel actions = </Root/OnNotification2/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification2/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_Ferrari_02_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_Ferrari_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification2/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification3"
+    {
+        rel actions = </Root/OnNotification3/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification3/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_Ferrari"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_Ferrari>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification3/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_Ferrari"
+    {
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["audio_Ferrari375_01", "billboard_Ferrari375_01", "billboard_Ferrari375_02", "billboard_Ferrari375_03", "billboard_Ferrari375_04", "billboard_Ferrari375_05", "VoiceOverEnded_A_Ferrari"]
+            def RealityKitAction "audio_Ferrari375_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9FD055F6-D275-4221-A276-45DD0B14FBD8"
+                string notificationName = "audio_Ferrari375_01"
+                double startTime = 0
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_01"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "C701B664-3AC5-4494-8715-E6FAC959A10C"
+                string notificationName = "billboard_Ferrari375_01"
+                double startTime = 40
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_02"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "F41F1B6B-8922-47A1-A630-81A2D4CD7B2E"
+                string notificationName = "billboard_Ferrari375_02"
+                double startTime = 45
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_03"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "0A4CF98E-E5DD-4219-A2DB-810E29A4074F"
+                string notificationName = "billboard_Ferrari375_03"
+                double startTime = 47
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_04"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "C9AD28A9-44C0-4696-B5FC-825110C802A9"
+                string notificationName = "billboard_Ferrari375_04"
+                double startTime = 54
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_05"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "97F046C2-6E69-4570-925E-6ED0C95AA386"
+                string notificationName = "billboard_Ferrari375_05"
+                double startTime = 58
+                rel target = </Root>
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_Ferrari"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "3F013EAB-5CC3-4CD1-A73A-5EE5FA6A15C4"
+                string notificationName = "VoiceOverEnded_A_Ferrari"
+                double startTime = 100
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_Ferrari_FullSize"
+    {
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["audio_Ferrari375_01", "billboard_Ferrari375_01", "billboard_Ferrari375_02", "billboard_Ferrari375_03", "billboard_Ferrari375_04", "billboard_Ferrari375_05", "VoiceOverEnded_A_Ferrari_FullSize"]
+            def RealityKitAction "audio_Ferrari375_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "E81C450A-FF3A-4E7D-BA84-5E5E9C97D6FB"
+                string notificationName = "audio_Ferrari375_01"
+                double startTime = 0
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_01"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "4EAAE241-0ED2-41DB-BB11-91C8F7B631A8"
+                string notificationName = "billboard_Ferrari375_01"
+                double startTime = 40
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_02"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "423800CE-A2C9-48CD-BD9F-A7FD194A5558"
+                string notificationName = "billboard_Ferrari375_02"
+                double startTime = 45
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_03"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "A128DFFE-29E3-4D25-8AB3-3BCDE9F0C9AB"
+                string notificationName = "billboard_Ferrari375_03"
+                double startTime = 47
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_04"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "BB533337-63C7-43A9-8B84-BEF64DFA5114"
+                string notificationName = "billboard_Ferrari375_04"
+                double startTime = 54
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Ferrari375_05"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "F33715EC-3C21-49C4-B016-57E41940B32B"
+                string notificationName = "billboard_Ferrari375_05"
+                double startTime = 58
+                rel target = </Root>
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_Ferrari_FullSize"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "105158BC-FFD0-427B-81F1-1B84BCF2FAD7"
+                string notificationName = "VoiceOverEnded_A_Ferrari_FullSize"
+                double startTime = 100
+                rel target = </Root>
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification4"
+    {
+        rel actions = </Root/OnNotification4/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification4/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_Ferrari_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_Ferrari_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification4/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "End_A_Ferrari"
+    {
+        bool isActive = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["SwitchFerrari375Tra", "Hide_Ferrari375", "EndModule_B"]
+            def RealityKitAction "SwitchFerrari375Tra"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "17B0859F-0606-4753-9560-48F4852A6B70"
+                string notificationName = "SwitchFerrari375Tra"
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Hide_Ferrari375"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "A1A858F9-9BD9-4AC4-A11E-030FD46B5B3C"
+                string notificationName = "Hide_Ferrari375"
+                double startTime = 4
+                rel target = </Root>
+            }
+
+            def RealityKitAction "EndModule_B"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "A7F82EBA-E273-4994-A788-FC201DCE72DE"
+                string notificationName = "EndModule_B"
+                double startTime = 10
+                rel target = </Root>
+            }
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification5"
+    {
+        rel actions = </Root/OnNotification5/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification5/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "End_A_Ferrari"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/End_A_Ferrari>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification5/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Xform "Transform" (
+        active = true
+    )
+    {
+    }
+
+    def Xform "MusicAudioSource_Ferrari_2" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (3, 1.5, -4)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "MusicAudioSource_Ferrari_3" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-3, 1.5, 4)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

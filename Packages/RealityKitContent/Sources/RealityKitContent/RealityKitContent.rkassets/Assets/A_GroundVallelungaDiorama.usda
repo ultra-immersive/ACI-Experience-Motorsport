@@ -1,0 +1,710 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["groundVallelungaDiorama", "M_GroundMask", "M_GroundMaskOutline"]
+    def "groundVallelungaDiorama" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/GroundVallelungaDiorama/groundVallelungaDiorama.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "groundDiorama" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/M_GroundMask> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "Plane"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 0
+                }
+            }
+        }
+
+        over "groundDiorama_Outline" (
+            active = false
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/M_GroundMaskOutline> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "ME_groundDiorama_Outline"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 0
+                }
+            }
+        }
+    }
+
+    def Material "M_GroundMask"
+    {
+        reorder nameChildren = ["UnlitSurface", "ConstantImageFile", "Image", "Step", "Multiply_3", "Combine2", "Add_1", "Time", "Oneminus_1", "WorleyNoise2D", "Multiply_1", "Power", "Position", "Separate3", "Combine2_1", "Multiply_2", "Multiply", "SmoothStep", "MF_EpochColors_1"]
+        float inputs:Highlight_ID = 0 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-3222.7737, 1644.2848)
+                    int stackingOrderInSubgraph = 3773
+                }
+            }
+        )
+        int inputs:ID = 2 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (103.55857, -112.66617)
+                    int stackingOrderInSubgraph = 3017
+                }
+            }
+        )
+        float inputs:Radius_Highlights = 0.2 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-1742.881, 2118.579)
+                    int stackingOrderInSubgraph = 3403
+                }
+            }
+        )
+        float inputs:Tiling_Dots = 75 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-831.0833, 526.86993)
+                    int stackingOrderInSubgraph = 1988
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/M_GroundMask/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1438.6221, 683.20154)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 2148
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap
+            color3f inputs:color.connect = </Root/M_GroundMask/Multiply_6.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/M_GroundMask/Add.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (1097.8046, 303.67072)
+            int ui:nodegraph:node:stackingOrder = 2047
+        }
+
+        def Shader "ConstantImageFile"
+        {
+            uniform token info:id = "ND_constant_filename"
+            asset inputs:value = @../Textures/DioramaGroundMasks/T_GroundVallelungaDiorama_Mask.jpg@
+            asset outputs:out
+            float2 ui:nodegraph:node:pos = (-930.3063, -30.44209)
+            int ui:nodegraph:node:stackingOrder = 1529
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_float"
+            asset inputs:file.connect = </Root/M_GroundMask/ConstantImageFile.outputs:out>
+            string inputs:filtertype
+            string inputs:vaddressmode
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-651.86896, 1.2340196)
+            int ui:nodegraph:node:stackingOrder = 1529
+        }
+
+        def Shader "Step"
+        {
+            uniform token info:id = "ND_realitykit_step_float"
+            float inputs:edge = 0.9
+            float inputs:in.connect = </Root/M_GroundMask/Oneminus_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-312.6841, 436.647)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Time.outputs:out>
+            float inputs:in2 = -0.001
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1423.0674, 545.5936)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Combine2"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/M_GroundMask/Multiply_3.outputs:out>
+            float inputs:in2
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1229.7393, 556.328)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/M_GroundMask/Combine2_1.outputs:out>
+            float2 inputs:in2.connect = </Root/M_GroundMask/Combine2.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1027.2535, 423.48718)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1653.0127, 536.49207)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Oneminus_1"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_GroundMask/WorleyNoise2D.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-475.42398, 494.44516)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "WorleyNoise2D"
+        {
+            uniform token info:id = "ND_worleynoise2d_float"
+            float inputs:jitter = 0
+            float2 inputs:texcoord.connect = </Root/M_GroundMask/Multiply_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-640.0086, 451.2381)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Power.outputs:out>
+            float inputs:in2.connect = </Root/M_GroundMask/SmoothStep.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-57.67627, 281.83066)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Power"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Image.outputs:out>
+            float inputs:in2 = 2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-317.6573, 86.56375)
+            int ui:nodegraph:node:stackingOrder = 1462
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-1710.0215, 339.75244)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/M_GroundMask/Position.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-1511.0941, 338.98828)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Combine2_1"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/M_GroundMask/Separate3.outputs:outx>
+            float inputs:in2.connect = </Root/M_GroundMask/Separate3.outputs:outz>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1276.1722, 330.98828)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_vector2FA"
+            float2 inputs:in1.connect = </Root/M_GroundMask/Add_1.outputs:out>
+            float inputs:in2.connect = </Root/M_GroundMask.inputs:Tiling_Dots>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-800.90485, 453.30475)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Multiply_1.outputs:out>
+            float inputs:in2 = 0.25
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (84.14857, 292.33136)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def Shader "SmoothStep"
+        {
+            uniform token info:id = "ND_smoothstep_float"
+            float inputs:high = 0.95
+            float inputs:in.connect = </Root/M_GroundMask/Oneminus_1.outputs:out>
+            float inputs:low = 0.85
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-311.08102, 587.4401)
+            int ui:nodegraph:node:stackingOrder = 1988
+        }
+
+        def "MF_EpochColors_1" (
+            active = true
+            instanceable = true
+            references = </Root/MF_EpochColors>
+        )
+        {
+            int inputs:ID.connect = </Root/M_GroundMask.inputs:ID>
+            float2 ui:nodegraph:node:pos = (293.98096, -97.93652)
+            int ui:nodegraph:node:stackingOrder = 3933
+        }
+
+        def Shader "Position_1"
+        {
+            uniform token info:id = "ND_position_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-2304.0452, 829.67236)
+            int ui:nodegraph:node:stackingOrder = 3176
+        }
+
+        def Shader "Separate3_1"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </Root/M_GroundMask/Position_1.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (-2018.0172, 833.70276)
+            int ui:nodegraph:node:stackingOrder = 3176
+        }
+
+        def Shader "Combine2_2"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/M_GroundMask/Separate3_1.outputs:outx>
+            float inputs:in2.connect = </Root/M_GroundMask/Separate3_1.outputs:outy>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1813.984, 824.22003)
+            int ui:nodegraph:node:stackingOrder = 3176
+        }
+
+        def Shader "Magnitude_1"
+        {
+            uniform token info:id = "ND_magnitude_vector2"
+            float2 inputs:in.connect = </Root/M_GroundMask/Divide.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-943.1861, 997.99854)
+            int ui:nodegraph:node:stackingOrder = 2872
+        }
+
+        def Shader "Oneminus"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_GroundMask/Magnitude_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-795.173, 997.5108)
+            int ui:nodegraph:node:stackingOrder = 2970
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_vector2FA"
+            float2 inputs:in1.connect = </Root/M_GroundMask/Subtract.outputs:out>
+            float inputs:in2.connect = </Root/M_GroundMask/Add_2.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1169.5669, 997.5411)
+            int ui:nodegraph:node:stackingOrder = 2869
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Multiply.outputs:out>
+            float inputs:in2.connect = </Root/M_GroundMask/Multiply_7.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (276.9822, 506.33102)
+            int ui:nodegraph:node:stackingOrder = 2486
+        }
+
+        def Shader "Power_1"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Clamp.outputs:out>
+            float inputs:in2 = 3
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-492.12256, 1066.3641)
+            int ui:nodegraph:node:stackingOrder = 3475
+        }
+
+        def Shader "Clamp"
+        {
+            uniform token info:id = "ND_clamp_float"
+            float inputs:high
+            float inputs:in.connect = </Root/M_GroundMask/Oneminus.outputs:out>
+            float inputs:low
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-674.414, 1001.9052)
+            int ui:nodegraph:node:stackingOrder = 2972
+        }
+
+        def Shader "Time_1"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1855.3846, 2272.008)
+            int ui:nodegraph:node:stackingOrder = 3403
+        }
+
+        def Shader "Sin"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/M_GroundMask/Time_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1686.6133, 2271.2554)
+            int ui:nodegraph:node:stackingOrder = 3403
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Sin.outputs:out>
+            float inputs:in2 = 0.02
+            float inputs:in2.connect = </Root/M_GroundMask/Multiply_5.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1439.0503, 2278.241)
+            int ui:nodegraph:node:stackingOrder = 3403
+        }
+
+        def Shader "Add_2"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_GroundMask.inputs:Radius_Highlights>
+            float inputs:in2.connect = </Root/M_GroundMask/Multiply_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1347.9563, 2127.7517)
+            int ui:nodegraph:node:stackingOrder = 3403
+        }
+
+        def Shader "Multiply_5"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask.inputs:Radius_Highlights>
+            float inputs:in2 = 0.2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1548.044, 2195.2961)
+            int ui:nodegraph:node:stackingOrder = 3403
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </Root/M_GroundMask/Combine2_2.outputs:out>
+            float2 inputs:in2.connect = </Root/M_GroundMask/Switch.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1461.5288, 999.59985)
+            int ui:nodegraph:node:stackingOrder = 2907
+        }
+
+        def Shader "Switch"
+        {
+            uniform token info:id = "ND_switch_vector2"
+            float2 inputs:in1 = (1000, 1000)
+            float2 inputs:in1.connect = None
+            float2 inputs:in2.connect = </Root/M_GroundMask/ConstantFloat2.outputs:out>
+            float2 inputs:in3.connect = </Root/M_GroundMask/ConstantFloat2_1.outputs:out>
+            float2 inputs:in4.connect = </Root/M_GroundMask/ConstantFloat2_2.outputs:out>
+            float2 inputs:in5.connect = </Root/M_GroundMask/ConstantFloat2_4.outputs:out>
+            float2 inputs:in6.connect = </Root/M_GroundMask/ConstantFloat2_3.outputs:out>
+            float2 inputs:in7.connect = </Root/M_GroundMask/ConstantFloat2_5.outputs:out>
+            float2 inputs:in8
+            float2 inputs:in9
+            float2 inputs:in10
+            float inputs:which = 5
+            float inputs:which.connect = </Root/M_GroundMask/Floor_1.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1974.309, 1207.3169)
+            int ui:nodegraph:node:stackingOrder = 3710
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2"]
+        }
+
+        def Shader "ConstantFloat2"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (-0.385, -0.15)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2636.7175, 960.66846)
+            int ui:nodegraph:node:stackingOrder = 3878
+        }
+
+        def Shader "Add_3"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Multiply_8.outputs:out>
+            float inputs:in2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (77.78482, 1073.8242)
+            int ui:nodegraph:node:stackingOrder = 3930
+        }
+
+        def Shader "Multiply_6"
+        {
+            uniform token info:id = "ND_multiply_color3FA"
+            prepend color3f inputs:in1.connect = </Root/M_GroundMask/MF_EpochColors_1.outputs:Color>
+            float inputs:in2.connect = </Root/M_GroundMask/Add_3.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (709.0822, -52.094707)
+            int ui:nodegraph:node:stackingOrder = 3020
+        }
+
+        def Shader "ConstantFloat2_1"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (-0.03, 0.01)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2637.0742, 1029.0808)
+            int ui:nodegraph:node:stackingOrder = 3879
+        }
+
+        def Shader "ConstantFloat2_2"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.31, -0.175)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2639.621, 1092.4053)
+            int ui:nodegraph:node:stackingOrder = 3880
+        }
+
+        def Shader "ConstantFloat2_3"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.575, -0.225)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2641.139, 1224.8463)
+            int ui:nodegraph:node:stackingOrder = 3887
+        }
+
+        def Shader "ConstantFloat2_4"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.67, -0.05)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2642.3337, 1158.2428)
+            int ui:nodegraph:node:stackingOrder = 3885
+        }
+
+        def Shader "ConstantFloat2_5"
+        {
+            uniform token info:id = "ND_constant_vector2"
+            float2 inputs:value = (0.725, -0.2)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2646.356, 1305.9696)
+            int ui:nodegraph:node:stackingOrder = 3747
+        }
+
+        def Shader "Floor"
+        {
+            uniform token info:id = "ND_floor_float"
+            float inputs:in.connect = </Root/M_GroundMask.inputs:Highlight_ID>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2937.3809, 1734.1046)
+            int ui:nodegraph:node:stackingOrder = 3874
+        }
+
+        def Shader "Subtract_1"
+        {
+            uniform token info:id = "ND_subtract_float"
+            float inputs:in1.connect = </Root/M_GroundMask.inputs:Highlight_ID>
+            float inputs:in2.connect = </Root/M_GroundMask/Floor.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2671.739, 1660.2084)
+            int ui:nodegraph:node:stackingOrder = 3760
+        }
+
+        def Shader "Multiply_7"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Power_1.outputs:out>
+            float inputs:in2.connect = </Root/M_GroundMask/IfGreaterOrEqual.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-232.4611, 1075.3256)
+            int ui:nodegraph:node:stackingOrder = 3480
+        }
+
+        def Shader "IfGreaterOrEqual"
+        {
+            uniform token info:id = "ND_ifgreatereq_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Remap.outputs:out>
+            float inputs:in2.connect = </Root/M_GroundMask/Remap_1.outputs:out>
+            float inputs:value1.connect = </Root/M_GroundMask/Subtract_1.outputs:out>
+            float inputs:value2 = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1929.0586, 1678.1602)
+            int ui:nodegraph:node:stackingOrder = 3500
+        }
+
+        def Shader "Clamp_1"
+        {
+            uniform token info:id = "ND_clamp_float"
+            float inputs:high
+            float inputs:in.connect = </Root/M_GroundMask/Subtract_1.outputs:out>
+            float inputs:low = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2325.073, 1789.1172)
+            int ui:nodegraph:node:stackingOrder = 3872
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/M_GroundMask/Clamp_1.outputs:out>
+            float inputs:inlow = 0.5
+            float inputs:outhigh
+            float inputs:outlow
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2186.5027, 1791.3516)
+            int ui:nodegraph:node:stackingOrder = 3872
+        }
+
+        def Shader "Clamp_2"
+        {
+            uniform token info:id = "ND_clamp_float"
+            float inputs:high = 0.5
+            float inputs:in.connect = </Root/M_GroundMask/Subtract_1.outputs:out>
+            float inputs:low = 0
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2324.9937, 2001.0106)
+            int ui:nodegraph:node:stackingOrder = 3850
+        }
+
+        def Shader "Remap_1"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/M_GroundMask/Clamp_2.outputs:out>
+            float inputs:inhigh = 0.5
+            float inputs:inlow = 0
+            float inputs:outhigh = 0
+            float inputs:outlow = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2185.81, 2016.995)
+            int ui:nodegraph:node:stackingOrder = 3850
+        }
+
+        def Shader "Floor_1"
+        {
+            uniform token info:id = "ND_floor_float"
+            float inputs:in.connect = </Root/M_GroundMask/Add_4.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2686.753, 1477.3611)
+            int ui:nodegraph:node:stackingOrder = 3783
+        }
+
+        def Shader "Add_4"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_GroundMask.inputs:Highlight_ID>
+            float inputs:in2 = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2912.5806, 1477.9309)
+            int ui:nodegraph:node:stackingOrder = 3786
+        }
+
+        def Shader "Multiply_8"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_GroundMask/Multiply_7.outputs:out>
+            float inputs:in2 = 2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-59.32978, 1072.1605)
+            int ui:nodegraph:node:stackingOrder = 3928
+        }
+    }
+
+    def Material "M_GroundMaskOutline"
+    {
+        reorder nameChildren = ["UnlitSurface", "MF_EpochColors_1"]
+        int inputs:ID = 4 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-440.60223, 16.346619)
+                    int stackingOrderInSubgraph = 2872
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/M_GroundMaskOutline/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap = 0
+            color3f inputs:color.connect = </Root/M_GroundMaskOutline/MF_EpochColors_1.outputs:Color>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity = 0.2
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (61.203125, 61.379883)
+            int ui:nodegraph:node:stackingOrder = 2848
+        }
+
+        def "MF_EpochColors_1" (
+            active = true
+            instanceable = true
+            references = </Root/MF_EpochColors>
+        )
+        {
+            int inputs:ID.connect = </Root/M_GroundMaskOutline.inputs:ID>
+            float2 ui:nodegraph:node:pos = (-264.05728, 5.159527)
+            int ui:nodegraph:node:stackingOrder = 2872
+        }
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+    }
+
+    def "MF_EpochColors" (
+        active = true
+        prepend references = @../Materials/MasterMaterials.usda@</Root/M_GroundMask/MF_EpochColors>
+    )
+    {
+        int inputs:ID = 2
+    }
+}
+

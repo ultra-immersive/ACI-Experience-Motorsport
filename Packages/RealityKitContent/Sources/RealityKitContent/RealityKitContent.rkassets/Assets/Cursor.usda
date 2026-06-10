@@ -1,0 +1,282 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["M_FloatingPlane", "M_GroundMask", "MI_GroundMask", "M_Unlit", "MF_EpochColors"]
+    def "M_FloatingPlane" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/M_FloatingPlane.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (5, 5, 5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "FloatingPOutline" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/M_Unlit> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+        }
+
+        over "FloatingPlane" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/MI_GroundMask> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+        }
+    }
+
+    def Material "M_Unlit"
+    {
+        reorder nameChildren = ["UnlitSurface", "HoverState_1", "SmoothStep_1", "MTLDistance", "Mix_1", "Position_1", "Oneminus", "Multiply", "Clamp", "IfEqual", "MF_EpochColors_1"]
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        int inputs:ID = 3 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-446.4268, -32.431915)
+                    int stackingOrderInSubgraph = 2818
+                }
+            }
+        )
+        float inputs:Pop = 1 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-263.96875, 319.47266)
+                    int stackingOrderInSubgraph = 2810
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/M_Unlit/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap
+            color3f inputs:color.connect = </Root/M_Unlit/MF_EpochColors_1.outputs:Color>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/M_Unlit/Multiply.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (92.453125, 46.140625)
+            int ui:nodegraph:node:stackingOrder = 2812
+        }
+
+        def Shader "HoverState_1"
+        {
+            uniform token info:id = "ND_realitykit_hover_state"
+            float outputs:intensity
+            bool outputs:isActive
+            float3 outputs:position
+            float outputs:timeSinceHoverStart
+            float2 ui:nodegraph:node:pos = (-1307.5105, 115.33406)
+            int ui:nodegraph:node:stackingOrder = 2755
+        }
+
+        def Shader "SmoothStep_1"
+        {
+            uniform token info:id = "ND_smoothstep_float"
+            float inputs:high = 0.5
+            float inputs:in.connect = </Root/M_Unlit/Clamp.outputs:out>
+            float inputs:low
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-714.7425, 324.25494)
+            int ui:nodegraph:node:stackingOrder = 2718
+        }
+
+        def Shader "MTLDistance"
+        {
+            uniform token info:id = "ND_MTL_distance_vector3_float"
+            float3 inputs:x.connect = </Root/M_Unlit/HoverState_1.outputs:position>
+            float3 inputs:y.connect = </Root/M_Unlit/Position_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1101.8364, 213.72662)
+            int ui:nodegraph:node:stackingOrder = 2755
+        }
+
+        def Shader "Mix_1"
+        {
+            uniform token info:id = "ND_mix_float"
+            float inputs:bg = 0.1
+            float inputs:fg = 0.3
+            float inputs:mix.connect = </Root/M_Unlit/Oneminus.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-432.2817, 349.90527)
+            int ui:nodegraph:node:stackingOrder = 2718
+        }
+
+        def Shader "Position_1"
+        {
+            uniform token info:id = "ND_position_vector3"
+            string inputs:space = "world"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-1300.1941, 215.47859)
+            int ui:nodegraph:node:stackingOrder = 2755
+        }
+
+        def Shader "Oneminus"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_Unlit/SmoothStep_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-563.81903, 380.11157)
+            int ui:nodegraph:node:stackingOrder = 2718
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1 = 0.2
+            float inputs:in1.connect = None
+            float inputs:in2.connect = </Root/M_Unlit.inputs:Pop>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-87.72266, 291.22266)
+            int ui:nodegraph:node:stackingOrder = 2810
+        }
+
+        def Shader "Clamp"
+        {
+            uniform token info:id = "ND_clamp_float"
+            float inputs:high = 0.5
+            float inputs:in.connect = </Root/M_Unlit/MTLDistance.outputs:out>
+            float inputs:low
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-926.96875, 265.72266)
+            int ui:nodegraph:node:stackingOrder = 2741
+        }
+
+        def Shader "IfEqual"
+        {
+            uniform token info:id = "ND_ifequal_floatB"
+            float inputs:in1.connect = </Root/M_Unlit/Mix_1.outputs:out>
+            float inputs:in2 = 0.1
+            bool inputs:value1.connect = </Root/M_Unlit/HoverState_1.outputs:isActive>
+            bool inputs:value2 = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-288.6172, 192.3789)
+            int ui:nodegraph:node:stackingOrder = 2785
+        }
+
+        def "MF_EpochColors_1" (
+            active = true
+            instanceable = true
+            references = </Root/MF_EpochColors>
+        )
+        {
+            int inputs:ID.connect = </Root/M_Unlit.inputs:ID>
+            float2 ui:nodegraph:node:pos = (-263.5909, -43.96695)
+            int ui:nodegraph:node:stackingOrder = 2816
+        }
+    }
+
+    def "MF_EpochColors" (
+        active = true
+        references = @../Materials/EpochMaterial.usda@</Root/MF_EpochColors>
+    )
+    {
+    }
+
+    def "M_GroundMask" (
+        active = true
+        references = @../Materials/MasterMaterials.usda@</Root/M_GroundMask>
+    )
+    {
+    }
+
+    def "MI_GroundMask" (
+        active = true
+        instanceable = true
+        references = </Root/M_GroundMask>
+    )
+    {
+        int inputs:ID = 3
+        float inputs:Pop = 1
+    }
+
+    def Cube "Cube" (
+        active = false
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/Cube/DefaultMaterial>
+        double size = 0.2
+        float3 xformOp:scale = (10, 0.1, 10)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            prepend token outputs:surface.connect = </Root/Cube/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0, 0, 0) (
+                    colorSpace = "srgb_texture"
+                )
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+    }
+
+    def Material "Material"
+    {
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        prepend token outputs:surface.connect = </Root/Material/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:emissiveColor = (0.4513868, 0.99309605, 1) (
+                colorSpace = "srgb_texture"
+            )
+            token outputs:surface
+        }
+    }
+
+    def "M_AlfaRomeoP3" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 0.87562615, 0)
+        }
+        prepend references = @../Geometry/M_AlfaRomeoP3.usdc@
+    )
+    {
+        rel material:binding = </Root/Material> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.905681, 0, 0.4239598, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0.13092887, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0.0234375
+        }
+    }
+}
+

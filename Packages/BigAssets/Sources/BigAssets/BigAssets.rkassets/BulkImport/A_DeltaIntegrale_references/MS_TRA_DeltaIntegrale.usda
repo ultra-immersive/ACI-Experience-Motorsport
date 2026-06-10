@@ -1,0 +1,164 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["MM_TransitionPBR", "MI_TRA_A_Carbody1", "MI_TRA_B_Carbody2", "MI_TRA_C_Carbody3", "MI_TRA_D_Dashboard", "MI_TRA_E_Interiors1", "MI_TRA_F_Interiors2", "MI_TRA_G_Transparent", "MI_TRA_H_ExternalPieces", "MI_TRA_J_Graphics", "MI_TRA_Z_CarBottomAndCovers"]
+    def "MM_TransitionPBR" (
+        active = true
+        references = @MasterMaterials.usda@</Root/MM_TransitionPBR>
+    )
+    {
+        float inputs:TransitionAmount = 0 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-7269.8247, -990.0266)
+                    int stackingOrderInSubgraph = 19052
+                }
+            }
+        )
+        float inputs:TransitionLocationHigh = 1.2
+        color3f inputs:WireframeColor = (0.9411765, 0.99607843, 1) (
+            colorSpace = "srgb_displayp3"
+        )
+    }
+
+    def "MI_TRA_A_Carbody1" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @01-Carbody1_AO.png@
+        asset inputs:BaseColorMap = @01-Carbody1_BaseColor.png@
+        asset inputs:MetallicMap = @01-Carbody1_Metallic.png@
+        asset inputs:NormalMap = @01-Carbody1_Normal.png@
+        asset inputs:RoughnessMap = @01-Carbody1_Roughness.png@
+    }
+
+    def "MI_TRA_B_Carbody2" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @02-Carbody2_AO.png@
+        asset inputs:BaseColorMap = @02-Carbody2_BaseColor.png@
+        asset inputs:MetallicMap = @02-Carbody2_Metallic.png@
+        asset inputs:NormalMap = @02-Carbody2_Normal.png@
+        asset inputs:RoughnessMap = @02-Carbody2_Roughness.png@
+    }
+
+    def "MI_TRA_C_Carbody3" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @03-Carbody3_AO.png@
+        asset inputs:BaseColorMap = @03-Carbody3_BaseColor.png@
+        asset inputs:MetallicMap = @03-Carbody3_Metallic.png@
+        asset inputs:NormalMap = @03-Carbody3_Normal.png@
+        asset inputs:RoughnessMap = @03-Carbody3_Roughness.png@
+    }
+
+    def "MI_TRA_D_Dashboard" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @04-Dashboard_AO.png@
+        asset inputs:BaseColorMap = @04-Dashboard_BaseColor.png@
+        asset inputs:MetallicMap = @04-Dashboard_Metallic.png@
+        asset inputs:NormalMap = @04-Dashboard_Normal.png@
+        asset inputs:RoughnessMap = @04-Dashboard_Roughness.png@
+    }
+
+    def "MI_TRA_E_Interiors1" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @05-Interiors1_AO.png@
+        asset inputs:BaseColorMap = @05-Interiors1_BaseColor.png@
+        asset inputs:MetallicMap = @05-Interiors1_Metallic.png@
+        asset inputs:NormalMap = @05-Interiors1_Normal.png@
+        asset inputs:RoughnessMap = @05-Interiors1_Roughness.png@
+    }
+
+    def "MI_TRA_F_Interiors2" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @06-Interiors2_AO.png@
+        asset inputs:BaseColorMap = @06-Interiors2_BaseColor.png@
+        asset inputs:MetallicMap = @06-Interiors2_Metallic.png@
+        asset inputs:NormalMap = @06-Interiors2_Normal.png@
+        asset inputs:RoughnessMap = @06-Interiors2_Roughness.png@
+    }
+
+    def "MI_TRA_G_Transparent" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @07-Transparent_AO.png@
+        asset inputs:BaseColorMap = @07-Transparent_BaseColor.png@
+        asset inputs:MetallicMap = @07-Transparent_Metallic.png@
+        asset inputs:NormalMap = @07-Transparent_Normal.png@
+        asset inputs:OpacityMap = @07-Transparent_Alpha.png@
+        asset inputs:RoughnessMap = @07-Transparent_Roughness.png@
+    }
+
+    def "MI_TRA_H_ExternalPieces" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @08-ExternalPieces_AO.png@
+        asset inputs:BaseColorMap = @08-ExternalPieces_BaseColor.png@
+        asset inputs:MetallicMap = @08-ExternalPieces_Metallic.png@
+        asset inputs:NormalMap = @08-ExternalPieces_Normal.png@
+        asset inputs:RoughnessMap = @08-ExternalPieces_Roughness.png@
+    }
+
+    def "MI_TRA_J_Graphics" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @09-Graphics_AO.png@
+        asset inputs:BaseColorMap = @09-Graphics_BaseColor.png@
+        asset inputs:MetallicMap = @09-Graphics_Metallic.png@
+        asset inputs:NormalMap = @09-Graphics_Normal.png@
+        asset inputs:RoughnessMap = @09-Graphics_Roughness.png@
+    }
+
+    def "MI_TRA_Z_CarBottomAndCovers" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @10-CarBottomAndCovers_AO.png@
+        asset inputs:BaseColorMap = @10-CarBottomAndCovers_BaseColor.png@
+        asset inputs:MetallicMap = @10-CarBottomAndCovers_Metallic.png@
+        asset inputs:NormalMap = @10-CarBottomAndCovers_Normal.png@
+        asset inputs:RoughnessMap = @10-CarBottomAndCovers_Roughness.png@
+    }
+}
+

@@ -1,0 +1,781 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["MaterialSwatch", "Material", "A_CarBody1", "B_CarBody2", "C_Wheels", "D_Common", "E_Transparent", "Z_Covers"]
+    def Xform "MaterialSwatch" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["A_CarBody1", "B_CarBody2", "C_Wheels", "D_Common", "E_Transparent", "Z_Covers", "Swatch_MI_PHY_CarBody1", "Swatch_MI_PHY_CarBody2", "Swatch_MI_PHY_Wheels", "Swatch_MI_PHY_Common", "Swatch_MI_PHY_Transparent", "Swatch_MI_PHY_Covers"]
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "Swatch_MI_PHY_CarBody1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../../../Geometry/SwatchMesh.usdc@
+        )
+        {
+            rel material:binding = </Root/A_CarBody1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "Swatch_MI_PHY_CarBody2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../../../Geometry/SwatchMesh.usdc@
+        )
+        {
+            rel material:binding = </Root/B_CarBody2> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "Swatch_MI_PHY_Wheels" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../../../Geometry/SwatchMesh.usdc@
+        )
+        {
+            rel material:binding = </Root/C_Wheels> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "Swatch_MI_PHY_Common" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../../../Geometry/SwatchMesh.usdc@
+        )
+        {
+            rel material:binding = </Root/D_Common> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "Swatch_MI_PHY_Transparent" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../../../Geometry/SwatchMesh.usdc@
+        )
+        {
+            rel material:binding = </Root/E_Transparent> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "Swatch_MI_PHY_Covers" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../../../Geometry/SwatchMesh.usdc@
+        )
+        {
+            rel material:binding = </Root/Z_Covers> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float2 ui:nodegraph:node:pos = (40, 40)
+            int ui:nodegraph:node:stackingOrder = 2
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def Material "A_CarBody1"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/A_CarBody1/UsdPreviewSurface.outputs:surface>
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/A_CarBody1/diffuseColor.outputs:rgb>
+            float inputs:metallic = 0
+            float inputs:metallic.connect = </Root/A_CarBody1/metallic.outputs:r>
+            normal3f inputs:normal = (0, 0, 1)
+            normal3f inputs:normal.connect = </Root/A_CarBody1/normal.outputs:rgb>
+            float inputs:occlusion = 1
+            float inputs:occlusion.connect = </Root/A_CarBody1/occlusion.outputs:r>
+            float inputs:roughness = 0.5
+            float inputs:roughness.connect = </Root/A_CarBody1/roughness.outputs:r>
+            token outputs:surface
+        }
+
+        def Shader "occlusion"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/A-CarBody1_AO.png@
+            float2 inputs:st.connect = </Root/A_CarBody1/occlusion/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/A_CarBody1.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/A-CarBody1_BaseColor.png@
+            float2 inputs:st.connect = </Root/A_CarBody1/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/A_CarBody1.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "metallic"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/A-CarBody1_Metallic.png@
+            float2 inputs:st.connect = </Root/A_CarBody1/metallic/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/A_CarBody1.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "normal"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/A-CarBody1_Normal.png@
+            float2 inputs:st.connect = </Root/A_CarBody1/normal/TexCoordReader.outputs:result>
+            normal3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/A_CarBody1.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "roughness"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/A-CarBody1_Roughness.png@
+            float2 inputs:st.connect = </Root/A_CarBody1/roughness/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/A_CarBody1.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+
+    def Material "B_CarBody2"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/B_CarBody2/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/B_CarBody2/diffuseColor.outputs:rgb>
+            float inputs:metallic = 0
+            float inputs:metallic.connect = </Root/B_CarBody2/metallic.outputs:r>
+            normal3f inputs:normal = (0, 0, 1)
+            normal3f inputs:normal.connect = </Root/B_CarBody2/normal.outputs:rgb>
+            float inputs:occlusion = 1
+            float inputs:occlusion.connect = </Root/B_CarBody2/occlusion.outputs:r>
+            float inputs:roughness = 0.5
+            float inputs:roughness.connect = </Root/B_CarBody2/roughness.outputs:r>
+            token outputs:surface
+        }
+
+        def Shader "occlusion"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/B-CarBody2_AO.png@
+            float2 inputs:st.connect = </Root/B_CarBody2/occlusion/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/B_CarBody2.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/B-CarBody2_BaseColor.png@
+            float2 inputs:st.connect = </Root/B_CarBody2/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/B_CarBody2.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "metallic"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/B-CarBody2_Metallic.png@
+            float2 inputs:st.connect = </Root/B_CarBody2/metallic/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/B_CarBody2.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "normal"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/B-CarBody2_Normal.png@
+            float2 inputs:st.connect = </Root/B_CarBody2/normal/TexCoordReader.outputs:result>
+            normal3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/B_CarBody2.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "roughness"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/B-CarBody2_Roughness.png@
+            float2 inputs:st.connect = </Root/B_CarBody2/roughness/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/B_CarBody2.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+
+    def Material "C_Wheels"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/C_Wheels/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/C_Wheels/diffuseColor.outputs:rgb>
+            float inputs:metallic = 0
+            float inputs:metallic.connect = </Root/C_Wheels/metallic.outputs:r>
+            normal3f inputs:normal = (0, 0, 1)
+            normal3f inputs:normal.connect = </Root/C_Wheels/normal.outputs:rgb>
+            float inputs:occlusion = 1
+            float inputs:occlusion.connect = </Root/C_Wheels/occlusion.outputs:r>
+            float inputs:roughness = 0.5
+            float inputs:roughness.connect = </Root/C_Wheels/roughness.outputs:r>
+            token outputs:surface
+        }
+
+        def Shader "occlusion"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/C-Wheels_AO.png@
+            float2 inputs:st.connect = </Root/C_Wheels/occlusion/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/C_Wheels.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/C-Wheels_BaseColor.png@
+            float2 inputs:st.connect = </Root/C_Wheels/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/C_Wheels.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "metallic"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/C-Wheels_Metallic.png@
+            float2 inputs:st.connect = </Root/C_Wheels/metallic/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/C_Wheels.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "normal"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/C-Wheels_Normal.png@
+            float2 inputs:st.connect = </Root/C_Wheels/normal/TexCoordReader.outputs:result>
+            normal3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/C_Wheels.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "roughness"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/C-Wheels_Roughness.png@
+            float2 inputs:st.connect = </Root/C_Wheels/roughness/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/C_Wheels.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+
+    def Material "D_Common"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/D_Common/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/D_Common/diffuseColor.outputs:rgb>
+            float inputs:metallic = 0
+            float inputs:metallic.connect = </Root/D_Common/metallic.outputs:r>
+            normal3f inputs:normal = (0, 0, 1)
+            normal3f inputs:normal.connect = </Root/D_Common/normal.outputs:rgb>
+            float inputs:occlusion = 1
+            float inputs:occlusion.connect = </Root/D_Common/occlusion.outputs:r>
+            float inputs:roughness = 0.5
+            float inputs:roughness.connect = </Root/D_Common/roughness.outputs:r>
+            token outputs:surface
+        }
+
+        def Shader "occlusion"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/D-Common_AO.png@
+            float2 inputs:st.connect = </Root/D_Common/occlusion/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/D_Common.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/D-Common_BaseColor.png@
+            float2 inputs:st.connect = </Root/D_Common/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/D_Common.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "metallic"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/D-Common_Metallic.png@
+            float2 inputs:st.connect = </Root/D_Common/metallic/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/D_Common.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "normal"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/D-Common_Normal.png@
+            float2 inputs:st.connect = </Root/D_Common/normal/TexCoordReader.outputs:result>
+            normal3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/D_Common.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "roughness"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/D-Common_Roughness.png@
+            float2 inputs:st.connect = </Root/D_Common/roughness/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/D_Common.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+
+    def Material "E_Transparent"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/E_Transparent/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/E_Transparent/diffuseColor.outputs:rgb>
+            float inputs:metallic = 0
+            float inputs:metallic.connect = </Root/E_Transparent/metallic.outputs:r>
+            normal3f inputs:normal = (0, 0, 1)
+            normal3f inputs:normal.connect = </Root/E_Transparent/normal.outputs:rgb>
+            float inputs:occlusion = 1
+            float inputs:occlusion.connect = </Root/E_Transparent/occlusion.outputs:r>
+            float inputs:opacity = 1
+            float inputs:opacity.connect = </Root/E_Transparent/opacity.outputs:r>
+            float inputs:roughness = 0.5
+            float inputs:roughness.connect = </Root/E_Transparent/roughness.outputs:r>
+            token outputs:surface
+        }
+
+        def Shader "occlusion"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/E-Transparent_AO.png@
+            float2 inputs:st.connect = </Root/E_Transparent/occlusion/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/E_Transparent.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "opacity"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/E-Transparent_Alpha.png@
+            float2 inputs:st.connect = </Root/E_Transparent/opacity/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/E_Transparent.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/E-Transparent_BaseColor.png@
+            float2 inputs:st.connect = </Root/E_Transparent/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/E_Transparent.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "metallic"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/E-Transparent_Metallic.png@
+            float2 inputs:st.connect = </Root/E_Transparent/metallic/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/E_Transparent.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "normal"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/E-Transparent_Normal.png@
+            float2 inputs:st.connect = </Root/E_Transparent/normal/TexCoordReader.outputs:result>
+            normal3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/E_Transparent.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "roughness"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/E-Transparent_Roughness.png@
+            float2 inputs:st.connect = </Root/E_Transparent/roughness/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/E_Transparent.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+
+    def Material "Z_Covers"
+    {
+        token inputs:frame:stPrimvarName = "st" (
+            customData = {
+                dictionary realitykit = {
+                    bool hide = 1
+                }
+            }
+        )
+        token outputs:mtlx:surface
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/Z_Covers/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.18, 0.18, 0.18)
+            color3f inputs:diffuseColor.connect = </Root/Z_Covers/diffuseColor.outputs:rgb>
+            float inputs:metallic = 0
+            float inputs:metallic.connect = </Root/Z_Covers/metallic.outputs:r>
+            normal3f inputs:normal = (0, 0, 1)
+            normal3f inputs:normal.connect = </Root/Z_Covers/normal.outputs:rgb>
+            float inputs:occlusion = 1
+            float inputs:occlusion.connect = </Root/Z_Covers/occlusion.outputs:r>
+            float inputs:roughness = 0.5
+            float inputs:roughness.connect = </Root/Z_Covers/roughness.outputs:r>
+            token outputs:surface
+        }
+
+        def Shader "occlusion"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/Z-Cover_AO.png@
+            float2 inputs:st.connect = </Root/Z_Covers/occlusion/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/Z_Covers.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "diffuseColor"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/Z-Cover_BaseColor.png@
+            float2 inputs:st.connect = </Root/Z_Covers/diffuseColor/TexCoordReader.outputs:result>
+            color3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/Z_Covers.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "metallic"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/Z-Cover_Metallic.png@
+            float2 inputs:st.connect = </Root/Z_Covers/metallic/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/Z_Covers.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "normal"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/Z-Cover_Normal.png@
+            float2 inputs:st.connect = </Root/Z_Covers/normal/TexCoordReader.outputs:result>
+            normal3f outputs:rgb
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/Z_Covers.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+
+        def Shader "roughness"
+        {
+            uniform token info:id = "UsdUVTexture"
+            asset inputs:file = @../../Textures/Ferrari375plus/Z-Cover_Roughness.png@
+            float2 inputs:st.connect = </Root/Z_Covers/roughness/TexCoordReader.outputs:result>
+            float outputs:r
+
+            def Shader "TexCoordReader"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname.connect = </Root/Z_Covers.inputs:frame:stPrimvarName>
+                float2 outputs:result
+            }
+        }
+    }
+}
+

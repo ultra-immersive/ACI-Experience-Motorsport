@@ -1,0 +1,331 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["ParticleEmitter_Backup", "M_Ferrari375plus", "MS_PHY_Ferrari375plus", "EngineParticleEffect", "Model_Sorting_Group", "ParticleEmitter", "M_Ferrari375plus_1", "Materials"]
+    def Xform "ParticleEmitter" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-1.5707963, 0, 0)
+        }
+    )
+    {
+        rel material:binding = </Root/MS_PHY_Ferrari375plus/A_CarBody1> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        float2 ui:nodegraph:node:pos = (-1556.254, 1483.182)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (0.7071067, -0.70710677, 0, 0)
+        float3 xformOp:scale = (0.9999998, 0.9999998, 0.9999998)
+        float3 xformOp:translate = (0, 1.0222173, -0.8021302)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                token birthDirection = "Local"
+                int64 burstCount = 0
+                float3 emissionDirection = (0, 0, 1)
+                double emissionDuration = 0.1
+                token emitterShape = "Point"
+                double idleDuration = 0
+                bool isEmitting = 0
+                bool isLocal = 1
+                bool isLocalFields = 1
+                bool isSpawningEnabled = 1
+                float particleSpeed = 0
+                float particleSpeedVariation = 0
+                bool spawnInheritParentColor = 0
+                token spawnOccasion = "OnUpdate"
+                float spawnSpreadFactor = 0
+                float spawnVelocityFactor = 0
+                double warmupDuration = 0
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float3 acceleration = (0, 0, 1)
+                    float axisVariation = 0
+                    token billboardMode = "Free"
+                    float birthRate = 3
+                    float birthRateVariation = 2
+                    token blendMode = "Additive"
+                    float colorEvolutionPower = 1
+                    int64 columnCount = 10
+                    float dampingFactor = 0.5
+                    float4 endColorA = (1, 1, 1, 1)
+                    float4 endColorB = (1, 1, 1, 1)
+                    bool isAnimated = 0
+                    bool isLightingEnabled = 0
+                    float noiseStrength = 0
+                    token opacityOverLife = "EaseFadeOut"
+                    asset particleImage = @Ring.png@
+                    double particleLifeSpan = 1
+                    float particleSize = 0.35
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    token sortOrder = "IncreasingDepth"
+                    float4 startColorA = (1, 1, 1, 1)
+                    float4 startColorB = (1, 1, 1, 1)
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 0, 1)
+                    float vortexStrength = 1
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                    float3 acceleration = (0, 0, -0.1)
+                    token animationRepeatMode = "AutoReverse"
+                    token billboardMode = "Free"
+                    float birthRate = 10
+                    token blendMode = "Additive"
+                    int64 columnCount = 1
+                    float4 endColorA = (0, 0, 0, 1)
+                    bool isAnimated = 0
+                    bool isLightingEnabled = 0
+                    float noiseStrength = 0
+                    token opacityOverLife = "EaseFadeOut"
+                    asset particleImage = @Ring.png@
+                    double particleLifeSpan = 1
+                    double particleLifeSpanVariation = 0
+                    float particleMass = 1
+                    float particleSize = 0.35
+                    float3 radialGravityCenter = (0, 0, 0)
+                    float radialGravityStrength = 0
+                    int64 rowCount = 1
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    float sizeMultiplierAtEndOfLifespanPower = 1
+                    float spreadingAngle = 0
+                    float4 startColorA = (0.19607843, 0.19607843, 0.19607843, 1)
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 0, 10)
+                    float vortexStrength = 1
+                }
+            }
+        }
+    }
+
+    def Xform "ParticleEmitter_1" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-1.5707963, 0, 0)
+        }
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        float2 ui:nodegraph:node:pos = (-1536.254, 1503.182)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (0.99999964, 0.99999964, 0.99999964)
+        float3 xformOp:translate = (1.2861476, 1.0222173, -0.8021302)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                token birthDirection = "Local"
+                int64 burstCount = 0
+                float3 emissionDirection = (0, 0, 1)
+                double emissionDuration = 0.1
+                token emitterShape = "Point"
+                double idleDuration = 0
+                bool isLocal = 1
+                bool isLocalFields = 1
+                bool isSpawningEnabled = 1
+                float particleSpeed = 0.2
+                float particleSpeedVariation = 0
+                bool spawnInheritParentColor = 0
+                token spawnOccasion = "OnUpdate"
+                float spawnSpreadFactor = 0
+                float spawnVelocityFactor = 0
+                double warmupDuration = 0
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float3 acceleration = (0, 0, 0.05)
+                    float axisVariation = 0
+                    token billboardMode = "Free"
+                    float birthRate = 3
+                    float birthRateVariation = 2
+                    token blendMode = "Additive"
+                    float colorEvolutionPower = 1
+                    int64 columnCount = 10
+                    float dampingFactor = 0
+                    float4 endColorA = (1, 1, 1, 1)
+                    float4 endColorB = (1, 1, 1, 1)
+                    bool isAnimated = 0
+                    bool isLightingEnabled = 0
+                    float noiseStrength = 0
+                    token opacityOverLife = "EaseFadeOut"
+                    asset particleImage = @Ring.png@
+                    double particleLifeSpan = 1.5
+                    float particleSize = 0.35
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    token sortOrder = "IncreasingDepth"
+                    float4 startColorA = (1, 1, 1, 1)
+                    float4 startColorB = (1, 1, 1, 1)
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 0, 1)
+                    float vortexStrength = 1
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                    float3 acceleration = (0, 0, -0.1)
+                    token animationRepeatMode = "AutoReverse"
+                    token billboardMode = "Free"
+                    float birthRate = 5
+                    token blendMode = "Additive"
+                    int64 columnCount = 1
+                    float4 endColorA = (0, 0, 0, 1)
+                    bool isAnimated = 0
+                    bool isLightingEnabled = 0
+                    float noiseStrength = 0
+                    token opacityOverLife = "EaseFadeOut"
+                    asset particleImage = @Ring.png@
+                    double particleLifeSpan = 1
+                    double particleLifeSpanVariation = 0
+                    float particleMass = 1
+                    float particleSize = 0.35
+                    float3 radialGravityCenter = (0, 0, 0)
+                    float radialGravityStrength = 0
+                    int64 rowCount = 1
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    float sizeMultiplierAtEndOfLifespanPower = 1
+                    float spreadingAngle = 0
+                    float4 startColorA = (0.19607843, 0.19607843, 0.19607843, 1)
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 0, 10)
+                    float vortexStrength = 1
+                }
+            }
+        }
+    }
+
+    def Xform "ParticleEmitter_2" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (-1.5707963, 0, 0)
+        }
+    )
+    {
+        float2 ui:nodegraph:node:pos = (-1536.254, 1503.182)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "VFXEmitter"
+        {
+            token info:id = "RealityKit.VFXEmitter"
+
+            def RealityKitStruct "currentState"
+            {
+                token birthDirection = "Local"
+                int64 burstCount = 0
+                float3 emissionDirection = (0, 0, 1)
+                double emissionDuration = 0.1
+                token emitterShape = "Point"
+                double idleDuration = 0.05
+                bool isLocal = 1
+                bool isLocalFields = 1
+                bool isSpawningEnabled = 1
+                float particleSpeed = 0
+                float particleSpeedVariation = 0
+                bool spawnInheritParentColor = 0
+                token spawnOccasion = "OnUpdate"
+                float spawnSpreadFactor = 0
+                float spawnSpreadFactorVariation = 0.017453292
+                float spawnVelocityFactor = 0
+                double warmupDuration = 10
+
+                def RealityKitStruct "mainEmitter"
+                {
+                    float3 acceleration = (0, 0, 0.15)
+                    float axisVariation = 0
+                    token billboardMode = "Free"
+                    float birthRate = 2
+                    float birthRateVariation = 2
+                    token blendMode = "Additive"
+                    float colorEvolutionPower = 1
+                    int64 columnCount = 10
+                    float dampingFactor = 1
+                    float4 endColorA = (1, 1, 1, 1)
+                    float4 endColorB = (1, 1, 1, 1)
+                    bool isAnimated = 0
+                    bool isLightingEnabled = 0
+                    float noiseStrength = 0
+                    token opacityOverLife = "EaseFadeOut"
+                    asset particleImage = @Ring.png@
+                    double particleLifeSpan = 3
+                    float particleSize = 0.35
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    token sortOrder = "IncreasingDepth"
+                    float4 startColorA = (1, 1, 1, 0.25)
+                    float4 startColorB = (1, 1, 1, 1)
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 0, 1)
+                    float vortexStrength = 1
+                }
+
+                def RealityKitStruct "spawnedEmitter"
+                {
+                    float3 acceleration = (0, 0, -0.1)
+                    token animationRepeatMode = "AutoReverse"
+                    token billboardMode = "Free"
+                    float birthRate = 3
+                    token blendMode = "Additive"
+                    int64 columnCount = 1
+                    float4 endColorA = (0, 0, 0, 1)
+                    bool isAnimated = 0
+                    bool isLightingEnabled = 0
+                    float noiseStrength = 0
+                    token opacityOverLife = "EaseFadeOut"
+                    asset particleImage = @Ring.png@
+                    double particleLifeSpan = 1
+                    double particleLifeSpanVariation = 0.2
+                    float particleMass = 1
+                    float particleSize = 0.35
+                    float3 radialGravityCenter = (0, 0, 0)
+                    float radialGravityStrength = 0
+                    int64 rowCount = 1
+                    float sizeMultiplierAtEndOfLifespan = 1
+                    float sizeMultiplierAtEndOfLifespanPower = 1
+                    float spreadingAngle = 0
+                    float4 startColorA = (0.19607843, 0.19607843, 0.19607843, 0.35)
+                    bool useEndColor = 0
+                    bool useEndColorRange = 0
+                    bool useStartColorRange = 0
+                    float3 vortexDirection = (0, 0, 10)
+                    float vortexStrength = 1
+                }
+            }
+        }
+    }
+}
+

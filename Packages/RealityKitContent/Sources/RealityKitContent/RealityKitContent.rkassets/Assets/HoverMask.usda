@@ -1,0 +1,128 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Material "Material"
+    {
+        float inputs:Max = 0.95 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-893.91406, 358.8789)
+                    int stackingOrderInSubgraph = 90
+                }
+            }
+        )
+        float inputs:Min = 0.4 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-887.5586, 422.83984)
+                    int stackingOrderInSubgraph = 90
+                }
+            }
+        )
+        float inputs:Selection = 0 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-703.89453, 197.75781)
+                    int stackingOrderInSubgraph = 74
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/Material/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (350.4375, 163.85156)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 2
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat
+            float inputs:clearcoatRoughness
+            color3f inputs:diffuseColor = (0, 0, 0) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:emissiveColor
+            float inputs:ior
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:occlusion.connect = </Root/Material/Max.outputs:out>
+            float inputs:opacity.connect = </Root/Material/Max.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (-6.8798456, 294.69693)
+            int ui:nodegraph:node:stackingOrder = 140
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+        }
+
+        def Shader "HoverState"
+        {
+            uniform token info:id = "ND_realitykit_hover_state"
+            float outputs:intensity
+            float3 outputs:position
+            float outputs:timeSinceHoverStart
+            float2 ui:nodegraph:node:pos = (-1112.3984, 303.52734)
+            int ui:nodegraph:node:stackingOrder = 74
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/Material/HoverState.outputs:intensity>
+            float inputs:inhigh
+            float inputs:inlow
+            float inputs:outhigh.connect = </Root/Material.inputs:Min>
+            float inputs:outlow.connect = </Root/Material.inputs:Max>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-700.0547, 322.3086)
+            int ui:nodegraph:node:stackingOrder = 74
+        }
+
+        def Shader "Max"
+        {
+            uniform token info:id = "ND_max_float"
+            float inputs:in1.connect = </Root/Material.inputs:Selection>
+            float inputs:in2.connect = </Root/Material/Remap.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-487.6875, 206.04297)
+            int ui:nodegraph:node:stackingOrder = 74
+        }
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap = 1
+            color3f inputs:color = (0.008568242, 0.0033464492, 0.0021247426) (
+                colorSpace = "lin_srgb"
+            )
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/Material/Max.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (142.28699, -3.9961293)
+            int ui:nodegraph:node:stackingOrder = 139
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+        }
+    }
+
+    def Cylinder "Cylinder" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform token axis = "Y"
+        double height = 0.2
+        rel material:binding = </Root/Material> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double radius = 0.1
+    }
+}
+

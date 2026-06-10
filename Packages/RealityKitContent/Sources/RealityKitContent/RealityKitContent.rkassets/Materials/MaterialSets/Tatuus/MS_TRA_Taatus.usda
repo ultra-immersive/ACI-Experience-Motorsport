@@ -1,0 +1,116 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["MM_TransitionPBR", "MI_TRA_Transparent", "MI_TRA_Covers", "MI_TRA_MediumSized", "MI_TRA_SmallParts", "MI_TRA_CarBody01", "MI_TRA_CarBody02"]
+    def "MM_TransitionPBR" (
+        active = true
+        references = @../../MasterMaterials.usda@</Root/MM_TransitionPBR>
+    )
+    {
+        float inputs:TransitionAmount = 0
+        float inputs:TransitionSpan = 1
+        color3f inputs:WireframeColor = (0.4, 0.8666667, 0.6862745) (
+            colorSpace = "srgb_displayp3"
+        )
+
+        over "MTLSelect"
+        {
+            int ui:nodegraph:node:stackingOrder = 19238
+        }
+    }
+
+    def "MI_TRA_Transparent" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Tatuus/E-Transparent_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Tatuus/E-Transparent_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Tatuus/E-Transparent_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Tatuus/E-Transparent_Normal.png@
+        asset inputs:OpacityMap = @../../Textures/Tatuus/E-Transparent_Alpha.png@
+        asset inputs:RoughnessMap = @../../Textures/Tatuus/E-Transparent_Roughness.png@
+    }
+
+    def "MI_TRA_Covers" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Tatuus/Z-Covers_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Tatuus/Z-Covers_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Tatuus/Z-Covers_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Tatuus/Z-Covers_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Tatuus/Z-Covers_Roughness.png@
+    }
+
+    def "MI_TRA_MediumSized" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Tatuus/C-MediumSized_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Tatuus/C-MediumSized_BaseColor.png@
+        float inputs:ClearCoatAmount = 1
+        asset inputs:ClearCoatMap = @../../Textures/Tatuus/C-MediumSized_Clearcoat.png@
+        float inputs:ClearCoatRoughness = 0.1
+        asset inputs:MetallicMap = @../../Textures/Tatuus/C-MediumSized_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Tatuus/C-MediumSized_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Tatuus/C-MediumSized_Roughness.png@
+        bool inputs:UseClearCoatMap = 1
+    }
+
+    def "MI_TRA_SmallParts" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Tatuus/D-SmallParts_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Tatuus/D-SmallParts_BaseColor.png@
+        asset inputs:MetallicMap = @../../Textures/Tatuus/D-SmallParts_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Tatuus/D-SmallParts_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Tatuus/D-SmallParts_Roughness.png@
+    }
+
+    def "MI_TRA_CarBody01" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Tatuus/A-CarBody1_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Tatuus/A-CarBody1_BaseColor.png@
+        float inputs:ClearCoatAmount = 0.6
+        asset inputs:MetallicMap = @../../Textures/Tatuus/A-CarBody1_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Tatuus/A-CarBody1_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Tatuus/A-CarBody1_Roughness.png@
+    }
+
+    def "MI_TRA_CarBody02" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:AOMap = @../../Textures/Tatuus/B-CarBody2_AO.png@
+        asset inputs:BaseColorMap = @../../Textures/Tatuus/B-CarBody2_BaseColor.png@
+        float inputs:ClearCoatAmount = 0.6
+        asset inputs:MetallicMap = @../../Textures/Tatuus/B-CarBody2_Metallic.png@
+        asset inputs:NormalMap = @../../Textures/Tatuus/B-CarBody2_Normal.png@
+        asset inputs:RoughnessMap = @../../Textures/Tatuus/B-CarBody2_Roughness.png@
+    }
+}
+

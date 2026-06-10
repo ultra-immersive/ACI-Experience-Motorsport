@@ -1,0 +1,3811 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Materials", "IBL", "ImageBasedLightReceiver", "DirectionalLight", "BillboardsSequence_Vallelunga", "Billboards", "Audios", "RCP_BehaviorsContainer", "OnAddedToScene", "OnNotification", "M_Vallelunga", "Locators", "Model_Sorting_Group", "A_GroundVallelungaDiorama", "MusicAudioSource_A_Diorama", "VoiceAudioSource_A_Diorama", "A_TitleFrame", "HighlightIslands"]
+    float3 xformOp:scale = (1.25, 1.25, 1.25)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    def Scope "Materials" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["BlurredGlass", "CircuitTrail", "CircuitTrail_Small", "Locator", "M_Nametag", "Building"]
+        def Material "BlurredGlass"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            token outputs:mtlx:surface.connect = </Root/Materials/BlurredGlass/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = None
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (-46.39453, 77.3125)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 47
+            custom string userProperties:blender:data_name = "Material.005"
+
+            def Shader "previewShader" (
+                active = false
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.8, 0.8, 0.8)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+
+            def Shader "BlurredBackground"
+            {
+                uniform token info:id = "ND_realitykit_background_blur_color3"
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-1104.9751, -26.520357)
+                int ui:nodegraph:node:stackingOrder = 58
+            }
+
+            def Shader "UnlitSurface"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 1
+                color3f inputs:color.connect = </Root/Materials/BlurredGlass/BlurredBackground.outputs:out>
+                float inputs:opacity = 0.5
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-291.5664, 20.75)
+                int ui:nodegraph:node:stackingOrder = 50
+            }
+        }
+
+        def Material "Locator"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            color3f inputs:Color = (1, 0.5, 0.1) (
+                colorSpace = "srgb_displayp3"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-349.5586, 44.570312)
+                        int stackingOrderInSubgraph = 22
+                    }
+                }
+            )
+            float inputs:Speed = 1 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-1079.1758, 335.96875)
+                        int stackingOrderInSubgraph = 193
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Materials/Locator/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex.connect = </Root/Materials/Locator/GeometryModifier.outputs:out>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (402.46875, 140.04688)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 23
+
+            def Shader "UnlitSurface"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                color3f inputs:color.connect = </Root/Materials/Locator.inputs:Color>
+                bool inputs:hasPremultipliedAlpha
+                float inputs:opacity
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-7.5, 71.33594)
+                int ui:nodegraph:node:stackingOrder = 195
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_2_0_vertexshader"
+                float3 inputs:bitangent
+                color4f inputs:color
+                float3 inputs:modelPositionOffset.connect = </Root/Materials/Locator/Combine3.outputs:out>
+                float3 inputs:normal
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (29.460938, 373.6289)
+                int ui:nodegraph:node:stackingOrder = 161
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:modelPositionOffset"]
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1
+                float inputs:in2.connect = </Root/Materials/Locator/Divide_3.outputs:out>
+                float inputs:in3
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-320.54688, 275.39062)
+                int ui:nodegraph:node:stackingOrder = 163
+            }
+
+            def Shader "Time"
+            {
+                uniform token info:id = "ND_time_float"
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-976.0039, 188.6836)
+                int ui:nodegraph:node:stackingOrder = 193
+            }
+
+            def Shader "Divide"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </Root/Materials/Locator/Time.outputs:out>
+                float inputs:in2.connect = </Root/Materials/Locator/Divide_1.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-789.33594, 255.98047)
+                int ui:nodegraph:node:stackingOrder = 193
+            }
+
+            def Shader "Divide_1"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in1.connect = None
+                float inputs:in2.connect = </Root/Materials/Locator.inputs:Speed>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-900.125, 283.8672)
+                int ui:nodegraph:node:stackingOrder = 193
+            }
+
+            def Shader "Sin"
+            {
+                uniform token info:id = "ND_sin_float"
+                float inputs:in.connect = </Root/Materials/Locator/Divide.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-666.7578, 257.41406)
+                int ui:nodegraph:node:stackingOrder = 193
+            }
+
+            def Shader "Divide_3"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </Root/Materials/Locator/Sin.outputs:out>
+                float inputs:in2 = 200
+                float inputs:in2.connect = </Root/Materials/Locator/OffsetDivider.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-495.77344, 318.6289)
+                int ui:nodegraph:node:stackingOrder = 165
+            }
+
+            def Shader "OffsetDivider"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 200
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-757.73047, 374.53125)
+                int ui:nodegraph:node:stackingOrder = 193
+            }
+        }
+
+        def Material "M_Nametag"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            color3f inputs:ConstantColor3 = (1, 1, 1) (
+                colorSpace = "lin_srgb"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-453.89844, 44.53125)
+                        int stackingOrderInSubgraph = 9
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Materials/M_Nametag/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+            def Shader "UnlitSurface"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                color3f inputs:color.connect = </Root/Materials/M_Nametag/Multiply.outputs:out>
+                float inputs:opacity
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (103.09375, 47.820312)
+                int ui:nodegraph:node:stackingOrder = 3
+            }
+
+            def Shader "ConstantFloat"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 5
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-443.46875, 152.78125)
+                int ui:nodegraph:node:stackingOrder = 14
+            }
+
+            def Shader "Multiply"
+            {
+                uniform token info:id = "ND_multiply_color3FA"
+                prepend color3f inputs:in1.connect = </Root/Materials/M_Nametag.inputs:ConstantColor3>
+                float inputs:in2.connect = </Root/Materials/M_Nametag/ConstantFloat.outputs:out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-292.79688, 107.79297)
+                int ui:nodegraph:node:stackingOrder = 9
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2"]
+            }
+        }
+
+        def Material "CircuitTrail"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            color3f inputs:ConstantColor3_1 = (0.5, 0.65, 1) (
+                colorSpace = "srgb_displayp3"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (19.539352, 235.35153)
+                    }
+                }
+            )
+            asset inputs:HighlightColor = @../Materials/Textures/gradient_highlight.png@ (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-327.12207, 213.84201)
+                        int stackingOrderInSubgraph = 19540
+                    }
+                }
+            )
+            float inputs:HighlightEffect = 0 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (551.5081, 341.39905)
+                        int stackingOrderInSubgraph = 19543
+                    }
+                }
+            )
+            color3f inputs:MainColor = (0.32941177, 0.50980395, 0.94509804) (
+                colorSpace = "srgb_displayp3"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-600.9729, -77.30907)
+                        int stackingOrderInSubgraph = 19638
+                    }
+                }
+            )
+            float inputs:Scale = 10 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-563.5293, 430.74265)
+                        int stackingOrderInSubgraph = 19436
+                    }
+                }
+            )
+            float inputs:Speed = -15 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-1184.4138, 304.77115)
+                        int stackingOrderInSubgraph = 19436
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Materials/CircuitTrail/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex
+            float2 ui:nodegraph:node:pos = (-1511.9415, 277.01868)
+            int ui:nodegraph:node:stackingOrder = 2
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1288.0564, 288.6282)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 19510
+
+            def Shader "UnlitSurface"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 1
+                color3f inputs:color.connect = </Root/Materials/CircuitTrail/Mix_1.outputs:out>
+                bool inputs:hasPremultipliedAlpha
+                float inputs:opacity
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (1043.4626, 236.61256)
+                int ui:nodegraph:node:stackingOrder = 19632
+            }
+
+            def Shader "Mix"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/CircuitTrail/Mix_2.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/CircuitTrail.inputs:MainColor>
+                float inputs:mix = 0.5
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-188.76562, 53.148438)
+                int ui:nodegraph:node:stackingOrder = 19638
+            }
+
+            def Shader "subtract"
+            {
+                uniform token info:id = "ND_subtract_float"
+                float inputs:in1.connect = </Root/Materials/CircuitTrail/multiply2.outputs:out>
+                float inputs:in2 = 15
+                float inputs:in2.connect = </Root/Materials/CircuitTrail.inputs:Scale>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-373.6255, 389.29526)
+                float2 ui:nodegraph:node:size = (61.5, 36)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "multiply2"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = </Root/Materials/CircuitTrail/add.outputs:out>
+                float inputs:in2 = 16
+                float inputs:in2.connect = </Root/Materials/CircuitTrail.inputs:Scale>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-451.8955, 381.0278)
+                float2 ui:nodegraph:node:size = (60, 36)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "combine2"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = </Root/Materials/CircuitTrail/subtract.outputs:out>
+                float inputs:in2.connect = </Root/Materials/CircuitTrail/dot.outputs:out>
+                float2 outputs:out
+                float2 ui:nodegraph:node:pos = (-251.55078, 397.517)
+                float2 ui:nodegraph:node:size = (142.5, 43)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "add"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = </Root/Materials/CircuitTrail/Divide.outputs:out>
+                float inputs:in2.connect = </Root/Materials/CircuitTrail/oneminus.outputs:out>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-541.0498, 373.00586)
+                float2 ui:nodegraph:node:size = (61.5, 36)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "Divide"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = </Root/Materials/CircuitTrail/Remap.outputs:out>
+                float inputs:in2 = 15
+                float inputs:in2.connect = </Root/Materials/CircuitTrail.inputs:Speed>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-989.74927, 261.5389)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "separate2"
+            {
+                uniform token info:id = "ND_separate2_vector2"
+                float2 inputs:in.connect = </Root/Materials/CircuitTrail/texcoord.outputs:out>
+                float outputs:outx
+                float outputs:outy
+                float2 ui:nodegraph:node:pos = (-835.24365, 452.68347)
+                float2 ui:nodegraph:node:size = (113.5, 117)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "Image"
+            {
+                uniform token info:id = "ND_image_color3"
+                color3f inputs:default
+                asset inputs:file (
+                    colorSpace = "lin_displayp3"
+                )
+                asset inputs:file.connect = </Root/Materials/CircuitTrail.inputs:HighlightColor>
+                string inputs:filtertype
+                float2 inputs:texcoord.connect = </Root/Materials/CircuitTrail/combine2.outputs:out>
+                string inputs:uaddressmode
+                string inputs:vaddressmode
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-8.416992, 426.8212)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "Time" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_time_float"
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1290.7681, 135.33942)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "texcoord"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+                float2 ui:nodegraph:node:pos = (-1012.2793, 449.96945)
+                float2 ui:nodegraph:node:size = (180.5, 43)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "dot"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = </Root/Materials/CircuitTrail/separate2.outputs:outy>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-390.61084, 487.93192)
+                float2 ui:nodegraph:node:size = (44, 18)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "Remap" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_remap_float"
+                float inputs:in.connect = </Root/Materials/CircuitTrail/Time.outputs:out>
+                float inputs:inhigh
+                float inputs:inlow = 0
+                float inputs:outhigh = 1.05
+                delete float inputs:outlow.connect = </Root/Materials/MM_CircuitGlass_Trail.inputs:Opacity>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-1088.4233, 149.39594)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "oneminus"
+            {
+                uniform token info:id = "ND_realitykit_oneminus_float"
+                float inputs:in.connect = </Root/Materials/CircuitTrail/separate2.outputs:outx>
+                float outputs:out
+                float2 ui:nodegraph:node:pos = (-685.751, 375.16647)
+                float2 ui:nodegraph:node:size = (112.5, 99)
+                int ui:nodegraph:node:stackingOrder = 19436
+            }
+
+            def Shader "Screen"
+            {
+                uniform token info:id = "ND_screen_color3"
+                color3f inputs:bg.connect = </Root/Materials/CircuitTrail/Multiply.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/CircuitTrail/Mix.outputs:out>
+                float inputs:mix
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (570.45966, 161.36623)
+                int ui:nodegraph:node:stackingOrder = 19493
+            }
+
+            def Shader "Multiply"
+            {
+                uniform token info:id = "ND_multiply_color3"
+                color3f inputs:in1.connect = </Root/Materials/CircuitTrail/Image.outputs:out>
+                color3f inputs:in2.connect = </Root/Materials/CircuitTrail.inputs:ConstantColor3_1>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (338.12866, 327.91037)
+                int ui:nodegraph:node:stackingOrder = 19438
+            }
+
+            def Shader "Mix_1"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/CircuitTrail/Screen.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/CircuitTrail.inputs:ConstantColor3_1>
+                float inputs:mix = 1
+                float inputs:mix.connect = </Root/Materials/CircuitTrail.inputs:HighlightEffect>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (779.1476, 212.14871)
+                int ui:nodegraph:node:stackingOrder = 19539
+            }
+
+            def Shader "Mix_2"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/CircuitTrail/BlurredBackground.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/CircuitTrail.inputs:MainColor>
+                float inputs:mix = 0.5
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-369.8224, 98.01915)
+                int ui:nodegraph:node:stackingOrder = 19634
+            }
+
+            def Shader "BlurredBackground"
+            {
+                uniform token info:id = "ND_realitykit_background_blur_color3"
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-609.9647, 76.11868)
+                int ui:nodegraph:node:stackingOrder = 19636
+            }
+        }
+
+        def "CircuitTrail_Small" (
+            active = true
+            instanceable = true
+            references = </Root/Materials/CircuitTrail>
+        )
+        {
+            float inputs:Scale = 2
+            float inputs:Speed = 5
+        }
+
+        def Material "Building"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            color3f inputs:Color = (0.32941177, 0.50980395, 0.94509804) (
+                colorSpace = "srgb_displayp3"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-620.4124, -407.88446)
+                        int stackingOrderInSubgraph = 1699
+                    }
+                }
+            )
+            float inputs:HighlightAnim = 0 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-433.39062, -625.3672)
+                        int stackingOrderInSubgraph = 1699
+                    }
+                }
+            )
+            color3f inputs:HighlightColor = (0.6, 0.72, 1) (
+                colorSpace = "srgb_displayp3"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-435.47675, -564.3824)
+                        int stackingOrderInSubgraph = 1699
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/Materials/Building/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:realitykit:vertex"]
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (451.88196, -261.1699)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 1622
+
+            def Shader "UnlitSurface"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 1
+                color3f inputs:color.connect = </Root/Materials/Building/Mix.outputs:out>
+                bool inputs:hasPremultipliedAlpha
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (245.35963, -314.60773)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "EnvironmentRadiance"
+            {
+                uniform token info:id = "ND_realitykit_environment_radiance"
+                color3f inputs:baseColor.connect = </Root/Materials/Building/Swizzle.outputs:out>
+                half inputs:metallic = 0
+                float3 inputs:normal.connect = </Root/Materials/Building/Normal.outputs:out>
+                half inputs:roughness = 0.300049
+                half inputs:specular = 0.5
+                color3f outputs:diffuseRadiance
+                color3f outputs:specularRadiance
+                float2 ui:nodegraph:node:pos = (-250.41472, -219.04309)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Add"
+            {
+                uniform token info:id = "ND_add_color3"
+                color3f inputs:in1.connect = </Root/Materials/Building/EnvironmentRadiance.outputs:diffuseRadiance>
+                color3f inputs:in2.connect = </Root/Materials/Building/EnvironmentRadiance.outputs:specularRadiance>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-92.466515, -140.32869)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Mix"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/Building/Add.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/Building/Mix_2.outputs:out>
+                float inputs:mix = 0.75
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (54.61375, -391.89972)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Normal"
+            {
+                uniform token info:id = "ND_normal_vector3"
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-442.33566, -171.49783)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "DotProduct" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/DotProduct>
+            )
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = </Root/Materials/Building/Normalize.outputs:out>
+                float3 inputs:in2.connect = </Root/Materials/Building/Normalize_1.outputs:out>
+                float2 ui:nodegraph:node:pos = (-783.98706, -262.2155)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "TransformNormal_1" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/TransformNormal_1>
+            )
+            {
+                uniform token info:id = "ND_transformnormal_vector3"
+                float3 inputs:in.connect = </Root/Materials/Building/CameraPosition.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1199.2941, -198.79665)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Normal_1" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/Normal>
+            )
+            {
+                uniform token info:id = "ND_normal_vector3"
+                float2 ui:nodegraph:node:pos = (-1400.763, -291.1468)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Normalize" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/Normalize>
+            )
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = </Root/Materials/Building/TransformNormal.outputs:out>
+                float2 ui:nodegraph:node:pos = (-997.0414, -271.89795)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Power" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/Power>
+            )
+            {
+                uniform token info:id = "ND_power_float"
+                float inputs:in1.connect = </Root/Materials/Building/DotProduct.outputs:out>
+                float inputs:in2 = 5
+                float2 ui:nodegraph:node:pos = (-599.5402, -253.10052)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Normalize_1" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/Normalize_1>
+            )
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = </Root/Materials/Building/TransformNormal_1.outputs:out>
+                float2 ui:nodegraph:node:pos = (-999.99255, -198.59442)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "TransformNormal" (
+                references = @A_TitleFrame.usda@</Root/M_Frame/TransformNormal>
+            )
+            {
+                uniform token info:id = "ND_transformnormal_vector3"
+                float3 inputs:in.connect = </Root/Materials/Building/Normal_1.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1203.9778, -272.62335)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "CameraPosition"
+            {
+                uniform token info:id = "ND_realitykit_cameraposition_vector3"
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-1428.3391, -217.00226)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Swizzle"
+            {
+                uniform token info:id = "ND_swizzle_float_color3"
+                float inputs:in.connect = </Root/Materials/Building/Power.outputs:out>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-450.1692, -244.25049)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "BlurredBackground"
+            {
+                uniform token info:id = "ND_realitykit_background_blur_color3"
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-630.3416, -481.61758)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Mix_1"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/Building.inputs:Color>
+                color3f inputs:fg.connect = </Root/Materials/Building/BlurredBackground.outputs:out>
+                float inputs:mix = 0.5
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-421.61166, -454.8228)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+
+            def Shader "Mix_2"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/Materials/Building/Mix_1.outputs:out>
+                color3f inputs:fg.connect = </Root/Materials/Building.inputs:HighlightColor>
+                float inputs:mix.connect = </Root/Materials/Building.inputs:HighlightAnim>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-166.14844, -526.6797)
+                int ui:nodegraph:node:stackingOrder = 1699
+            }
+        }
+    }
+
+    def Xform "IBL" (
+        active = true
+    )
+    {
+        float3 xformOp:translate = (0, 0.09, 0.30351496)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "ImageBasedLight"
+        {
+            asset ibl = @../HDRI/citrus_orchard_puresky_2k.hdr@
+            uniform token info:id = "RealityKit.ImageBasedLight"
+            float intensityExponent = -1
+            bool isGlobalIBL = 0
+        }
+    }
+
+    def RealityKitComponent "ImageBasedLightReceiver"
+    {
+        rel iblEntity = </Root/IBL>
+        uniform token info:id = "RealityKit.ImageBasedLightReceiver"
+    }
+
+    def Xform "DirectionalLight" (
+        customData = {
+            float3 rotationEulerHint = (-0.8245954, 0.5724228, -8.863501e-8)
+        }
+    )
+    {
+        quatf xformOp:orient = (0.87893176, -0.38441458, 0.25866207, 0.11312987)
+        float3 xformOp:scale = (0.99999994, 1, 1)
+        float3 xformOp:translate = (0, 0.527409, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "DirectionalLight"
+        {
+            float3 color = (0.4750107, 0.7463078, 1)
+            token info:id = "RealityKit.DirectionalLight"
+
+            def RealityKitStruct "Shadow"
+            {
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardsSequence_Vallelunga"
+    {
+        reorder nameChildren = ["Track2", "Track", "Track4"]
+        bool isActive = 1
+
+        def RealityKitTrack "Track2"
+        {
+            reorder nameChildren = ["EndModule_C", "audio_Diorama_01", "billboard_Diorama_01", "Highlight_Out_Billboard_A", "billboard_Diorama_02", "Highlight_Out_Billboard_B", "title_VallelungaDiorama_1", "title_VallelungaDiorama_3", "removeTitle_VallelungaDiorama_1", "billboard_Diorama_03", "Highlight_Out_Billboard_C", "Highlight_Out_Billboard_D", "billboard_Diorama_05", "Highlight_Out_Billboard_E", "Highlight_In_Billboard_F", "Highlight_Out_Billboard_F"]
+            def RealityKitAction "EndModule_C"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "7B9402F5-E7FA-488C-87AF-545D1BA4ABFB"
+                string notificationName = "EndModule_C"
+                double startTime = 126
+                rel target = </Root>
+            }
+
+            def RealityKitAction "audio_Diorama_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "281F2C4C-DD48-4C32-88D1-E8D2B97A317D"
+                string notificationName = "audio_Diorama_01"
+                double startTime = 0
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Diorama_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "C230EFDC-61D0-489B-A3A9-77568877C6A0"
+                string notificationName = "billboard_Diorama_01"
+                double startTime = 58
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_Out_Billboard_A"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "55B72414-409A-4879-B4FA-5C09E0F0F464"
+                string notificationName = "Highlight_Out_Billboard_A"
+                double startTime = 61
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Diorama_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "0273E414-1D44-4699-8C11-73247E995364"
+                string notificationName = "billboard_Diorama_03"
+                double startTime = 85
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_Out_Billboard_D"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "948B54D7-214E-4700-A69A-F6BAB0E1EB90"
+                string notificationName = "Highlight_Out_Billboard_D"
+                double startTime = 91
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Diorama_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "5A4C9513-990A-42E8-BF02-D0191A7184D1"
+                string notificationName = "billboard_Diorama_05"
+                double startTime = 102
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_Out_Billboard_E"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "353FB932-5FE0-4375-A831-F133C688F8A5"
+                string notificationName = "Highlight_Out_Billboard_E"
+                double startTime = 105
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_In_Billboard_F"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2AE9D06F-86DB-42CC-A996-84CCC2F959AB"
+                string notificationName = "Highlight_In_Billboard_F"
+                double startTime = 110
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_Out_Billboard_F"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "C6173D9F-3453-4374-AD89-DE40F05B9948"
+                string notificationName = "Highlight_Out_Billboard_F"
+                double startTime = 113
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_Out_Billboard_C"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "3CD0ADAB-0F72-46EE-B931-571B96509722"
+                string notificationName = "Highlight_Out_Billboard_C"
+                double startTime = 88
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Diorama_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "85DFFDF5-8B54-443A-ACC2-6BE4462F809D"
+                string notificationName = "billboard_Diorama_02"
+                double startTime = 76
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_Out_Billboard_B"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "92518E3B-D5CC-4A4F-9E71-5519C38C803D"
+                string notificationName = "Highlight_Out_Billboard_B"
+                double startTime = 79
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_1"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "D7A35FA1-8CBA-45B5-A22F-0967437B9B9F"
+                string notificationName = "title_VallelungaDiorama_1"
+                double startTime = 12
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_3"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "D93513D1-7595-4AB0-92FF-ACFD4396D3B8"
+                string notificationName = "title_VallelungaDiorama_3"
+                double startTime = 75
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_1"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "DDDCEA28-1E6E-4811-9A42-6B59C3D644B4"
+                string notificationName = "removeTitle_VallelungaDiorama_1"
+                double startTime = 24
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            reorder nameChildren = ["Highlight_In_Billboard_E", "Highlight_In_Billboard_D", "billboard_Diorama_06", "title_VallelungaDiorama_4"]
+            def RealityKitAction "Highlight_In_Billboard_E"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "F42FBC1E-81BC-4391-9C7E-9D5BB16BF0E4"
+                string notificationName = "Highlight_In_Billboard_E"
+                double startTime = 102
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_In_Billboard_D"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "BFA91435-59C2-404B-AA54-DF97F94022EA"
+                string notificationName = "Highlight_In_Billboard_D"
+                double startTime = 88
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Diorama_06"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "A06FFEF1-6E53-47CE-B419-5F4A76370585"
+                string notificationName = "billboard_Diorama_06"
+                double startTime = 110
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_4"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "466C2369-E6C4-4D32-B906-E15A991E96A0"
+                string notificationName = "title_VallelungaDiorama_4"
+                double startTime = 85
+                rel target = </Root>
+            }
+        }
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Highlight_In_Billboard_C", "billboard_Diorama_04", "Highlight_In_Billboard_B", "title_VallelungaDiorama_2", "title_VallelungaDiorama_5", "title_VallelungaDiorama_6", "removeTitle_VallelungaDiorama_2", "removeTitle_VallelungaDiorama_3", "removeTitle_VallelungaDiorama_4", "removeTitle_VallelungaDiorama_5", "removeTitle_VallelungaDiorama_6", "removeTitle_VallelungaDiorama_0", "title_VallelungaDiorama_0"]
+            def RealityKitAction "Highlight_In_Billboard_C"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC292E4D-D327-44D9-BE59-1C7E56D0AC21"
+                string notificationName = "Highlight_In_Billboard_C"
+                double startTime = 85
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Diorama_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "65006F33-7EC1-46C0-817A-752C1670CA36"
+                string notificationName = "billboard_Diorama_04"
+                double startTime = 88
+                rel target = </Root>
+            }
+
+            def RealityKitAction "Highlight_In_Billboard_B"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "6DF32DB6-BF85-4052-A677-1E2357938094"
+                string notificationName = "Highlight_In_Billboard_B"
+                double startTime = 76
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_2"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "7BEF5459-3974-49A2-B33D-638720A37C4F"
+                string notificationName = "title_VallelungaDiorama_2"
+                double startTime = 51
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_5"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "71126956-3935-41B0-A66F-45C5C534DBE3"
+                string notificationName = "title_VallelungaDiorama_5"
+                double startTime = 101
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_6"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "713FB36D-B892-4063-A79E-CD10314634DA"
+                string notificationName = "title_VallelungaDiorama_6"
+                double startTime = 109
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_2"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "425571F1-A20C-4E30-8604-F46DA388D87D"
+                string notificationName = "removeTitle_VallelungaDiorama_2"
+                double startTime = 70
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_3"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "7E4F25E8-D831-4731-8A2D-7EBFCAA98C74"
+                string notificationName = "removeTitle_VallelungaDiorama_3"
+                double startTime = 84
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_4"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "2409CB99-AE47-489C-951C-6EF66016F61C"
+                string notificationName = "removeTitle_VallelungaDiorama_4"
+                double startTime = 95
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_5"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "F618B124-6218-401F-84CF-7E81B0F6F3EC"
+                string notificationName = "removeTitle_VallelungaDiorama_5"
+                double startTime = 108
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_6"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "76954D7D-90E7-4371-B223-B89717D65E0E"
+                string notificationName = "removeTitle_VallelungaDiorama_6"
+                double startTime = 115
+                rel target = </Root>
+            }
+
+            def RealityKitAction "removeTitle_VallelungaDiorama_0"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "0567CC8F-2582-43DE-A4E6-6B04829922A9"
+                string notificationName = "removeTitle_VallelungaDiorama_0"
+                double startTime = 10
+                rel target = </Root>
+            }
+
+            def RealityKitAction "title_VallelungaDiorama_0"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "6B742F94-CC49-4E65-AF37-FC0CA799FEDC"
+                string notificationName = "title_VallelungaDiorama_0"
+                double startTime = 4
+                rel target = </Root>
+            }
+        }
+    }
+
+    def Scope "Billboards"
+    {
+        reorder nameChildren = ["A_Billboard_A", "A_Billboard_B", "A_Billboard_C", "A_Billboard_D", "A_Billboard_E", "A_Billboard_F"]
+        def "A_Billboard_A" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.3269334, 0.055956006, 0.102043726)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsDiorama/T_Billboard_A.jpg@
+            }
+        }
+
+        def "A_Billboard_B" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (215.14062, 107.86328)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.13635969, 0.055956006, 0.020104839)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsDiorama/T_Billboard_B.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                float3 xformOp:translate = (0, 0.1853703, 0)
+            }
+
+            over "billboardDiorama_Line"
+            {
+                over "line"
+                {
+                    float3 xformOp:scale = (0.9999995, 0.99999964, 0.23)
+                }
+            }
+        }
+
+        def "A_Billboard_C" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (235.14062, 127.86328)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.30636722, 0.055956006, 0.18292575)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsDiorama/T_Billboard_C.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                float3 xformOp:translate = (0, 0.46011925, 0)
+            }
+        }
+
+        def "A_Billboard_D" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (255.14062, 147.86328)
+            int ui:nodegraph:node:stackingOrder = 3
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.6616736, 0.055956006, 0.045725465)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsDiorama/T_Billboard_D.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "A_Billboard_E" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (275.14062, 167.86328)
+            int ui:nodegraph:node:stackingOrder = 4
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.5705059, 0.055956006, 0.22342005)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsDiorama/T_Billboard_E.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                float3 xformOp:translate = (0, 0.12144451, 0)
+            }
+
+            over "billboardDiorama_Line"
+            {
+                over "line"
+                {
+                    float3 xformOp:scale = (0.99999934, 0.99999946, 0.165)
+                }
+            }
+        }
+
+        def "A_Billboard_F" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (295.14062, 187.86328)
+            int ui:nodegraph:node:stackingOrder = 5
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.7159073, 0.055956006, 0.22342005)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsDiorama/T_Billboard_F.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                float3 xformOp:translate = (0, 0.19993675, 0)
+            }
+
+            over "billboardDiorama_Line"
+            {
+                over "line"
+                {
+                    float3 xformOp:scale = (0.9999994, 0.9999995, 0.24)
+                }
+            }
+        }
+    }
+
+    def Scope "Audios" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Source", "AudioFiles"]
+        def Xform "Source" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "AudioLibrary"
+            {
+                uniform token info:id = "RealityKit.AudioLibrary"
+
+                def RealityKitDict "resources"
+                {
+                    string[] keys = ["Horizon 954.mp3", "Horizon 955.mp3", "Horizon 956.mp3", "Horizon 957.mp3", "Horizon 958.mp3", "Horizon 963.mp3"]
+                    rel values = [
+                        </Root/Audios/AudioFiles/Horizon_954_mp3>,
+                        </Root/Audios/AudioFiles/Horizon_955_mp3>,
+                        </Root/Audios/AudioFiles/Horizon_956_mp3>,
+                        </Root/Audios/AudioFiles/Horizon_957_mp3>,
+                        </Root/Audios/AudioFiles/Horizon_958_mp3>,
+                        </Root/Audios/AudioFiles/Horizon_963_mp3>,
+                    ]
+                }
+            }
+        }
+
+        def Scope "AudioFiles" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["Horizon_954_mp3", "Horizon_955_mp3", "Horizon_956_mp3", "Horizon_957_mp3", "Horizon_958_mp3", "Horizon_963_mp3"]
+            def RealityKitAudioFile "Horizon_954_mp3"
+            {
+                uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/Horizon 954.mp3@
+                uniform bool shouldLoop = 0
+            }
+
+            def RealityKitAudioFile "Horizon_955_mp3"
+            {
+                uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/Horizon 955.mp3@
+                uniform bool shouldLoop = 0
+            }
+
+            def RealityKitAudioFile "Horizon_956_mp3"
+            {
+                uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/Horizon 956.mp3@
+                uniform bool shouldLoop = 0
+            }
+
+            def RealityKitAudioFile "Horizon_957_mp3"
+            {
+                uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/Horizon 957.mp3@
+                uniform bool shouldLoop = 0
+            }
+
+            def RealityKitAudioFile "Horizon_958_mp3"
+            {
+                uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/Horizon 958.mp3@
+                uniform bool shouldLoop = 0
+            }
+
+            def RealityKitAudioFile "Horizon_963_mp3"
+            {
+                uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/Horizon 963.mp3@
+                uniform bool shouldLoop = 0
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = [
+            </Root/OnAddedToScene>,
+            </Root/OnNotification>,
+        ]
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = None
+            rel animationLibraryKey = None
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardsSequence_Vallelunga"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardsSequence_Vallelunga>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def "M_Vallelunga" (
+        references = @../Geometry/M_Vallelunga_Diorama.usdc@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+
+        over "BlurredGlass" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/BlurredGlass> (
+                bindMaterialAs = "strongerThanDescendants"
+            )
+
+            over "_42"
+            {
+                over "_42"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 19
+                    }
+                }
+            }
+
+            over "_41"
+            {
+                over "_41"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 18
+                    }
+                }
+            }
+
+            over "_40"
+            {
+                over "_40"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 17
+                    }
+                }
+            }
+
+            over "_39"
+            {
+                over "_39"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 16
+                    }
+                }
+            }
+
+            over "_38"
+            {
+                over "_38"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 15
+                    }
+                }
+            }
+
+            over "_37"
+            {
+                over "_37"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 14
+                    }
+                }
+            }
+
+            over "_36"
+            {
+                over "_36"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 13
+                    }
+                }
+            }
+
+            over "_35"
+            {
+                over "_35"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 12
+                    }
+                }
+            }
+
+            over "_34"
+            {
+                over "_34"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 11
+                    }
+                }
+            }
+
+            over "_33"
+            {
+                over "_33"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 10
+                    }
+                }
+            }
+        }
+
+        over "_12_001" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/CircuitTrail> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_12_001"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 21
+                }
+            }
+        }
+
+        over "_25_001" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/CircuitTrail_Small> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_25_001"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 20
+                }
+            }
+        }
+
+        over "_materials"
+        {
+            over "Material"
+            {
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga_Diorama/_materials/Material/UnlitSurface.outputs:out>
+                token outputs:realitykit:vertex
+                token outputs:surface.connect = </Root/M_Vallelunga_Diorama/_materials/Material/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color = (1, 0, 0) (
+                        colorSpace = "lin_srgb"
+                    )
+                    bool inputs:hasPremultipliedAlpha
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-248.77734, 57.05078)
+                    int ui:nodegraph:node:stackingOrder = 6
+                }
+            }
+
+            over "Layer01"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0.55, 0.685, 1) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-615.3633, -16.894531)
+                            int stackingOrderInSubgraph = 51
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/Layer01/UnlitSurface.outputs:out>
+                token outputs:surface.connect = </Root/M_Vallelunga/_materials/Layer01/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/Layer01.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-299.84375, 60.36328)
+                    int ui:nodegraph:node:stackingOrder = 49
+                }
+            }
+
+            over "Layer02"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0.5, 0.65, 1) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-427.8672, 33.310547)
+                            int stackingOrderInSubgraph = 26
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/Layer02/UnlitSurface.outputs:out>
+                token outputs:surface.connect = </Root/M_Vallelunga/_materials/Layer02/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/Layer02.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-219.71094, 55.20508)
+                    int ui:nodegraph:node:stackingOrder = 26
+                }
+            }
+
+            over "Layer05"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0.32941177, 0.50980395, 0.94509804) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-485.71094, 6.5214844)
+                            int stackingOrderInSubgraph = 91
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/Layer05/UnlitSurface.outputs:out>
+                token outputs:surface.connect = </Root/M_Vallelunga/_materials/Layer05/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/Layer05.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-277.5547, 28.416016)
+                    int ui:nodegraph:node:stackingOrder = 92
+                }
+            }
+
+            over "Layer03"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0.45, 0.615, 1) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-479.82812, 37.935547)
+                            int stackingOrderInSubgraph = 50
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/Layer03/UnlitSurface.outputs:out>
+                token outputs:surface.connect = </Root/M_Vallelunga/_materials/Layer03/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (-45.285156, 113.9375)
+                int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 50
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/Layer03.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-271.67188, 59.83008)
+                    int ui:nodegraph:node:stackingOrder = 49
+                }
+            }
+
+            over "Layer04"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0.384, 0.5568, 0.96) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-417.8164, 34.810547)
+                            int stackingOrderInSubgraph = 74
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/Layer04/UnlitSurface.outputs:out>
+                token outputs:surface.connect = </Root/M_Vallelunga/_materials/Layer04/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/Layer04.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-209.66016, 56.70508)
+                    int ui:nodegraph:node:stackingOrder = 75
+                }
+            }
+
+            over "Layer06"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0, 0.75, 0.732) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-519.46387, 86.59033)
+                            int stackingOrderInSubgraph = 92
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/Layer06/UnlitSurface.outputs:out>
+                token outputs:surface.connect = </Root/M_Vallelunga_Diorama/_materials/Layer06/previewShader.outputs:surface>
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                over "previewShader" (
+                    active = false
+                )
+                {
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/Layer06.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity = 0.5
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (-311.30762, 108.48486)
+                    int ui:nodegraph:node:stackingOrder = 94
+                }
+            }
+
+            over "LayerBottom"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                color3f inputs:Color = (0.32941177, 0.50980395, 0.94509804) (
+                    colorSpace = "srgb_displayp3"
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-204.16797, 37.64258)
+                            int stackingOrderInSubgraph = 51
+                        }
+                    }
+                )
+                token outputs:mtlx:surface.connect = </Root/M_Vallelunga/_materials/LayerBottom/UnlitSurface.outputs:out>
+
+                over "PreviewSurface" (
+                    active = false
+                )
+                {
+                    int ui:nodegraph:node:stackingOrder = 1
+                }
+
+                def Shader "UnlitSurface"
+                {
+                    uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                    bool inputs:applyPostProcessToneMap
+                    color3f inputs:color.connect = </Root/M_Vallelunga/_materials/LayerBottom.inputs:Color>
+                    bool inputs:hasPremultipliedAlpha
+                    float inputs:opacity = 0.5
+                    float inputs:opacityThreshold
+                    token outputs:out
+                    float2 ui:nodegraph:node:pos = (3.9882812, 59.53711)
+                    int ui:nodegraph:node:stackingOrder = 52
+                }
+            }
+        }
+
+        over "Congress" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/Building> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float3 xformOp:translate = (0, 0, 0)
+
+            over "ME_Congress"
+            {
+            }
+        }
+
+        over "Sara" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/Building> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            float3 xformOp:translate = (0, 0, 0)
+
+            over "ME_Sara"
+            {
+            }
+        }
+
+        over "Vallelunga_HighlightIslands" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/HighlightIslands> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "HZone_01"
+            {
+                over "_33_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_02"
+            {
+                quatf xformOp:orient = (0.99999994, 0, 0, 0)
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                double3 xformOp:translate = (0, 0, -0.0044999998062849045)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "_34_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 1
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_03"
+            {
+                over "_35_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 2
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_04"
+            {
+                over "_36_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 3
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_05"
+            {
+                over "_37_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 4
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_06"
+            {
+                over "_38_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 5
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_07"
+            {
+                quatf xformOp:orient = (0.99999994, 0, 0, 0)
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                double3 xformOp:translate = (0, 0, -0.0020000000949949026)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "_39_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 6
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_08"
+            {
+                over "_40_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 7
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_09"
+            {
+                over "_41_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 8
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            over "HZone_10"
+            {
+                over "_42_002"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 9
+                    }
+                }
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+        }
+    }
+
+    def Xform "Locators" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Roma", "Traguardo", "Esse", "Tornantino", "Curvone", "Cimini1", "Cimini2", "Campagnano", "Soratte", "Trincea", "Semaforo"]
+        float3 xformOp:translate = (0, 0.01, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "Traguardo" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.31129727, 0.026910437, -0.16917321)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_TraguardoV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 14
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Traguardo", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Traguardo" (
+                    active = true
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @../Geometry/NameTags/Vallelunga/Traguardo.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Esse" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.24493179, 0.026910437, -0.12371394)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_EsseV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 15
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Esse", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Esse" (
+                    active = true
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @../Geometry/NameTags/Vallelunga/Esse.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Tornantino" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.05190216, 0.026910437, -0.110252716)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_TornantinoV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 16
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Tornantino", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Tornantino" (
+                    active = true
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @../Geometry/NameTags/Vallelunga/Tornantino.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Curvone" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.10627528, 0.026910437, -0.19049214)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_CurvoneV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 12
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Curvone", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Curvone" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Curvone.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Cimini1" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.47786105, 0.026910437, -0.0131454915)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_Cimini 1V2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 19
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Cimini1", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Cimini1" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Cimini1.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Cimini2" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.43643412, 0.026910437, 0.049069628)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_Cimini 2V2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 20
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Cimini2", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Cimini2" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Cimini2.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Campagnano" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.16433233, 0.026910437, 0.13765854)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 22
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "M_Nametag"
+            {
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_CampagnanoV2.png@
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Campagnano", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Campagnano" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Campagnano.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Soratte" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.08563332, 0.026910437, 0.02951546)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_SoratteV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 21
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Soratte", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Soratte" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Soratte.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Trincea" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.010219008, 0.026910437, -0.049954116)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_TrinceaV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 18
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Billboard", "Trincea"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Trincea" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Trincea.usdc@
+                )
+                {
+                    quatf xformOp:orient = (1, 0, 0, 0)
+                    float3 xformOp:scale = (0.99999976, 0.99999976, 0.99999976)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Semaforo" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.18758082, 0.026910437, -0.07719286)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_SemaforoV2.png@
+            }
+
+            over "Locator"
+            {
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 17
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Semaforo", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Semaforo" (
+                    active = true
+                    references = @../Geometry/NameTags/Vallelunga/Semaforo.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "Roma" (
+            active = true
+            references = @A_Locator.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (-120.953125, 54.351562)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (-0.5217527, 0.026910437, -0.0862681)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "M_Nametag"
+            {
+                token cullMode = "back" (
+                    allowedTokens = ["unspecified", "none", "front", "back"]
+                )
+                asset inputs:Mask = @../Textures/DioramaNameTags/V2/T_RomaV2.png@
+            }
+
+            over "Locator"
+            {
+                reorder nameChildren = ["Roma", "NameTagHolder", "Billboard", "Circle", "Sphere"]
+                over "NameTagHolder" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/M_Nametag> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+
+                    over "Plane"
+                    {
+                        over "Plane"
+                        {
+                            over "MeshSorting"
+                            {
+                                rel group = </Root/Model_Sorting_Group>
+                                int priorityInGroup = 13
+                            }
+                        }
+                    }
+                }
+
+                over "Circle" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+
+                over "Sphere" (
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                )
+                {
+                    rel material:binding = </Root/Materials/Locator> (
+                        bindMaterialAs = "weakerThanDescendants"
+                    )
+                }
+            }
+
+            over "NameTagHolder" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                reorder nameChildren = ["Roma", "Billboard"]
+                rel material:binding = </Root/Materials/M_Nametag> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def "Roma" (
+                    active = true
+                    prepend apiSchemas = ["MaterialBindingAPI"]
+                    references = @../Geometry/NameTags/Vallelunga/Roma.usdc@
+                )
+                {
+                    float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+                }
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+        }
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+        token depthPass = "postPass"
+    }
+
+    def "A_GroundVallelungaDiorama" (
+        active = true
+        references = @A_GroundVallelungaDiorama.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, -0.04461807, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "MF_EpochColors"
+        {
+            over "Switch"
+            {
+                color3f inputs:in1 = (0.99215686, 0.49019608, 0) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:in2 = (0.8392157, 1, 1) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:in3 = (0.32941177, 0.50980395, 0.94509804) (
+                    colorSpace = "srgb_displayp3"
+                )
+                int ui:nodegraph:node:stackingOrder = 154
+            }
+        }
+
+        over "M_GroundMask"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            float inputs:Highlight_ID = 0 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-3222.7737, 1644.2848)
+                        int stackingOrderInSubgraph = 4154
+                    }
+                }
+            )
+            int inputs:ID = 2 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (114.65232, -285.34195)
+                        int stackingOrderInSubgraph = 4102
+                    }
+                }
+            )
+            float inputs:Radius_Highlights (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-1742.881, 2118.579)
+                        int stackingOrderInSubgraph = 4154
+                    }
+                }
+            )
+            float inputs:Tiling_Dots (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-831.0833, 526.86993)
+                        int stackingOrderInSubgraph = 4154
+                    }
+                }
+            )
+
+            over "MF_EpochColors_1" (
+                instanceable = false
+            )
+            {
+                float2 ui:nodegraph:node:pos = (305.0747, -270.6123)
+                int ui:nodegraph:node:stackingOrder = 4102
+
+                over "Switch"
+                {
+                    color3f inputs:in1 = (0.99215686, 0.49019608, 0) (
+                        colorSpace = "lin_srgb"
+                    )
+                    color3f inputs:in2 = (0.8392157, 1, 1) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    color3f inputs:in3 = (0.32941177, 0.50980395, 0.94509804) (
+                        colorSpace = "srgb_displayp3"
+                    )
+                    int ui:nodegraph:node:stackingOrder = 162
+                }
+            }
+
+            over "Multiply_7"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Floor_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Combine2_2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Power_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantFloat2_3"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_4"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantFloat2_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Oneminus"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_5"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Floor"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantFloat2_2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Clamp_2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Separate3_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantFloat2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Position_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Sin"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Add_2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Remap"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Time_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Add_3"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Add_4"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "IfGreaterOrEqual"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantFloat2_5"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Clamp"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Magnitude_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Switch"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantFloat2_4"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Subtract"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Remap_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_8"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Divide"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Subtract_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Clamp_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_6"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Add_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "SmoothStep"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Position"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Add"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Combine2"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Image"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "ConstantImageFile"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Separate3"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Combine2_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Time"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "WorleyNoise2D"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply_3"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Multiply"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Power"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Step"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+
+            over "Oneminus_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 4154
+            }
+        }
+
+        over "M_GroundMaskOutline"
+        {
+            int inputs:ID = 3
+        }
+    }
+
+    def Xform "MusicAudioSource_A_Diorama" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (0.99999994, 0, 0, 0)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (0, 0.13068175, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "VoiceAudioSource_A_Diorama" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (0.99999994, 0, 0, 0)
+        float3 xformOp:scale = (0.8, 0.8, 0.8)
+        float3 xformOp:translate = (0, 0.8, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def "A_TitleFrame" (
+        active = true
+        references = @A_TitleFrame.usda@
+    )
+    {
+        reorder nameChildren = ["TitleFrame", "M_Frame", "M_Title", "TitleHolder"]
+        float2 ui:nodegraph:node:pos = (73.07129, 206.97679)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1.6, 1.6, 1.6)
+        float3 xformOp:translate = (0, 0.4, -0.5355317)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Xform "TitleHolder" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            reorder nameChildren = ["AutodromoDiVallelunga", "EventiECultura", "FormazioneRally", "OltreIlCircuito", "TestESperimentazione", "TracceDelPassato", "UnEcosistemaDellaGuida"]
+            rel material:binding = </Root/A_TitleFrame/M_Title> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1.5, 1.5, 1.5)
+            float3 xformOp:translate = (0, 0, 0.10502115)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "AutodromoDiVallelunga" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/AutodromoDiVallelunga.usdc@
+            )
+            {
+                float3 xformOp:scale = (1.5000005, 1.5000005, 1.5000004)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            def "EventiECultura" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/EventiECultura.usdc@
+            )
+            {
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            def "FormazioneRally" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/FormazioneRally.usdc@
+            )
+            {
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            def "OltreIlCircuito" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/OltreIlCircuito.usdc@
+            )
+            {
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            def "TestESperimentazione" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/TestESperimentazione.usdc@
+            )
+            {
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            def "TracceDelPassato" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/TracceDelPassato.usdc@
+            )
+            {
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+
+            def "UnEcosistemaDellaGuida" (
+                active = true
+                references = @../Geometry/NameTags/Vallelunga/Titles/UnEcosistemaDellaGuida.usdc@
+            )
+            {
+                float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                    float opacity = 0
+                }
+            }
+        }
+
+        over "TitleFrame"
+        {
+            float3 xformOp:scale = (1, 1, 1)
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 0
+            }
+        }
+
+        over "M_Title"
+        {
+            over "UnlitSurface"
+            {
+                bool inputs:applyPostProcessToneMap = 1
+                color3f inputs:color = (1, 1, 1) (
+                    colorSpace = "lin_srgb"
+                )
+                int ui:nodegraph:node:stackingOrder = 11
+            }
+        }
+
+        over "M_Frame"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+            color3f inputs:TintColor = (0.32941177, 0.50980395, 0.94509804) (
+                colorSpace = "srgb_displayp3"
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-453.46484, -174.69531)
+                        int stackingOrderInSubgraph = 1060
+                    }
+                }
+            )
+
+            over "BlurredBackground"
+            {
+                float2 ui:nodegraph:node:pos = (-548.7031, -280.40625)
+                int ui:nodegraph:node:stackingOrder = 1060
+            }
+
+            def Shader "Mix"
+            {
+                uniform token info:id = "ND_mix_color3"
+                color3f inputs:bg.connect = </Root/A_TitleFrame/M_Frame/BlurredBackground.outputs:out>
+                color3f inputs:fg.connect = </Root/A_TitleFrame/M_Frame.inputs:TintColor>
+                float inputs:mix = 0.1
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-161.69531, -184.625)
+                int ui:nodegraph:node:stackingOrder = 1060
+            }
+
+            over "UnlitSurface"
+            {
+                color3f inputs:color.connect = </Root/A_TitleFrame/M_Frame/Mix.outputs:out>
+            }
+
+            over "Normalize_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+
+            over "TransformNormal_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+
+            over "Normalize"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+
+            over "TransformNormal"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+
+            over "Power"
+            {
+                int ui:nodegraph:node:stackingOrder = 1121
+            }
+
+            over "Normal"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+
+            over "DotProduct"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+
+            over "ConstantFloat3"
+            {
+                int ui:nodegraph:node:stackingOrder = 1120
+            }
+        }
+    }
+
+    def Material "HighlightIslands"
+    {
+        token cullMode = "none" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        color3f inputs:Color = (0.32941177, 0.50980395, 0.94509804) (
+            colorSpace = "srgb_displayp3"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-769.11804, 5.101166)
+                    int stackingOrderInSubgraph = 1702
+                }
+            }
+        )
+        float inputs:HighlightAnim = 0 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-582.0963, -212.38156)
+                    int stackingOrderInSubgraph = 1702
+                }
+            }
+        )
+        color3f inputs:HighlightColor = (0.6, 0.72, 1) (
+            colorSpace = "srgb_displayp3"
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-584.18243, -151.39676)
+                    int stackingOrderInSubgraph = 1702
+                }
+            }
+        )
+        float inputs:Opacity = 0.25 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-287.8053, 64.546684)
+                    int stackingOrderInSubgraph = 1753
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/HighlightIslands/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:node:pos = (-630.1438, 34.530487)
+        int ui:nodegraph:node:stackingOrder = 1
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (332.50726, 99.49822)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 1751
+
+        def Shader "Mix_1"
+        {
+            uniform token info:id = "ND_mix_color3"
+            color3f inputs:bg.connect = </Root/HighlightIslands.inputs:Color>
+            color3f inputs:fg.connect = </Root/HighlightIslands/BlurredBackground.outputs:out>
+            float inputs:mix = 0.5
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-570.3174, -41.83719)
+            int ui:nodegraph:node:stackingOrder = 1702
+        }
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap = 1
+            color3f inputs:color.connect = </Root/HighlightIslands/Mix_2.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity = 0.5
+            float inputs:opacity.connect = </Root/HighlightIslands.inputs:Opacity>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (93.9112, 97.37615)
+            int ui:nodegraph:node:stackingOrder = 1752
+        }
+
+        def Shader "Mix_2"
+        {
+            uniform token info:id = "ND_mix_color3"
+            color3f inputs:bg.connect = </Root/HighlightIslands/Mix_1.outputs:out>
+            color3f inputs:fg.connect = </Root/HighlightIslands.inputs:HighlightColor>
+            float inputs:mix.connect = </Root/HighlightIslands.inputs:HighlightAnim>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-314.85413, -113.69406)
+            int ui:nodegraph:node:stackingOrder = 1702
+        }
+
+        def Shader "BlurredBackground"
+        {
+            uniform token info:id = "ND_realitykit_background_blur_color3"
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-779.04724, -68.63196)
+            int ui:nodegraph:node:stackingOrder = 1702
+        }
+    }
+}
+

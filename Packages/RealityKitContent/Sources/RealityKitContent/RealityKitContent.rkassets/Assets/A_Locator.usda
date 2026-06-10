@@ -1,0 +1,79 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Locator", "HierarchicalFade", "NameTagHolder"]
+    def "Locator" (
+        active = true
+        references = @../Geometry/Locator.usdc@
+    )
+    {
+        reorder nameChildren = ["Billboard", "Circle", "Sphere", "NameTagHolder"]
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "Billboard"
+        {
+            float blendFactor = 1
+            uniform token info:id = "RealityKit.Billboard"
+        }
+
+        over "Circle"
+        {
+            float3 xformOp:translate = (0, 0, 0.02)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Circle_001"
+            {
+                rel material:binding = None (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+
+        over "Sphere"
+        {
+            float3 xformOp:translate = (0, 0, 0.02)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Sphere_012"
+            {
+                rel material:binding = None (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+            }
+        }
+    }
+
+    def RealityKitComponent "HierarchicalFade"
+    {
+        uniform token info:id = "RealityKit.HierarchicalFade"
+    }
+
+    def Xform "NameTagHolder" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (0.75, 0.75, 0.75)
+        float3 xformOp:translate = (0, 0.025, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "Billboard"
+        {
+            float blendFactor = 1
+            uniform token info:id = "RealityKit.Billboard"
+        }
+    }
+}
+

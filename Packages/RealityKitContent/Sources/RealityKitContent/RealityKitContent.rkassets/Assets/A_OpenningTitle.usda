@@ -1,0 +1,107 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["M_OpenningTitle", "MM_TransitionPBR", "MI_OpenningTitle"]
+    def "M_OpenningTitle" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/M_OpenningTitle.usdc@
+    )
+    {
+        rel material:binding = </Root/MI_OpenningTitle> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "OpenningTitle"
+        {
+            over "ME_OpenningTitle" (
+                customData = {
+                    dictionary RE = {
+                        dictionary mesh = {
+                            dictionary v1 = {
+                                bool reorderVertexCaching = 0
+                            }
+                        }
+                    }
+                }
+            )
+            {
+            }
+        }
+    }
+
+    def "MM_TransitionPBR" (
+        active = true
+        references = @../Materials/MasterMaterials.usda@</Root/MM_TransitionPBR>
+    )
+    {
+        token cullMode = "none" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        float inputs:TransitionAmount = 0
+        color3f inputs:WireframeColor = (0.02745098, 0.69411767, 0.91764706) (
+            colorSpace = "srgb_texture"
+        )
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (-3743.7444, -906.35834)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 19254
+
+        over "GradientMasks"
+        {
+            int ui:nodegraph:node:stackingOrder = 19252
+        }
+
+        over "ModelSpaceGrid"
+        {
+            int ui:nodegraph:node:stackingOrder = 19253
+
+            over "IfGreater_2"
+            {
+                float inputs:value2 = 0.001
+                int ui:nodegraph:node:stackingOrder = 11898
+            }
+
+            over "IfGreater_1"
+            {
+                float inputs:value2 = 0.001
+                int ui:nodegraph:node:stackingOrder = 11899
+            }
+
+            over "IfGreater"
+            {
+                float inputs:value2 = 0.001
+                int ui:nodegraph:node:stackingOrder = 11900
+            }
+        }
+    }
+
+    def "MI_OpenningTitle" (
+        active = true
+        instanceable = true
+        references = </Root/MM_TransitionPBR>
+    )
+    {
+        asset inputs:BaseColorMap = @../Materials/Textures/OpenningTitle/Title_BaseColor.png@
+        float inputs:EdgeDetection = 0.01
+        asset inputs:EmmisiveMap = @../Materials/Textures/OpenningTitle/Title_Emission.png@
+        float inputs:GridSize = 0.016
+        asset inputs:MetallicMap = @../Materials/Textures/OpenningTitle/Title_Metallic.png@
+        asset inputs:NormalMap = @../Materials/Textures/OpenningTitle/Title_Normal.png@
+        asset inputs:RoughnessMap = @../Materials/Textures/OpenningTitle/Title_Roughness.png@
+        float inputs:TransitionAmount = 1
+        float inputs:TransitionLocationHigh = 0.001
+        float inputs:TransitionLocationLow = -0.1
+        float inputs:TransitionSpan = 0.05
+    }
+}
+

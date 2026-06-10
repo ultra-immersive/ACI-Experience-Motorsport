@@ -1,0 +1,33 @@
+{
+  "pathsToIds" : {
+    "\/BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/Assets\/Untitled%20Scene.usda" : "4504198A-D8B1-40AA-AB2F-8708E9FE47A8",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/Assets\/A_Billboard.usda" : "DCBFA090-DB2F-4F9F-A26B-77334468CDF8",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/Assets\/A_ShadowCatcher.usda" : "3622962E-9A42-4228-8B7D-E0C03C91F833",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/Assets\/ParticleDesign.usda" : "D9C348ED-F069-424C-9407-8DAC4AEB877F",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/Assets\/ParticleRingusda.usda" : "7755BE3D-F0A8-4672-9196-20C0C9F7EE7A",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_DeltaIntegrale.usda" : "DDC0CDC4-E92B-40D8-8478-712F616FD78D",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_DeltaIntegrale_references\/EpochMaterial.usda" : "2AB4E91A-898B-4602-AFFF-D0B564FCA6E3",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_DeltaIntegrale_references\/MS_PHY_DeltaIntegrale.usda" : "F9437CB6-CC1E-47DC-99BF-2CB0C5F8B64B",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_DeltaIntegrale_references\/MS_TRA_DeltaIntegrale.usda" : "C5AE838A-15B9-441C-A3D3-69D8F54241E9",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_DeltaIntegrale_references\/M_DeltaIntegrale.usdc" : "B2A5BF99-FABF-4099-BBFA-C93B799A935D",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_DeltaIntegrale_references\/MasterMaterials.usda" : "DAB88749-3752-43EF-991A-75C1B4FBD855",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/BulkImport\/A_FloatingPlane.usda" : "D1579320-7308-48FF-B443-3641E0EBE3A0",
+    "BigAssets\/Sources\/BigAssets\/BigAssets.rkassets\/Scene.usda" : "F23D5B05-0BD8-4B49-A86F-527F61967D6F"
+  },
+  "projectID" : -4007473441213048945,
+  "uuidToIntID" : {
+    "2AB4E91A-898B-4602-AFFF-D0B564FCA6E3" : 5487042261143004176,
+    "3622962E-9A42-4228-8B7D-E0C03C91F833" : -3295337622829340027,
+    "4504198A-D8B1-40AA-AB2F-8708E9FE47A8" : -8789995978101800083,
+    "7755BE3D-F0A8-4672-9196-20C0C9F7EE7A" : 1162955028306060381,
+    "B2A5BF99-FABF-4099-BBFA-C93B799A935D" : 6965733440866894246,
+    "C5AE838A-15B9-441C-A3D3-69D8F54241E9" : 7093235263015821166,
+    "D1579320-7308-48FF-B443-3641E0EBE3A0" : -4687482978075036945,
+    "D9C348ED-F069-424C-9407-8DAC4AEB877F" : 3237171657064385755,
+    "DAB88749-3752-43EF-991A-75C1B4FBD855" : -6370651252624634914,
+    "DCBFA090-DB2F-4F9F-A26B-77334468CDF8" : 4742267128606945714,
+    "DDC0CDC4-E92B-40D8-8478-712F616FD78D" : -8108562830899678106,
+    "F23D5B05-0BD8-4B49-A86F-527F61967D6F" : 7946163899236302496,
+    "F9437CB6-CC1E-47DC-99BF-2CB0C5F8B64B" : 613601802424859955
+  }
+}

@@ -1,0 +1,361 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Close_Button", "X_Material", "X_Glass"]
+    def "Close_Button" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/Close_Button.usdc@
+    )
+    {
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Cross" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/X_Material> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (0.6532814, 0.65328157, 0.27059802, -0.2705981)
+            float3 xformOp:scale = (0.99999994, 0.99999994, 1)
+            double3 xformOp:translate = (-8.265487849712372e-9, -3.545001298231963e-17, 2.7939679458910405e-9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 1
+            }
+        }
+
+        over "Glass" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/X_Glass> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "Glass"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 0
+                }
+            }
+        }
+    }
+
+    def Material "X_Material"
+    {
+        token cullMode = "back" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        float inputs:ScalingFactor = 1.1 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-546.00507, 214.89432)
+                    int stackingOrderInSubgraph = 116
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/X_Material/PBRSurface.outputs:out>
+        token outputs:realitykit:vertex.connect = </Root/X_Material/GeometryModifier.outputs:out>
+        token outputs:surface.connect = </Root/X_Material/UsdPreviewSurface.outputs:surface>
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (802.5222, 181.96715)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 141
+
+        def Shader "UsdPreviewSurface" (
+            active = false
+        )
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.57414854, 0.5741624, 0.574155) (
+                colorSpace = "srgb_texture"
+            )
+            token outputs:surface
+        }
+
+        def Shader "HoverState"
+        {
+            uniform token info:id = "ND_realitykit_hover_state"
+            float outputs:intensity
+            bool outputs:isActive
+            float3 outputs:position
+            float outputs:timeSinceHoverStart
+            float2 ui:nodegraph:node:pos = (-1163.5885, -23.522568)
+            int ui:nodegraph:node:stackingOrder = 255
+        }
+
+        def Shader "GeometryModifier"
+        {
+            uniform token info:id = "ND_realitykit_geometrymodifier_2_0_vertexshader"
+            color4f inputs:color
+            float3 inputs:modelPositionOffset.connect = </Root/X_Material/Subtract.outputs:out>
+            float3 inputs:normal
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (77.86719, 244.42578)
+            int ui:nodegraph:node:stackingOrder = 67
+        }
+
+        def Shader "Position"
+        {
+            uniform token info:id = "ND_position_vector3"
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-393.96875, 286.3828)
+            int ui:nodegraph:node:stackingOrder = 108
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector3"
+            float3 inputs:in1.connect = </Root/X_Material/Multiply.outputs:out>
+            float3 inputs:in2.connect = </Root/X_Material/Position.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-160.125, 276.8086)
+            int ui:nodegraph:node:stackingOrder = 110
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            float3 inputs:in1.connect = </Root/X_Material/Position.outputs:out>
+            float inputs:in2.connect = </Root/X_Material/Remap.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (-241.6289, 231.47266)
+            int ui:nodegraph:node:stackingOrder = 104
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/X_Material/HoverState.outputs:intensity>
+            float inputs:inhigh
+            float inputs:inlow
+            float inputs:outhigh = 1.25
+            float inputs:outhigh.connect = </Root/X_Material.inputs:ScalingFactor>
+            float inputs:outlow = 1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-385.10938, 165.19922)
+            int ui:nodegraph:node:stackingOrder = 239
+        }
+
+        def Shader "ConstantFloat"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 1
+            float inputs:value.connect = </Root/X_Material/Remap_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-614.25134, -133.54652)
+            int ui:nodegraph:node:stackingOrder = 233
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:value"]
+        }
+
+        def Shader "PBRSurface"
+        {
+            uniform token info:id = "ND_realitykit_pbr_surfaceshader"
+            float inputs:ambientOcclusion
+            color3f inputs:baseColor = (0.78431374, 0.78431374, 0.78431374) (
+                colorSpace = "lin_srgb"
+            )
+            color3f inputs:baseColor.connect = </Root/X_Material/Swizzle.outputs:out>
+            color3f inputs:emissiveColor.connect = </Root/X_Material/Swizzle.outputs:out>
+            bool inputs:hasPremultipliedAlpha
+            float inputs:metallic
+            float3 inputs:normal
+            float inputs:roughness
+            float inputs:specular
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (75.08534, -88.270836)
+            int ui:nodegraph:node:stackingOrder = 227
+        }
+
+        def Shader "Remap_1"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/X_Material/HoverState.outputs:intensity>
+            float inputs:inhigh
+            float inputs:inlow
+            float inputs:outhigh = 5
+            float inputs:outlow = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-872.88873, -111.24138)
+            int ui:nodegraph:node:stackingOrder = 250
+        }
+
+        def Shader "Swizzle"
+        {
+            uniform token info:id = "ND_swizzle_float_color3"
+            float inputs:in.connect = </Root/X_Material/ConstantFloat.outputs:out>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (-397.98053, -133.90948)
+            int ui:nodegraph:node:stackingOrder = 247
+        }
+    }
+
+    def Material "X_Glass" (
+        references = @GlassMaterial.usda@</Root/Material>
+    )
+    {
+        token cullMode = "none" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        float inputs:eta = 0.5 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-985.41626, -62.14543)
+                    float2 sizeInSubgraph = (98, 53)
+                    int stackingOrderInSubgraph = 673
+                }
+            }
+        )
+        float inputs:roughness = 0.05 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-520.9136, -237.21289)
+                    float2 sizeInSubgraph = (133.5, 53)
+                    int stackingOrderInSubgraph = 673
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/X_Glass/PBRSurface.outputs:out>
+        token outputs:realitykit:vertex
+        token outputs:surface.connect = </Root/X_Glass/UsdPreviewSurface.outputs:surface>
+
+        def Shader "UsdPreviewSurface"
+        {
+            uniform token info:id = "UsdPreviewSurface"
+            color3f inputs:diffuseColor = (0.999996, 1, 1) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:emissiveColor = (0, 0, 0) (
+                colorSpace = "srgb_texture"
+            )
+            token outputs:surface
+        }
+
+        over "PBRSurface"
+        {
+            float inputs:ambientOcclusion.connect = None
+            color3f inputs:baseColor = (0.999996, 1, 1) (
+                colorSpace = "srgb_texture"
+            )
+            color3f inputs:baseColor.connect = </Root/X_Glass/Add_1.outputs:out>
+            float inputs:clearcoat = 1
+            float3 inputs:clearcoatNormal
+            float inputs:clearcoatRoughness = 0.1
+            color3f inputs:emissiveColor.connect = </Root/X_Glass/Add_1.outputs:out>
+            float inputs:metallic = 0
+            float inputs:opacity.connect = </Root/X_Glass/Separate3.outputs:outb>
+            float inputs:roughness = 0.3
+            float inputs:specular = 1
+            float2 ui:nodegraph:node:pos = (577.96533, -138.84961)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "UnlitSurface" (
+            active = false
+        )
+        {
+            int ui:nodegraph:node:stackingOrder = 324
+        }
+
+        over "Add_1"
+        {
+            float2 ui:nodegraph:node:pos = (297.86768, 69.98633)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "Convert"
+        {
+            float2 ui:nodegraph:node:pos = (-291.18826, -239.31207)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "Normal"
+        {
+            float2 ui:nodegraph:node:pos = (-778.4553, -97.579025)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "Normalize"
+        {
+            float2 ui:nodegraph:node:pos = (-152.21706, 36.846756)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "Multiply"
+        {
+            float inputs:in2 = -1
+            float2 ui:nodegraph:node:pos = (-757.3264, 40.6866)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "RealitykitEnvironmentRadiance"
+        {
+            float2 ui:nodegraph:node:pos = (96.303566, -10.039654)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "ConstantColor3"
+        {
+            float2 ui:nodegraph:node:pos = (-254.26715, -75.58244)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "Refract"
+        {
+            float2 ui:nodegraph:node:pos = (-504.84985, -79.03606)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "Add"
+        {
+            float2 ui:nodegraph:node:pos = (-318.92798, 40.549942)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        over "ViewDirection"
+        {
+            float2 ui:nodegraph:node:pos = (-978.72876, 31.393631)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_color3"
+            color3f inputs:in.connect = </Root/X_Glass/Add_1.outputs:out>
+            float outputs:outb
+            float outputs:outg
+            float outputs:outr
+            float2 ui:nodegraph:node:pos = (446.48618, 158.40971)
+            int ui:nodegraph:node:stackingOrder = 673
+        }
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+        token depthPass = "postPass"
+    }
+}
+

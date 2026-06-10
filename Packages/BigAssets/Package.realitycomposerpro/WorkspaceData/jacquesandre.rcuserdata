@@ -1,0 +1,64 @@
+{
+  "advancedEditorSelectedIdentifier" : "BehaviorsPluginID",
+  "openSceneRelativePaths" : [
+    "Scene.usda",
+    "BulkImport\/A_DeltaIntegrale.usda"
+  ],
+  "recentIdentifiers" : {
+    "DDC0CDC4-E92B-40D8-8478-712F616FD78D" : [
+
+    ]
+  },
+  "sceneCameraHistory" : {
+    "DDC0CDC4-E92B-40D8-8478-712F616FD78D" : [
+      {
+        "date" : 797790979.49742,
+        "title" : "Untitled",
+        "transform" : [
+          0.9998254,
+          -3.0998204e-11,
+          0.018685693,
+          0,
+          0.016113093,
+          0.5063593,
+          -0.862172,
+          0,
+          -0.009461675,
+          0.8623225,
+          0.50627095,
+          0,
+          -0.07508527,
+          6.843149,
+          4.0176225,
+          1
+        ]
+      },
+      {
+        "date" : 797790977.931638,
+        "title" : "Untitled",
+        "transform" : [
+          0.9998254,
+          -3.0998204e-11,
+          0.018685693,
+          0,
+          0.016113095,
+          0.50635934,
+          -0.8621721,
+          0,
+          -0.009461676,
+          0.8623226,
+          0.506271,
+          0,
+          -0.024470726,
+          2.2302248,
+          1.3093686,
+          1
+        ]
+      }
+    ]
+  },
+  "sceneViewportBackgroundColors" : {
+
+  },
+  "selectedSceneRelativePath" : "BulkImport\/A_DeltaIntegrale.usda"
+}

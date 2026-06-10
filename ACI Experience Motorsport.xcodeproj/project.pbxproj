@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EF093A6F2EA1029E00E9EBB0 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = EF093A6E2EA1029E00E9EBB0 /* RealityKitContent */; };
+		EF472EF92EE96D9200F29A40 /* BigAssets in Frameworks */ = {isa = PBXBuildFile; productRef = EF472EF82EE96D9200F29A40 /* BigAssets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EF093A692EA1029E00E9EBB0 /* ACI Experience Motorsport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ACI Experience Motorsport.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF093A6D2EA1029E00E9EBB0 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
+		EF472EF62EE96ADE00F29A40 /* BigAssets */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BigAssets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		EF9F2D192EBB7738000B4C0F /* Exceptions for "ACI Experience Motorsport" folder in "ACI Experience Motorsport" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			assetTagsByRelativePath = {
+				"13_VideoFiles/180SpatialVideos/IntroEP02-PAN10_VR180.mov" = ("IntroEP02-PAN10_VR180", );
+				"13_VideoFiles/180SpatialVideos/IntroEP02-PAN10_VR180_HDR_MV-HEVC.mov" = ("IntroEP02-PAN10_VR180_HDR_MV-HEVC", );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN01_Stereo_TargaFlorio.mov" = (EP01_PAN01_Stereo_TargaFlorio, );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN02_Stereo_Intro.mov" = (EP01_PAN02_Stereo_Intro, );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN03_Stereo_GranPremio.mov" = (EP01_PAN03_Stereo_GranPremio, );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN04_Stereo_MondialeSportprototipi.mov" = (EP01_PAN04_Stereo_MondialeSportprototipi, );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN05_Stereo_Monza.mov" = (EP01_PAN05_Stereo_Monza, );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN06__Stereo_Mille-Miglia.mov" = ("EP01_PAN06__Stereo_Mille-Miglia", );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN07_Stereo_Alfa-Romeo.mov" = ("EP01_PAN07_Stereo_Alfa-Romeo", );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN08_Stereo_Ferrari-375.mov" = ("EP01_PAN08_Stereo_Ferrari-375", );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN09_Stereo_Alfa-Romeo-P3.mov" = ("EP01_PAN09_Stereo_Alfa-Romeo-P3", );
+				"13_VideoFiles/Epoca1-CorsaComeSfida/EP01_PAN10_Stereo_Monza-Diorama.mov" = ("EP01_PAN10_Stereo_Monza-Diorama", );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN01_Stereo_Lancia-Stratos.mov" = ("EP02_PAN01_Stereo_Lancia-Stratos", );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN02_Stereo_Intro.mov" = (EP02_PAN02_Stereo_Intro, );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN03_Miki-Biasion-world-rally-champ.mov" = ("EP02_PAN03_Miki-Biasion-world-rally-champ", );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN04_Stereo_Rally.mov" = (EP02_PAN04_Stereo_Rally, );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN05_Stereo_Donne-Motorsport.mov" = ("EP02_PAN05_Stereo_Donne-Motorsport", );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN06_Dominio_Lancia.mov" = (EP02_PAN06_Dominio_Lancia, );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN07_Stereo_Piloti_Altleti.mov" = (EP02_PAN07_Stereo_Piloti_Altleti, );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN08_Stereo_3DModel_Lancia-Stratos.mov" = ("EP02_PAN08_Stereo_3DModel_Lancia-Stratos", );
+				"13_VideoFiles/Epoca2-TecnicaPassioneGenio/EP02_PAN09_Stereo_3DModel_Lancia-Delta.mov" = ("EP02_PAN09_Stereo_3DModel_Lancia-Delta", );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN01_Stereo_Centro-Guida-Sicura.mov" = ("EP03_PAN01_Stereo_Centro-Guida-Sicura", );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN02_Stereo_Intro.mov" = (EP03_PAN02_Stereo_Intro, );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN03_Stereo_eSports.mov" = (EP03_PAN03_Stereo_eSports, );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN04_Stereo_Formula4.mov" = (EP03_PAN04_Stereo_Formula4, );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN05_Stereo_Sistemi-sicurezza.mov" = ("EP03_PAN05_Stereo_Sistemi-sicurezza", );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN06_Stereo_Formula-E.mov" = ("EP03_PAN06_Stereo_Formula-E", );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN07_Stereo_Nuove-generazioni.mov" = ("EP03_PAN07_Stereo_Nuove-generazioni", );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN08_Stereo_Tatuus_3D_Model.mov" = (EP03_PAN08_Stereo_Tatuus_3D_Model, );
+				"13_VideoFiles/Epoca3-Formazione/EP03_PAN09_Stereo_Vallelunga_Diorama.mov" = (EP03_PAN09_Stereo_Vallelunga_Diorama, );
+			};
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = EF093A682EA1029E00E9EBB0 /* ACI Experience Motorsport */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		EFB022D62EAA92C600D48710 /* ACI Experience Motorsport */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EF9F2D192EBB7738000B4C0F /* Exceptions for "ACI Experience Motorsport" folder in "ACI Experience Motorsport" target */,
+			);
+			path = "ACI Experience Motorsport";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EF093A662EA1029E00E9EBB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF472EF92EE96D9200F29A40 /* BigAssets in Frameworks */,
+				EF093A6F2EA1029E00E9EBB0 /* RealityKitContent in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EF093A602EA1029E00E9EBB0 = {
+			isa = PBXGroup;
+			children = (
+				EFB022D62EAA92C600D48710 /* ACI Experience Motorsport */,
+				EF093A6C2EA1029E00E9EBB0 /* Packages */,
+				EF472EF72EE96D9200F29A40 /* Frameworks */,
+				EF093A6A2EA1029E00E9EBB0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EF093A6A2EA1029E00E9EBB0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EF093A692EA1029E00E9EBB0 /* ACI Experience Motorsport.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EF093A6C2EA1029E00E9EBB0 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				EF093A6D2EA1029E00E9EBB0 /* RealityKitContent */,
+				EF472EF62EE96ADE00F29A40 /* BigAssets */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		EF472EF72EE96D9200F29A40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EF093A682EA1029E00E9EBB0 /* ACI Experience Motorsport */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF093A7A2EA102A000E9EBB0 /* Build configuration list for PBXNativeTarget "ACI Experience Motorsport" */;
+			buildPhases = (
+				EF093A652EA1029E00E9EBB0 /* Sources */,
+				EF093A662EA1029E00E9EBB0 /* Frameworks */,
+				EF093A672EA1029E00E9EBB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				EFB022D62EAA92C600D48710 /* ACI Experience Motorsport */,
+			);
+			name = "ACI Experience Motorsport";
+			packageProductDependencies = (
+				EF093A6E2EA1029E00E9EBB0 /* RealityKitContent */,
+				EF472EF82EE96D9200F29A40 /* BigAssets */,
+			);
+			productName = "ACI Experience Motorsport";
+			productReference = EF093A692EA1029E00E9EBB0 /* ACI Experience Motorsport.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EF093A612EA1029E00E9EBB0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					EP01_PAN01_Stereo_TargaFlorio,
+					EP01_PAN01_Stereo_TargaFlorio.mov,
+					EP01_PAN02_Stereo_Intro,
+					EP01_PAN02_Stereo_Intro.mov,
+					EP01_PAN03_Stereo_GranPremio,
+					EP01_PAN03_Stereo_GranPremio.mov,
+					EP01_PAN04_Stereo_MondialeSportprototipi,
+					EP01_PAN04_Stereo_MondialeSportprototipi.mov,
+					EP01_PAN05_Stereo_Monza,
+					EP01_PAN05_Stereo_Monza.mov,
+					"EP01_PAN06__Stereo_Mille-Miglia",
+					"EP01_PAN06__Stereo_Mille-Miglia.mov",
+					"EP01_PAN07_Stereo_Alfa-Romeo",
+					"EP01_PAN07_Stereo_Alfa-Romeo.mov",
+					"EP01_PAN08_Stereo_Ferrari-375",
+					"EP01_PAN08_Stereo_Ferrari-375.mov",
+					"EP01_PAN09_Stereo_Alfa-Romeo-P3",
+					"EP01_PAN09_Stereo_Alfa-Romeo-P3.mov",
+					"EP01_PAN10_Stereo_Monza-Diorama",
+					"EP01_PAN10_Stereo_Monza-Diorama.mov",
+					"EP02-PAN10_VR180_MV-HEVC_no_HDR",
+					"EP02-PAN10_VR180_MV-HEVC_no_HDR.mov",
+					"EP02_PAN01_Stereo_Lancia-Stratos",
+					"EP02_PAN01_Stereo_Lancia-Stratos.mov",
+					EP02_PAN02_Stereo_Intro,
+					EP02_PAN02_Stereo_Intro.mov,
+					"EP02_PAN03_Miki-Biasion-world-rally-champ",
+					"EP02_PAN03_Miki-Biasion-world-rally-champ.mov",
+					EP02_PAN04_Stereo_Rally,
+					EP02_PAN04_Stereo_Rally.mov,
+					"EP02_PAN05_Stereo_Donne-Motorsport",
+					"EP02_PAN05_Stereo_Donne-Motorsport.mov",
+					EP02_PAN06_Dominio_Lancia,
+					EP02_PAN06_Dominio_Lancia.mov,
+					EP02_PAN07_Stereo_Piloti_Altleti,
+					EP02_PAN07_Stereo_Piloti_Altleti.mov,
+					"EP02_PAN08_Stereo_3DModel_Lancia-Stratos",
+					"EP02_PAN08_Stereo_3DModel_Lancia-Stratos.mov",
+					"EP02_PAN09_Stereo_3DModel_Lancia-Delta",
+					"EP02_PAN09_Stereo_3DModel_Lancia-Delta.mov",
+					"EP03_PAN01_Stereo_Centro-Guida-Sicura",
+					EP03_PAN02_Stereo_Intro,
+					EP03_PAN02_Stereo_Intro.mov,
+					EP03_PAN03_Stereo_eSports,
+					EP03_PAN03_Stereo_eSports.mov,
+					EP03_PAN04_Stereo_Formula4,
+					EP03_PAN04_Stereo_Formula4.mov,
+					"EP03_PAN05_Stereo_Sistemi-sicurezza",
+					"EP03_PAN05_Stereo_Sistemi-sicurezza.mov",
+					"EP03_PAN06_Stereo_Formula-E",
+					"EP03_PAN06_Stereo_Formula-E.mov",
+					"EP03_PAN07_Stereo_Nuove-generazioni",
+					"EP03_PAN07_Stereo_Nuove-generazioni.mov",
+					EP03_PAN08_Stereo_Tatuus_3D_Model,
+					EP03_PAN08_Stereo_Tatuus_3D_Model.mov,
+					EP03_PAN09_Stereo_Vallelunga_Diorama,
+					EP03_PAN09_Stereo_Vallelunga_Diorama.mov,
+					EpochIntro_Epoca1,
+					EpochIntro_Epoca1.mov,
+					EpochIntro_Epoca2,
+					EpochIntro_Epoca3,
+					EpochIntro_Epoca5,
+					EpochIntro_Epoca6,
+					EpochIntro_Epoch1,
+					EpochIntro_Epoch2,
+					"IntroEP02-PAN10_VR180",
+					"IntroEP02-PAN10_VR180.mov",
+					"IntroEP02-PAN10_VR180_HDR_MV-HEVC",
+					"IntroEP02-PAN10_VR180_HDR_MV-HEVC.mov",
+					"ModuleIntro_ModuloB+_Epoca3_1",
+					ModuleIntro_ModuloBPlus_Epoca3_1,
+					ModuleIntro_ModuloB_Epoca1_1,
+					ModuleIntro_ModuloB_Epoca2_1,
+					ModuleIntro_ModuloB_Epoca3_1,
+					ModuleIntro_ModuloC_Epoca2_1,
+					ModuleIntro_ModuloC_Epoca5_1,
+					ModuleIntro_ModuloD_Epoca6_1,
+					Slideshow_Epoca1_1,
+					Slideshow_Epoca1_2,
+					Slideshow_Epoca1_3,
+					Slideshow_Epoca1_4,
+					Slideshow_Epoca3_1,
+					Slideshow_Epoca5_1,
+					Slideshow_Epoca5_2,
+					Slideshow_Epoca5_3,
+					Slideshow_Epoca6_1,
+					Slideshow_Epoca6_2,
+					Slideshow_Epoca6_3,
+					Slideshow_Epoca6_4,
+					Standard_Epoca1_1,
+					Standard_Epoca1_10,
+					Standard_Epoca1_2,
+					Standard_Epoca1_3,
+					Standard_Epoca1_4,
+					Standard_Epoca1_5,
+					Standard_Epoca1_6,
+					Standard_Epoca1_8,
+					Standard_Epoca1_9,
+					Standard_Epoca2_1,
+					Standard_Epoca2_10,
+					Standard_Epoca2_2,
+					Standard_Epoca2_3,
+					Standard_Epoca2_4,
+					Standard_Epoca2_5,
+					Standard_Epoca2_6,
+					Standard_Epoca2_7,
+					Standard_Epoca2_8,
+					Standard_Epoca2_9,
+					Standard_Epoca3_1,
+					Standard_Epoca3_10,
+					Standard_Epoca3_2,
+					Standard_Epoca3_3,
+					Standard_Epoca3_4,
+					Standard_Epoca3_5,
+					Standard_Epoca3_6,
+					Standard_Epoca3_7,
+					Standard_Epoca3_8,
+					Standard_Epoca5_1,
+					Standard_Epoca5_2,
+					Standard_Epoca5_3,
+					Standard_Epoca5_4,
+					Standard_Epoca5_5,
+					Standard_Epoca5_6,
+					Standard_Epoca5_7,
+					Standard_Epoca5_9,
+					Standard_Epoca6_1,
+					Standard_Epoca6_2,
+					Standard_Epoca6_3,
+					Standard_Epoca6_4,
+					Standard_Epoca6_5,
+					Standard_Epoca6_6,
+					VR180,
+					VR180.mov,
+					epochIntro_Epoca1,
+					pannello01,
+					pannello02,
+					pannello03,
+					pannello04,
+					pannello05,
+					pannello06,
+					pannello07,
+					pannello08,
+					tempor,
+					temporary,
+				);
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					EF093A682EA1029E00E9EBB0 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+				};
+			};
+			buildConfigurationList = EF093A642EA1029E00E9EBB0 /* Build configuration list for PBXProject "ACI Experience Motorsport" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EF093A602EA1029E00E9EBB0;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EF093A6A2EA1029E00E9EBB0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EF093A682EA1029E00E9EBB0 /* ACI Experience Motorsport */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EF093A672EA1029E00E9EBB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EF093A652EA1029E00E9EBB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EF093A7B2EA102A000E9EBB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J6CCQAL626;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ACI Experience Motorsport";
+				INFOPLIST_KEY_NSHandsTrackingUsageDescription = "To allow hand tracking";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "To allow microphone usage";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "To allow speech recognition";
+				INFOPLIST_KEY_NSWorldSensingUsageDescription = "To allow safe area";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ultraSrl.ACI-Experience-Motorsport";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Debug;
+		};
+		EF093A7C2EA102A000E9EBB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J6CCQAL626;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "ACI Experience Motorsport";
+				INFOPLIST_KEY_NSHandsTrackingUsageDescription = "To allow hand tracking";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "To allow microphone usage";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "To allow speech recognition";
+				INFOPLIST_KEY_NSWorldSensingUsageDescription = "To allow safe area";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ultraSrl.ACI-Experience-Motorsport";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 7;
+			};
+			name = Release;
+		};
+		EF093A7D2EA102A000E9EBB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = J6CCQAL626;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = xros;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		EF093A7E2EA102A000E9EBB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = J6CCQAL626;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = xros;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				XROS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EF093A642EA1029E00E9EBB0 /* Build configuration list for PBXProject "ACI Experience Motorsport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF093A7D2EA102A000E9EBB0 /* Debug */,
+				EF093A7E2EA102A000E9EBB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF093A7A2EA102A000E9EBB0 /* Build configuration list for PBXNativeTarget "ACI Experience Motorsport" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF093A7B2EA102A000E9EBB0 /* Debug */,
+				EF093A7C2EA102A000E9EBB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF093A6E2EA1029E00E9EBB0 /* RealityKitContent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RealityKitContent;
+		};
+		EF472EF82EE96D9200F29A40 /* BigAssets */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BigAssets;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = EF093A612EA1029E00E9EBB0 /* Project object */;
+}

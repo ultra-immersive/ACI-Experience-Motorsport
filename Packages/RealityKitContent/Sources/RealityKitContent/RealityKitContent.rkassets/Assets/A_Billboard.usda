@@ -1,0 +1,407 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["MasterMaterials", "Transform_Billboard", "billboardDiorama_Line", "M_Line", "HierarchicalFade", "M_BillboardDiorama", "MI_Billboard", "SFX"]
+    def Xform "Transform_Billboard" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["billboardDiorama_BCDEF", "billboardDiorama_A", "Billboard"]
+        float3 xformOp:translate = (0, 0.45871007, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def "billboardDiorama_A" (
+            active = false
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            references = @../Geometry/BillboardsDiorama/billboardDiorama_A.usdc@
+        )
+        {
+            rel material:binding = </Root/MI_Billboard> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (0.70710677, -0.7071067, 0, 0)
+            float3 xformOp:scale = (0.99999994, 0.99999994, 0.99999994)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+
+        def "billboardDiorama_BCDEF" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+            prepend references = @../Geometry/BillboardsDiorama/billboardDiorama_BCDEF.usdc@
+        )
+        {
+            rel material:binding = </Root/MI_Billboard> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+            quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def "billboardDiorama_Line" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/BillboardsDiorama/billboardDiorama_Line.usdc@
+    )
+    {
+        rel material:binding = </Root/M_Line> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "line"
+        {
+            float3 xformOp:scale = (0.99999994, 1, 0.49999988)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+        }
+    }
+
+    def Material "M_Line"
+    {
+        token outputs:mtlx:surface.connect = </Root/M_Line/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (335.25, 100.5)
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            color3f inputs:color = (1, 1, 1) (
+                colorSpace = "srgb_texture"
+            )
+            float inputs:opacity.connect = </Root/M_Line/Separate2.outputs:outy>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (99.53125, 103.86328)
+            int ui:nodegraph:node:stackingOrder = 8
+        }
+
+        def Shader "TextureCoordinates"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-587.65234, 86.625)
+            int ui:nodegraph:node:stackingOrder = 11
+        }
+
+        def Shader "Separate2"
+        {
+            uniform token info:id = "ND_separate2_vector2"
+            float2 inputs:in.connect = </Root/M_Line/TextureCoordinates.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float2 ui:nodegraph:node:pos = (-334.02734, 82.390625)
+            int ui:nodegraph:node:stackingOrder = 12
+        }
+    }
+
+    def RealityKitComponent "HierarchicalFade"
+    {
+        uniform token info:id = "RealityKit.HierarchicalFade"
+        float opacity = 1
+    }
+
+    def Material "M_BillboardDiorama"
+    {
+        token cullMode = "none" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        asset inputs:Mask (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-495.24072, 193.6941)
+                    int stackingOrderInSubgraph = 522
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/M_BillboardDiorama/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:node:pos = (-1045.8372, 143.08922)
+        int ui:nodegraph:node:stackingOrder = 2
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (558.26324, 88.27982)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 329
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap
+            color3f inputs:color
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/M_BillboardDiorama/Add.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (276.80487, 53.739826)
+            int ui:nodegraph:node:stackingOrder = 329
+        }
+
+        def Shader "Image"
+        {
+            uniform token info:id = "ND_image_float"
+            float inputs:default
+            asset inputs:file.connect = </Root/M_BillboardDiorama.inputs:Mask>
+            string inputs:filtertype
+            float2 inputs:texcoord
+            string inputs:uaddressmode
+            string inputs:vaddressmode
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-284.54156, 223.60039)
+            int ui:nodegraph:node:stackingOrder = 522
+        }
+
+        def Shader "TextureCoordinates"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1729.4792, -273.4361)
+            int ui:nodegraph:node:stackingOrder = 829
+        }
+
+        def Shader "Separate2"
+        {
+            uniform token info:id = "ND_separate2_vector2"
+            float2 inputs:in.connect = </Root/M_BillboardDiorama/TextureCoordinates.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float2 ui:nodegraph:node:pos = (-1467.6167, -273.30267)
+            int ui:nodegraph:node:stackingOrder = 829
+        }
+
+        def Shader "Oneminus"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_BillboardDiorama/Separate2.outputs:outx>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1302.9631, -282.10516)
+            int ui:nodegraph:node:stackingOrder = 829
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Add_2.outputs:out>
+            float inputs:in2.connect = </Root/M_BillboardDiorama/Image.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-32.473484, 135.24199)
+            int ui:nodegraph:node:stackingOrder = 584
+        }
+
+        def Shader "WorleyNoise2D"
+        {
+            uniform token info:id = "ND_worleynoise2d_float"
+            float inputs:jitter = 0
+            float2 inputs:texcoord.connect = </Root/M_BillboardDiorama/Add_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1418.2587, 124.46064)
+            int ui:nodegraph:node:stackingOrder = 875
+        }
+
+        def Shader "TextureCoordinates_1"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-2313.4307, 113.6208)
+            int ui:nodegraph:node:stackingOrder = 908
+        }
+
+        def Shader "ConstantFloat"
+        {
+            uniform token info:id = "ND_constant_float"
+            float inputs:value = 35
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2276.454, 201.16376)
+            int ui:nodegraph:node:stackingOrder = 908
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector2FA"
+            prepend float2 inputs:in1.connect = </Root/M_BillboardDiorama/TextureCoordinates_1.outputs:out>
+            float inputs:in2.connect = </Root/M_BillboardDiorama/ConstantFloat.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1985.3446, 129.01923)
+            int ui:nodegraph:node:stackingOrder = 908
+        }
+
+        def Shader "Oneminus_1"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_BillboardDiorama/WorleyNoise2D.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1246.9735, 171.52704)
+            int ui:nodegraph:node:stackingOrder = 780
+        }
+
+        def Shader "Step"
+        {
+            uniform token info:id = "ND_realitykit_step_float"
+            float inputs:edge = 0.9
+            float inputs:in.connect = </Root/M_BillboardDiorama/Oneminus_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1111.425, 131.22105)
+            int ui:nodegraph:node:stackingOrder = 780
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Multiply_2.outputs:out>
+            float inputs:in2.connect = </Root/M_BillboardDiorama/Step.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-523.73346, -124.399826)
+            int ui:nodegraph:node:stackingOrder = 955
+        }
+
+        def Shader "Power"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Oneminus.outputs:out>
+            float inputs:in2 = 2
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1117.8147, -274.48016)
+            int ui:nodegraph:node:stackingOrder = 863
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in2"]
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/M_BillboardDiorama/Separate2.outputs:outy>
+            float inputs:outhigh
+            float inputs:outlow = -1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1357.6903, -145.6663)
+            int ui:nodegraph:node:stackingOrder = 832
+        }
+
+        def Shader "Abs"
+        {
+            uniform token info:id = "ND_absval_float"
+            float inputs:in.connect = </Root/M_BillboardDiorama/Remap.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1208.9382, -115.52942)
+            int ui:nodegraph:node:stackingOrder = 835
+        }
+
+        def Shader "Oneminus_2"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_BillboardDiorama/Abs.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1028.4948, -116.404816)
+            int ui:nodegraph:node:stackingOrder = 838
+        }
+
+        def Shader "Power_1"
+        {
+            uniform token info:id = "ND_power_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Oneminus_2.outputs:out>
+            float inputs:in2 = 5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-874.2808, -104.23671)
+            int ui:nodegraph:node:stackingOrder = 855
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Power.outputs:out>
+            float inputs:in2.connect = </Root/M_BillboardDiorama/Power_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-702.65674, -269.15952)
+            int ui:nodegraph:node:stackingOrder = 934
+        }
+
+        def Shader "Add_1"
+        {
+            uniform token info:id = "ND_add_vector2"
+            float2 inputs:in1.connect = </Root/M_BillboardDiorama/Multiply.outputs:out>
+            float2 inputs:in2.connect = </Root/M_BillboardDiorama/Combine2.outputs:out>
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1670.7383, 136.84766)
+            int ui:nodegraph:node:stackingOrder = 911
+        }
+
+        def Shader "Combine2"
+        {
+            uniform token info:id = "ND_combine2_vector2"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Multiply_3.outputs:out>
+            float inputs:in2
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1823.7227, 320.6211)
+            int ui:nodegraph:node:stackingOrder = 921
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2246.996, 300.78516)
+            int ui:nodegraph:node:stackingOrder = 925
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Time.outputs:out>
+            float inputs:in2 = -0.3
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-2017.0508, 309.88672)
+            int ui:nodegraph:node:stackingOrder = 929
+        }
+
+        def Shader "SmoothStep"
+        {
+            uniform token info:id = "ND_smoothstep_float"
+            float inputs:high = 1.2
+            float inputs:in.connect = </Root/M_BillboardDiorama/Oneminus.outputs:out>
+            float inputs:low = 0.9
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1110.5667, -427.84906)
+            int ui:nodegraph:node:stackingOrder = 968
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/SmoothStep.outputs:out>
+            float inputs:in2.connect = </Root/M_BillboardDiorama/Power_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-707.9849, -367.02078)
+            int ui:nodegraph:node:stackingOrder = 958
+        }
+
+        def Shader "Add_2"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_BillboardDiorama/Multiply_4.outputs:out>
+            float inputs:in2.connect = </Root/M_BillboardDiorama/Multiply_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-277.24197, -151.49281)
+            int ui:nodegraph:node:stackingOrder = 961
+        }
+    }
+
+    def "MI_Billboard" (
+        active = true
+        instanceable = true
+        references = </Root/M_BillboardDiorama>
+    )
+    {
+        asset inputs:Mask = @../Textures/BillboardsTatuus/T_Billboard_Tatuus_01.jpg@
+    }
+}
+

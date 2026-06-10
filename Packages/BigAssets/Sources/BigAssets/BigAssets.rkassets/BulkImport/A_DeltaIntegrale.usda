@@ -1,0 +1,1443 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["EP02_PAN09_Voice_3DModel_Lancia_Delta_mp3", "A_ShadowCatcher", "MusicAudioSource_A_DeltaIntegrale_1", "VoiceAudioSource_A_DeltaIntegrale", "Engine_A_DeltaIntegrale", "A_SoundIcon_A_DeltaIntegrale", "A_FloatingPlane", "Materials", "M_DeltaIntegrale", "RCP_BehaviorsContainer", "OnNotification", "Model_Sorting_Group", "Begin_A_DeltaIntegrale", "End_A_DeltaIntegrale", "Begin_A_DeltaIntegrale_FullSize", "BillboardSequence_A_DeltaIntegrale", "BillboardSequence_A_DeltaIntegrale_FullSize", "Billboards", "OnNotification2"]
+    def "A_FloatingPlane" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 0, 0)
+        }
+        references = @A_FloatingPlane.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (80, 80)
+        int ui:nodegraph:node:stackingOrder = 4
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (5, 1, 5)
+        float3 xformOp:translate = (0, -0.035, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "M_FloatingPlane"
+        {
+            over "FloatingPlane"
+            {
+                over "Mesh"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+
+                over "ME_FloatingPlane"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+            }
+
+            over "FloatingPOutline"
+            {
+                over "FloatingPlane_001"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 1
+                    }
+                }
+            }
+        }
+
+        over "MI_GroundMask"
+        {
+            int inputs:ID = 1
+            float inputs:Pop = 0
+            float inputs:Tiling_Dots = 75
+        }
+
+        over "SpotLight"
+        {
+        }
+
+        over "M_GroundMask"
+        {
+            int inputs:ID = 1
+            float inputs:Pop = 0
+
+            over "MF_EpochColors_1"
+            {
+                int ui:nodegraph:node:stackingOrder = 3233
+            }
+        }
+
+        over "MF_EpochColors"
+        {
+            int inputs:ID (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-990.12494, 105.02536)
+                        int stackingOrderInSubgraph = 196
+                    }
+                }
+            )
+
+            over "Switch"
+            {
+                int ui:nodegraph:node:stackingOrder = 196
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in1"]
+            }
+        }
+    }
+
+    def Scope "Materials" (
+        active = true
+    )
+    {
+        def "M_Transition" (
+            active = true
+            references = @A_DeltaIntegrale_references/MS_TRA_DeltaIntegrale.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_TRA_Z_CarBottomAndCovers"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MM_TransitionPBR"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_A_Carbody1"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_B_Carbody2"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_C_Carbody3"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_D_Dashboard"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_E_Interiors1"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_F_Interiors2"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_G_Transparent"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_H_ExternalPieces"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_J_Graphics"
+            {
+                float inputs:TransitionAmount = 0
+            }
+        }
+    }
+
+    def "M_DeltaIntegrale" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @A_DeltaIntegrale_references/M_DeltaIntegrale.usdc@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "_01_CarBody1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_A_Carbody1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_01_ME_CarBody1"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 8
+                }
+            }
+        }
+
+        over "_02_CarBody2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_B_Carbody2> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_02_ME_CarBody2"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 7
+                }
+            }
+        }
+
+        over "_03_CarBody3" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_C_Carbody3> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_03_ME_CarBody3"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 6
+                }
+            }
+        }
+
+        over "_04_Dashboard" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_D_Dashboard> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_04_ME_Dashboard"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 5
+                }
+            }
+        }
+
+        over "_07_Transparent" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_G_Transparent> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_07_ME_Transparent"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 10
+                }
+            }
+        }
+
+        over "_06_Interiors2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_F_Interiors2> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_06_ME_Interiors2"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 2
+                }
+            }
+        }
+
+        over "_09_Graphics" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_J_Graphics> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_09_ME_Graphics"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 4
+                }
+            }
+        }
+
+        over "_05_Interiors1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_E_Interiors1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_05_ME_Interiors1"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 3
+                }
+            }
+        }
+
+        over "_10_CarBottomAndCovers" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_Z_CarBottomAndCovers> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_10_ME_CarBottomAndCovers"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 1
+                }
+            }
+        }
+
+        over "_08_ExternalPieces" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_H_ExternalPieces> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_08_ME_ExternalPieces"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 9
+                }
+            }
+        }
+
+        over "_06_ME_Interiors2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_F_Interiors2> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_06_ME_Interiors2"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 2
+                }
+            }
+        }
+
+        over "_01_ME_CarBody1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_A_Carbody1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_01_ME_CarBody1"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 10
+                }
+            }
+        }
+
+        over "_02_ME_CarBody2" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_B_Carbody2> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_02_ME_CarBody2"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 9
+                }
+            }
+        }
+
+        over "_03_ME_CarBody3" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_C_Carbody3> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_03_ME_CarBody3"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 8
+                }
+            }
+        }
+
+        over "_07_ME_Transparent" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_G_Transparent> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_07_ME_Transparent"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 7
+                }
+            }
+        }
+
+        over "_04_ME_Dashboard" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_D_Dashboard> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_04_ME_Dashboard"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 5
+                }
+            }
+        }
+
+        over "_08_ME_ExternalPieces" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_H_ExternalPieces> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_08_ME_ExternalPieces"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 6
+                }
+            }
+        }
+
+        over "_10_ME_CarBottomAndCovers" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_Z_CarBottomAndCovers> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_10_ME_CarBottomAndCovers"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 1
+                }
+            }
+        }
+
+        over "_09_ME_Graphics" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_J_Graphics> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_09_ME_Graphics"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 4
+                }
+            }
+        }
+
+        over "_05_ME_Interiors1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_E_Interiors1> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "_05_ME_Interiors1"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 3
+                }
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = [
+            </Root/OnNotification>,
+            </Root/OnNotification2>,
+            </Root/OnNotification3>,
+            </Root/OnNotification4>,
+            </Root/OnNotification5>,
+        ]
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+    }
+
+    def Scope "Billboards" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["A_Billboard_01", "A_Billboard_02", "A_Billboard_03", "A_Billboard_04", "A_Billboard_05", "A_Billboard_06"]
+        def "A_Billboard_01" (
+            active = true
+            references = @../Assets/A_Billboard.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 1.05, -1.3429542)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "A_Billboard_02" (
+            active = true
+            references = @../Assets/A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0.33018148, 1.05, -1.5036683)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardDeltaIntegrale/T_Billboard_DeltaIntegrale_02.jpg@
+            }
+
+            over "billboardDiorama_Line"
+            {
+                float3 xformOp:scale = (1, 1, 0.75)
+            }
+
+            over "Transform_Billboard"
+            {
+                float3 xformOp:translate = (0, 0.3364985, 0)
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "A_Billboard_03" (
+            active = true
+            references = @../Assets/A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (40, 40)
+            int ui:nodegraph:node:stackingOrder = 2
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0.30932784, 1.05, -1.0949028)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardDeltaIntegrale/T_Billboard_DeltaIntegrale_03.jpg@
+            }
+
+            over "billboardDiorama_Line"
+            {
+                float3 xformOp:scale = (1, 1, 0.5)
+            }
+
+            over "Transform_Billboard"
+            {
+                float3 xformOp:translate = (0, 0.21032417, 0)
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "A_Billboard_04" (
+            active = true
+            references = @../Assets/A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (60, 60)
+            int ui:nodegraph:node:stackingOrder = 3
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 1.4792751, 0.43240273)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardDeltaIntegrale/T_Billboard_DeltaIntegrale_04.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "A_Billboard_05" (
+            active = true
+            references = @../Assets/A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (80, 80)
+            int ui:nodegraph:node:stackingOrder = 4
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0.7030122, 1.2591522, 1.3424901)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardDeltaIntegrale/T_Billboard_DeltaIntegrale_05.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+
+        def "A_Billboard_06" (
+            active = true
+            references = @../Assets/A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (100, 100)
+            int ui:nodegraph:node:stackingOrder = 5
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (-0.6665522, 1.3427436, 0.10229504)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardDeltaIntegrale/T_Billboard_DeltaIntegrale_06.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+        }
+    }
+
+    def "A_ShadowCatcher" (
+        active = true
+        references = @../Assets/A_ShadowCatcher.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "MM_ShadowCatcher"
+        {
+            float inputs:Multiplier (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-168.42833, 149.37706)
+                        int stackingOrderInSubgraph = 85
+                    }
+                }
+            )
+            asset inputs:ShadowCatcher = @../Textures/T_SC_DeltaIntegrale.png@
+
+            over "Multiply" (
+                active = false
+            )
+            {
+                int ui:nodegraph:node:stackingOrder = 69
+            }
+
+            over "Multiply_1" (
+                active = false
+            )
+            {
+                int ui:nodegraph:node:stackingOrder = 69
+            }
+
+            over "Multiply_2"
+            {
+                float2 ui:nodegraph:node:pos = (5.4545937, 102.64835)
+                int ui:nodegraph:node:stackingOrder = 85
+            }
+
+            over "Oneminus"
+            {
+                float2 ui:nodegraph:node:pos = (-137.98888, 98.695274)
+                int ui:nodegraph:node:stackingOrder = 85
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def Xform "MusicAudioSource_A_DeltaIntegrale_1" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (4.656613e-10, 1.45, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "VoiceAudioSource_A_DeltaIntegrale" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (4.656613e-10, 1.45, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Cube "Engine_A_DeltaIntegrale" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 3.1415927, 0)
+        }
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "Collider", "VFXEmitter", "ParticleRingusda"]
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0
+        float2 ui:nodegraph:node:pos = (80, 80)
+        int ui:nodegraph:node:stackingOrder = 4
+        quatf xformOp:orient = (-4.371139e-8, 0, 1, 0)
+        float3 xformOp:scale = (2.6, 0.79999965, 2.1999998)
+        float3 xformOp:translate = (0, 0.9, -1.45)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Engine_A_DeltaIntegrale/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float height = 1.25
+                float radius = 0.13
+                token shapeType = "Capsule"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def "ParticleRingusda" (
+            active = true
+            references = @../Assets/ParticleRingusda.usda@
+        )
+        {
+            quatf xformOp:orient = (0.0026624617, 0, 0.9999965, 0)
+            float3 xformOp:scale = (0.38461697, 1.2500001, 0.4545442)
+            float3 xformOp:translate = (-6.9849193e-10, 0.07070732, 1.8812716e-7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Particle"
+            {
+                float3 xformOp:translate = (0, 0.023555875, 0)
+
+                over "VFXEmitter"
+                {
+                    over "currentState"
+                    {
+                        bool isEmitting = 0
+                    }
+                }
+            }
+        }
+    }
+
+    def "A_SoundIcon_A_DeltaIntegrale" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 3.1415927, 0)
+        }
+        references = @A_SoundIcon.usda@
+    )
+    {
+        quatf xformOp:orient = (-4.371139e-8, 0, 1, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0.95, -1.45)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "Material"
+        {
+            token cullMode = "back" (
+                allowedTokens = ["unspecified", "none", "front", "back"]
+            )
+
+            over "UsdPreviewSurface"
+            {
+                color3f inputs:diffuseColor = (1, 1, 1) (
+                    colorSpace = "lin_srgb"
+                )
+            }
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_DeltaIntegrale"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_DeltaIntegrale>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification2"
+    {
+        rel actions = </Root/OnNotification2/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification2/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_DeltaIntegrale_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_DeltaIntegrale_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification2/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification3"
+    {
+        rel actions = </Root/OnNotification3/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification3/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_DeltaIntegrale"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_DeltaIntegrale>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification3/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification4"
+    {
+        rel actions = </Root/OnNotification4/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification4/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_DeltaIntegrale_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_DeltaIntegrale_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification4/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification5"
+    {
+        rel actions = </Root/OnNotification5/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification5/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "End_A_DeltaIntegrale"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/End_A_DeltaIntegrale>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification5/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "Begin_A_DeltaIntegrale"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        float2 ui:nodegraph:node:pos = (-135.4417, -13.836536)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Show_DeltaIntegrale", "SwitchDeltaIntegralePhy", "RemoveDeltaIntegralePhy"]
+            def RealityKitAction "Show_DeltaIntegrale"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "E2C613CA-EB37-4136-8D17-0C9DDBF4038C"
+                string notificationName = "Show_DeltaIntegrale"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+
+            def RealityKitAction "SwitchDeltaIntegralePhy"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "E2C613CA-EB37-4136-8D17-0C9DDBF4038C"
+                string notificationName = "SwitchDeltaIntegralePhy"
+                double startTime = 5.1
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+            }
+
+            def RealityKitAction "RemoveDeltaIntegralePhy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "4DF1D27A-B63D-4188-92D6-9B57F8A20598"
+                string notificationName = "RemoveDeltaIntegralePhy"
+                double startTime = 10.5
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "BillboardSequence_A_DeltaIntegrale"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "9F144CCF-8942-4EF5-8FE0-F4ABCA852B81"
+                string notificationName = "BillboardSequence_A_DeltaIntegrale"
+                double startTime = 5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_DeltaIntegrale"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5"]
+        float2 ui:nodegraph:node:pos = (-135.4417, -13.836536)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["audio_DeltaIntegrale_01", "billboard_DeltaIntegrale_01", "billboard_AlfaRomeo_02", "billboard_AlfaRomeo_03", "billboard_AlfaRomeo_04", "billboard_AlfaRomeo_05", "VoiceOverEnded_A_DeltaIntegrale"]
+            def RealityKitAction "audio_DeltaIntegrale_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "61215B87-5390-482C-B503-0AC64B6AD591"
+                string notificationName = "audio_DeltaIntegrale_01"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "58091292-B92F-47D8-9EC9-5AAD114167C5"
+                string notificationName = "billboard_DeltaIntegrale_01"
+                double startTime = 35
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_DeltaIntegrale"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC60D94B-0209-48A6-AA59-085AADBB4CA5"
+                bool isActive = 1
+                string notificationName = "VoiceOverEnded_A_DeltaIntegrale"
+                double startTime = 101
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "97AE87AB-0105-42E1-B492-DA66BDCAF6F5"
+                string notificationName = "billboard_DeltaIntegrale_02"
+                double startTime = 42
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9CC3D68C-2CC6-4559-A5CE-384EC5E2E6D0"
+                bool isActive = 1
+                string notificationName = "billboard_DeltaIntegrale_03"
+                double startTime = 44
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2DE70AF7-61B7-4AE8-973A-C20A7699AFE3"
+                string notificationName = "billboard_DeltaIntegrale_04"
+                double startTime = 56
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "16C8F125-8F01-4B45-AF09-EA869EBED5D0"
+                string notificationName = "billboard_DeltaIntegrale_05"
+                double startTime = 69
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+
+    def RealityKitTimeline "Begin_A_DeltaIntegrale_FullSize"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        float2 ui:nodegraph:node:pos = (-115.441696, 6.1634636)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Show_DeltaIntegrale", "SwitchDeltaIntegralePhy", "RemoveDeltaIntegralePhy"]
+            def RealityKitAction "Show_DeltaIntegrale"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "E2C613CA-EB37-4136-8D17-0C9DDBF4038C"
+                string notificationName = "Show_DeltaIntegrale"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+
+            def RealityKitAction "SwitchDeltaIntegralePhy"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "E2C613CA-EB37-4136-8D17-0C9DDBF4038C"
+                string notificationName = "SwitchDeltaIntegralePhy"
+                double startTime = 5.1
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (60, 60)
+                int ui:nodegraph:node:stackingOrder = 3
+            }
+
+            def RealityKitAction "RemoveDeltaIntegralePhy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "4DF1D27A-B63D-4188-92D6-9B57F8A20598"
+                string notificationName = "RemoveDeltaIntegralePhy"
+                double startTime = 10.5
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "BillboardSequence_A_DeltaIntegrale"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "9F144CCF-8942-4EF5-8FE0-F4ABCA852B81"
+                string notificationName = "BillboardSequence_A_DeltaIntegrale_FullSize"
+                double startTime = 5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_DeltaIntegrale_FullSize"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5"]
+        float2 ui:nodegraph:node:pos = (-115.441696, 6.1634636)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["audio_DeltaIntegrale_01", "billboard_DeltaIntegrale_01", "billboard_AlfaRomeo_02", "billboard_AlfaRomeo_03", "billboard_AlfaRomeo_04", "billboard_AlfaRomeo_05", "VoiceOverEnded_A_DeltaIntegrale_FullSize"]
+            def RealityKitAction "audio_DeltaIntegrale_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "61215B87-5390-482C-B503-0AC64B6AD591"
+                string notificationName = "audio_DeltaIntegrale_01"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "58091292-B92F-47D8-9EC9-5AAD114167C5"
+                string notificationName = "billboard_DeltaIntegrale_01"
+                double startTime = 35
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_DeltaIntegrale_FullSize"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC60D94B-0209-48A6-AA59-085AADBB4CA5"
+                bool isActive = 1
+                string notificationName = "VoiceOverEnded_A_DeltaIntegrale_FullSize"
+                double startTime = 101
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "97AE87AB-0105-42E1-B492-DA66BDCAF6F5"
+                string notificationName = "billboard_DeltaIntegrale_02"
+                double startTime = 42
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9CC3D68C-2CC6-4559-A5CE-384EC5E2E6D0"
+                bool isActive = 1
+                string notificationName = "billboard_DeltaIntegrale_03"
+                double startTime = 44
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2DE70AF7-61B7-4AE8-973A-C20A7699AFE3"
+                string notificationName = "billboard_DeltaIntegrale_04"
+                double startTime = 56
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_DeltaIntegrale_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "16C8F125-8F01-4B45-AF09-EA869EBED5D0"
+                string notificationName = "billboard_DeltaIntegrale_05"
+                double startTime = 69
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+
+    def RealityKitTimeline "End_A_DeltaIntegrale"
+    {
+        float2 ui:nodegraph:node:pos = (-135.4417, -13.836536)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["SwitchDeltaIntegraleTra", "Hide_DeltaIntegrale", "EndModule_B"]
+            def RealityKitAction "SwitchDeltaIntegraleTra"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "E2C613CA-EB37-4136-8D17-0C9DDBF4038C"
+                string notificationName = "SwitchDeltaIntegraleTra"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (80, 80)
+                int ui:nodegraph:node:stackingOrder = 4
+            }
+
+            def RealityKitAction "Hide_DeltaIntegrale"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "E2C613CA-EB37-4136-8D17-0C9DDBF4038C"
+                string notificationName = "Hide_DeltaIntegrale"
+                double startTime = 4
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (100, 100)
+                int ui:nodegraph:node:stackingOrder = 5
+            }
+
+            def RealityKitAction "EndModule_B"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "B2B8806D-6A49-4479-84EA-EBBD2992A2C2"
+                string notificationName = "EndModule_B"
+                double startTime = 10
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+        }
+    }
+
+    def Xform "MusicAudioSource_A_DeltaIntegrale_2" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (80, 80)
+        int ui:nodegraph:node:stackingOrder = 4
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (3, 1.45, -4)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "MusicAudioSource_A_DeltaIntegrale_3" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (80, 80)
+        int ui:nodegraph:node:stackingOrder = 4
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-3, 1.45, 4)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

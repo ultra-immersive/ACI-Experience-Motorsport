@@ -1,0 +1,116 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["M_FloatingPlane", "M_GroundMask", "MI_GroundMask", "M_Unlit", "MF_EpochColors"]
+    def "M_FloatingPlane" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/M_FloatingPlane.usdc@
+    )
+    {
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "InputTarget"
+        {
+            uniform token info:id = "RealityKit.InputTarget"
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.9875903, 0.98759043, 0.046792116)
+                float height = 0.98759043
+                float radius = 0.49379522
+                token shapeType = "Box"
+
+                def RealityKitStruct "pose"
+                {
+                    float3 position = (8.940697e-8, 8.940697e-8, 0.026496595)
+                }
+            }
+        }
+
+        over "FloatingPOutline" (
+            active = false
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/M_Unlit> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+        }
+
+        over "FloatingPlane" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/MI_GroundMask> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+        }
+    }
+
+    def "M_GroundMask" (
+        active = true
+        references = @../Materials/MasterMaterials.usda@</Root/M_GroundMask>
+    )
+    {
+        over "MF_EpochColors_1"
+        {
+            int ui:nodegraph:node:stackingOrder = 3233
+        }
+    }
+
+    def "MI_GroundMask" (
+        active = true
+        instanceable = true
+        references = </Root/M_GroundMask>
+    )
+    {
+        int inputs:ID = 3
+        float inputs:Pop = 0
+    }
+
+    def Xform "SpotLight" (
+        customData = {
+            float3 rotationEulerHint = (-1.5707964, 0, 0)
+        }
+    )
+    {
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:translate = (0, 2, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "SpotLight"
+        {
+            float attenuationFalloffExponent = 0
+            float attenuationRadius = 3
+            token info:id = "RealityKit.SpotLight"
+            float innerAngle = 0
+            float intensity = 5500
+            float outerAngle = 180
+
+            def RealityKitStruct "Shadow"
+            {
+            }
+        }
+    }
+}
+

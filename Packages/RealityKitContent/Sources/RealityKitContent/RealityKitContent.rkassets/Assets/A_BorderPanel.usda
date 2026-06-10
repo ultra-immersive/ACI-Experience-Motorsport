@@ -1,0 +1,208 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["borderPanel", "M_BorderPanel"]
+    def "borderPanel" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/AnimationsPanels/borderPanel.usdc@
+    )
+    {
+        rel material:binding = </Root/M_BorderPanel> (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Material "M_BorderPanel"
+    {
+        float inputs:Animation = 1 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-1265.087, 541.42236)
+                    int stackingOrderInSubgraph = 418
+                }
+            }
+        )
+        token outputs:mtlx:surface.connect = </Root/M_BorderPanel/UnlitSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (885.12775, 37.45683)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 171
+
+        def Shader "UnlitSurface"
+        {
+            uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+            bool inputs:applyPostProcessToneMap
+            color3f inputs:color
+            bool inputs:hasPremultipliedAlpha
+            float inputs:opacity.connect = </Root/M_BorderPanel/Multiply.outputs:out>
+            float inputs:opacityThreshold
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (605.3934, -3.066607)
+            int ui:nodegraph:node:stackingOrder = 171
+        }
+
+        def Shader "TextureCoordinates"
+        {
+            uniform token info:id = "ND_texcoord_vector2"
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (-1346.7682, 61.6455)
+            int ui:nodegraph:node:stackingOrder = 347
+        }
+
+        def Shader "Separate2"
+        {
+            uniform token info:id = "ND_separate2_vector2"
+            float2 inputs:in.connect = </Root/M_BorderPanel/TextureCoordinates.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float2 ui:nodegraph:node:pos = (-1124.3073, 58.555656)
+            int ui:nodegraph:node:stackingOrder = 347
+        }
+
+        def Shader "SmoothStep"
+        {
+            uniform token info:id = "ND_smoothstep_float"
+            float inputs:high.connect = </Root/M_BorderPanel/Add.outputs:out>
+            float inputs:in.connect = </Root/M_BorderPanel/Separate2.outputs:outx>
+            float inputs:low.connect = </Root/M_BorderPanel/Remap_2.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-299.1626, 312.89062)
+            int ui:nodegraph:node:stackingOrder = 399
+        }
+
+        def Shader "Time"
+        {
+            uniform token info:id = "ND_time_float"
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1466.7223, 327.09088)
+            int ui:nodegraph:node:stackingOrder = 256
+        }
+
+        def Shader "Add"
+        {
+            uniform token info:id = "ND_add_float"
+            float inputs:in1.connect = </Root/M_BorderPanel/Remap_2.outputs:out>
+            float inputs:in2 = 0.01
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-510.8459, 642.1487)
+            int ui:nodegraph:node:stackingOrder = 411
+        }
+
+        def Shader "Sin"
+        {
+            uniform token info:id = "ND_sin_float"
+            float inputs:in.connect = </Root/M_BorderPanel/Multiply_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1114.8864, 330.61823)
+            int ui:nodegraph:node:stackingOrder = 256
+        }
+
+        def Shader "Remap"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/M_BorderPanel/Sin.outputs:out>
+            float inputs:inlow = -1
+            float inputs:outhigh = 1
+            float inputs:outlow = -0.01
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-844.5152, 353.0948)
+            int ui:nodegraph:node:stackingOrder = 424
+        }
+
+        def Shader "Remap_1"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/M_BorderPanel/Separate2.outputs:outy>
+            float inputs:outhigh
+            float inputs:outlow = -1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-658.7892, -162.12547)
+            int ui:nodegraph:node:stackingOrder = 381
+        }
+
+        def Shader "Abs"
+        {
+            uniform token info:id = "ND_absval_float"
+            float inputs:in.connect = </Root/M_BorderPanel/Remap_1.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-515.7501, -165.30125)
+            int ui:nodegraph:node:stackingOrder = 381
+        }
+
+        def Shader "Oneminus"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_BorderPanel/Abs.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-498.4411, -107.384285)
+            int ui:nodegraph:node:stackingOrder = 381
+        }
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_BorderPanel/SmoothStep_1.outputs:out>
+            float inputs:in2.connect = </Root/M_BorderPanel/SmoothStep.outputs:out>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (267.3672, 84.890625)
+            int ui:nodegraph:node:stackingOrder = 181
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </Root/M_BorderPanel/Time.outputs:out>
+            float inputs:in2 = 0.5
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1252.0387, 332.90338)
+            int ui:nodegraph:node:stackingOrder = 256
+        }
+
+        def Shader "SmoothStep_1"
+        {
+            uniform token info:id = "ND_smoothstep_float"
+            float inputs:high = 1
+            float inputs:in.connect = </Root/M_BorderPanel/Oneminus.outputs:out>
+            float inputs:low = 0.25
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-318.8031, -140.65564)
+            int ui:nodegraph:node:stackingOrder = 397
+        }
+
+        def Shader "Remap_2"
+        {
+            uniform token info:id = "ND_remap_float"
+            float inputs:in.connect = </Root/M_BorderPanel/Oneminus_1.outputs:out>
+            float inputs:inhigh
+            float inputs:inlow
+            float inputs:outhigh
+            float inputs:outlow = -0.01
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-835.9402, 562.8634)
+            int ui:nodegraph:node:stackingOrder = 420
+        }
+
+        def Shader "Oneminus_1"
+        {
+            uniform token info:id = "ND_realitykit_oneminus_float"
+            float inputs:in.connect = </Root/M_BorderPanel.inputs:Animation>
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (-1085.5273, 541.3086)
+            int ui:nodegraph:node:stackingOrder = 416
+        }
+    }
+}
+

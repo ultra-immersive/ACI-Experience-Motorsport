@@ -1,0 +1,1317 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Billboards", "RCP_BehaviorsContainer", "OnAddedToScene", "OnNotification", "M_TatuusT421", "Materials", "A_FloatingPlane", "Model_Sorting_Group", "OnNotification2", "OnNotification5", "A_ShadowCatcher", "A_SoundIcon_A_Tatuus", "Engine_A_Tatuus", "MusicAudioSource_A_Tatuus_1", "OnNotification3", "OnNotification4", "Begin_A_Tatuus", "Begin_A_Tatuus_FullSize", "BillboardSequence_A_Tatuus", "BillboardSequence_A_Tatuus_FullSize", "End_A_Tatuus", "MusicAudioSource_A_Tatuus_2", "MusicAudioSource_A_Tatuus_3", "VoiceAudioSource_A_Tatuus"]
+    def Scope "Billboards" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["A_Billboard_01", "A_Billboard_02", "A_Billboard_03", "A_Billboard_04", "A_Billboard_05", "BillboardOpacity"]
+        def Xform "BillboardOpacity" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["A_Billboard_01", "A_Billboard_02", "A_Billboard_03", "A_Billboard_04", "A_Billboard_05", "HierarchicalFade"]
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def "A_Billboard_03" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (-275.01437, 234.83537)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0.41186446, 0.57764244, 1.059584)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    float2 inputs:Fix_Border_Mask = (0.3, 0.85)
+                    asset inputs:Mask = @../Textures/BillboardsTatuus/T_Billboard_Tatuus_02.jpg@
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:scale = (1, 1, 1)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_01" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                reorder nameChildren = ["Transform_Billboard", "billboardDiorama_Line", "M_Line", "HierarchicalFade", "M_BillboardDiorama", "MI_Billboard"]
+                float2 ui:nodegraph:node:pos = (-255.01437, 254.83537)
+                int ui:nodegraph:node:stackingOrder = 2
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0, 0.92247057, 0.369537)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    float2 inputs:Fix_Border_Mask = (0.3, 0.85)
+                    asset inputs:Mask = @../Textures/BillboardsTatuus/T_Billboard_Tatuus_03.jpg@
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:scale = (1, 1, 1)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_05" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (-235.01437, 274.8354)
+                int ui:nodegraph:node:stackingOrder = 3
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0, 1.0581486, -0.37120208)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    float2 inputs:Fix_Border_Mask = (0.3, 0.85)
+                    asset inputs:Mask = @../Textures/BillboardsTatuus/T_Billboard_Tatuus_04.jpg@
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:scale = (1, 1, 1)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def "A_Billboard_02" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                float2 ui:nodegraph:node:pos = (-215.01437, 294.8354)
+                int ui:nodegraph:node:stackingOrder = 4
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0, 0.83427525, -1.4472167)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    float2 inputs:Fix_Border_Mask = (0.3, 0.85)
+                    asset inputs:Mask = @../Textures/BillboardsTatuus/T_Billboard_Tatuus_05.jpg@
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:scale = (1, 1, 1)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+
+            def "A_Billboard_04" (
+                active = true
+                references = @A_Billboard.usda@
+            )
+            {
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (2, 2, 2)
+                float3 xformOp:translate = (0, 0.44522762, -1.8976011)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                over "MI_Billboard"
+                {
+                    float2 inputs:Fix_Border_Mask = (0.3, 0.85)
+                    asset inputs:Mask = @../Textures/BillboardsTatuus/T_Billboard_Tatuus_01.jpg@
+                }
+
+                over "Transform_Billboard"
+                {
+                    float3 xformOp:scale = (1, 1, 1)
+                    float3 xformOp:translate = (0, 0.45888013, 0)
+                }
+
+                over "HierarchicalFade"
+                {
+                    float opacity = 0
+                }
+            }
+        }
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = [
+            </Root/OnAddedToScene>,
+            </Root/OnNotification>,
+            </Root/OnNotification2>,
+            </Root/OnNotification3>,
+            </Root/OnNotification4>,
+            </Root/OnNotification5>,
+        ]
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = None
+            rel animationLibraryKey = None
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_Tatuus"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_Tatuus>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def "M_TatuusT421" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/M_TatuusT421.usdc@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "A_CarBody01"
+        {
+            over "A_ME_CarBody01" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Materials/M_Transition/MI_TRA_CarBody01> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 6
+                }
+            }
+        }
+
+        over "B_CarBody02"
+        {
+            over "B_ME_CarBody02" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Materials/M_Transition/MI_TRA_CarBody02> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 5
+                }
+            }
+        }
+
+        over "C_MediumSized"
+        {
+            over "C_ME_MediumSized" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Materials/M_Transition/MI_TRA_MediumSized> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 3
+                }
+            }
+        }
+
+        over "D_SmallParts"
+        {
+            over "D_ME_SmallParts" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Materials/M_Transition/MI_TRA_MediumSized> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 1
+                }
+            }
+        }
+
+        over "E_Transparent"
+        {
+            over "E_ME_Transparent" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Materials/M_Transition/MI_TRA_Transparent> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+                float3 xformOp:translate = (0, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 4
+                }
+            }
+        }
+
+        over "Z_Covers"
+        {
+            over "Z_ME_Covers" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Materials/M_Transition/MI_TRA_Covers> (
+                    bindMaterialAs = "weakerThanDescendants"
+                )
+
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 2
+                }
+            }
+        }
+    }
+
+    def Scope "Materials" (
+        active = true
+    )
+    {
+        def "M_Transition" (
+            active = true
+            references = @../Materials/MaterialSets/Tatuus/MS_TRA_Taatus.usda@</Root>
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MM_TransitionPBR"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 18026
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_Transparent"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_Covers"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_MediumSized"
+            {
+                float inputs:ClearCoatAmount = 0
+                float inputs:ClearCoatRoughness (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-5088.831, -1503.3234)
+                            int stackingOrderInSubgraph = 18908
+                        }
+                    }
+                )
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_SmallParts"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_CarBody01"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_CarBody02"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+                color3f inputs:WireframeColor (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7026.748, -596.2607)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+        }
+    }
+
+    def "A_FloatingPlane" (
+        active = true
+        references = @A_FloatingPlane.usda@
+    )
+    {
+        float3 xformOp:scale = (5, 1, 5)
+        float3 xformOp:translate = (0, -0.0364, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "M_FloatingPlane"
+        {
+            over "FloatingPlane"
+            {
+                over "Mesh"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+
+                over "ME_FloatingPlane"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+            }
+
+            over "FloatingPOutline"
+            {
+                over "FloatingPlane_001"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 1
+                    }
+                }
+            }
+        }
+
+        over "MI_GroundMask"
+        {
+            int inputs:ID = 2
+            float inputs:Pop = 0 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-500.23923, 225.74406)
+                        int stackingOrderInSubgraph = 3233
+                    }
+                }
+            )
+        }
+
+        over "SpotLight"
+        {
+            over "SpotLight"
+            {
+                float intensity = 0
+            }
+        }
+
+        over "MF_EpochColors"
+        {
+            over "Switch"
+            {
+                color3f inputs:in1 = (0.4, 0.8666667, 0.6862745) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:in2 = (0.9411765, 0.99607843, 1) (
+                    colorSpace = "srgb_displayp3"
+                )
+                color3f inputs:in3 = (0.9137255, 0.23921569, 0.19215687) (
+                    colorSpace = "srgb_displayp3"
+                )
+                int ui:nodegraph:node:stackingOrder = 153
+            }
+        }
+
+        over "M_Unlit"
+        {
+            int inputs:ID = 2 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-620.523, -56.091217)
+                        int stackingOrderInSubgraph = 2820
+                    }
+                }
+            )
+
+            over "MF_EpochColors_1" (
+                active = true
+            )
+            {
+                int ui:nodegraph:node:stackingOrder = 2821
+            }
+        }
+
+        over "M_GroundMask"
+        {
+            int inputs:ID = 2
+            float inputs:Pop = 0
+
+            over "MF_EpochColors_1"
+            {
+                float2 ui:nodegraph:node:pos = (285.20096, 25.269194)
+                int ui:nodegraph:node:stackingOrder = 3244
+
+                def NodeGraph "MF_EpochColors" (
+                    active = true
+                )
+                {
+                    int inputs:ID = 0 (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-990.12494, 105.02536)
+                                int stackingOrderInSubgraph = 142
+                            }
+                        }
+                    )
+                    color3f outputs:Color (
+                        customData = {
+                            dictionary realitykit = {
+                                float2 positionInSubgraph = (-611.36414, 69.123055)
+                                int stackingOrderInSubgraph = 17
+                            }
+                        }
+                    )
+                    color3f outputs:Color.connect = </Root/A_FloatingPlane/MF_EpochColors/Switch.outputs:out>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (-456.77112, 102.30864)
+                    int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 143
+
+                    def Shader "Switch"
+                    {
+                        uniform token info:id = "ND_switch_color3I"
+                        color3f inputs:in1 = (0.99607843, 0.34901962, 0.34509805) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color3f inputs:in2 = (1, 0.5372549, 0.3254902) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color3f inputs:in3 = (1, 1, 0.54509807) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color3f inputs:in4 = (0.02745098, 0.69411767, 1) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color3f inputs:in5 = (0.5921569, 0.99607843, 1) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color3f inputs:in6 = (0.6666667, 1, 0.5294118) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color3f inputs:in9
+                        color3f inputs:in10
+                        int inputs:which.connect = </Root/A_FloatingPlane/MF_EpochColors.inputs:ID>
+                        color3f outputs:out
+                        float2 ui:nodegraph:node:pos = (-772.91315, 103.660126)
+                        int ui:nodegraph:node:stackingOrder = 144
+                    }
+                }
+            }
+
+            over "UnlitSurface"
+            {
+            }
+        }
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+    }
+
+    def Preliminary_Behavior "OnNotification2"
+    {
+        rel actions = </Root/OnNotification2/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification2/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_Tatuus"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_Tatuus>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification2/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification3"
+    {
+        rel actions = </Root/OnNotification3/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification3/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_Tatuus_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_Tatuus_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification3/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification4"
+    {
+        rel actions = </Root/OnNotification4/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification4/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "End_A_Tatuus"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/End_A_Tatuus>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification4/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification5"
+    {
+        rel actions = </Root/OnNotification5/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification5/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_Tatuus_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_Tatuus_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification5/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def "A_ShadowCatcher" (
+        active = true
+        references = @A_ShadowCatcher.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "MM_ShadowCatcher"
+        {
+            asset inputs:ShadowCatcher = @../Materials/Textures/ShadowCatchers/T_SC_Tatuus.png@
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def "A_SoundIcon_A_Tatuus" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.5707963, 0)
+        }
+        references = @A_SoundIcon.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (0.7071068, 0, 0.70710665, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.00526, 1, 1.3555477)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def Cube "Engine_A_Tatuus" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 3.1460981, 0)
+        }
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "Collider", "VFXEmitter", "ParticleRingusda"]
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (-0.0022528581, 0, 0.99999744, 0)
+        float3 xformOp:scale = (2.6, 0.7999998, 2.1999998)
+        float3 xformOp:translate = (-0.00526, 0.95, 1.3555477)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Engine_A_Tatuus/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.2, 0.2, 0.2)
+                float height = 1.25
+                float radius = 0.16
+                token shapeType = "Capsule"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def "ParticleRingusda" (
+            active = true
+            references = @ParticleRingusda.usda@
+        )
+        {
+            quatf xformOp:orient = (0.0026624617, 0, 0.9999965, 0)
+            float3 xformOp:scale = (0.38461697, 1.2500001, 0.4545442)
+            float3 xformOp:translate = (-6.9849193e-10, 0.07070732, 1.8812716e-7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Particle"
+            {
+                float3 xformOp:translate = (0, 0.023555875, 0)
+
+                over "VFXEmitter"
+                {
+                    over "currentState"
+                    {
+                        bool isEmitting = 0
+                    }
+                }
+            }
+        }
+    }
+
+    def Xform "MusicAudioSource_A_Tatuus_1" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (4.656613e-10, 1.45, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def RealityKitTimeline "Begin_A_Tatuus"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3"]
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["show_Tatuus", "SwitchTatuusPhy", "RemoveTatuusPhy"]
+            def RealityKitAction "show_Tatuus"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "5077B51C-9B0D-4528-A4FF-595106E0EC6B"
+                string notificationName = "show_Tatuus"
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "SwitchTatuusPhy"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "AC0B82DC-4EBF-4228-B537-7988F6C36DFF"
+                string notificationName = "SwitchTatuusPhy"
+                double startTime = 5.1
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "RemoveTatuusPhy"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "EC5A46AE-2681-4349-AE3B-563DDAEB7090"
+                string notificationName = "RemoveTatuusPhy"
+                double startTime = 10.5
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "BillboardSequence_A_Tatuus"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "65C12A61-6847-4EEC-B0B8-4AA9B696942D"
+                string notificationName = "BillboardSequence_A_Tatuus"
+                double startTime = 5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "Begin_A_Tatuus_FullSize"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3"]
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["show_Tatuus", "SwitchTatuus", "RemoveTatuusPhy"]
+            def RealityKitAction "show_Tatuus"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "5077B51C-9B0D-4528-A4FF-595106E0EC6B"
+                string notificationName = "show_Tatuus"
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "SwitchTatuus"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "AC0B82DC-4EBF-4228-B537-7988F6C36DFF"
+                string notificationName = "SwitchTatuusPhy"
+                double startTime = 5.1
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "RemoveTatuusPhy"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "EC5A46AE-2681-4349-AE3B-563DDAEB7090"
+                string notificationName = "RemoveTatuusPhy"
+                double startTime = 10.5
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "BillboardSequence_A_Tatuus_FullSize"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "65C12A61-6847-4EEC-B0B8-4AA9B696942D"
+                string notificationName = "BillboardSequence_A_Tatuus_FullSize"
+                double startTime = 5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_Tatuus"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["billboard_Tatuus_05", "billboard_LanciaStratos_06", "VoiceOverEnded_A_Tatuus", "audio_Tatuus_01", "billboard_Tatuus_01", "billboard_Tatuus_02", "billboard_Tatuus_03", "billboard_Tatuus_04"]
+            def RealityKitAction "billboard_Tatuus_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "86A93661-506D-4A1C-A0C1-BF35F8EBBE89"
+                bool isActive = 1
+                string notificationName = "billboard_Tatuus_05"
+                double startTime = 98
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_Tatuus"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC60D94B-0209-48A6-AA59-085AADBB4CA5"
+                string notificationName = "VoiceOverEnded_A_Tatuus"
+                double startTime = 118
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+
+            def RealityKitAction "audio_Tatuus_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "61215B87-5390-482C-B503-0AC64B6AD591"
+                string notificationName = "audio_Tatuus_01"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_Tatuus_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "02B0DE54-A018-45C2-9B34-14014FC18C23"
+                string notificationName = "billboard_Tatuus_01"
+                double startTime = 48
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Tatuus_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "50BF5A67-4B13-42A3-B851-17A821BDB8FB"
+                string notificationName = "billboard_Tatuus_02"
+                double startTime = 58
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Tatuus_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9788CB50-B371-40C7-86BE-1E4BD7531CF3"
+                string notificationName = "billboard_Tatuus_04"
+                double startTime = 84
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Tatuus_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2B0E7791-726C-4530-B55C-A650680E76C1"
+                string notificationName = "billboard_Tatuus_03"
+                double startTime = 71
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_Tatuus_FullSize"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["billboard_Tatuus_05", "billboard_LanciaStratos_06", "VoiceOverEnded_A_Tatuus_FullSize", "audio_Tatuus_01", "billboard_Tatuus_01", "billboard_Tatuus_02", "billboard_Tatuus_03", "billboard_Tatuus_04"]
+            def RealityKitAction "billboard_Tatuus_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "86A93661-506D-4A1C-A0C1-BF35F8EBBE89"
+                bool isActive = 1
+                string notificationName = "billboard_Tatuus_05"
+                double startTime = 98
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_Tatuus_FullSize"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC60D94B-0209-48A6-AA59-085AADBB4CA5"
+                string notificationName = "VoiceOverEnded_A_Tatuus_FullSize"
+                double startTime = 118
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+
+            def RealityKitAction "audio_Tatuus_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "61215B87-5390-482C-B503-0AC64B6AD591"
+                string notificationName = "audio_Tatuus_01"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_Tatuus_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "02B0DE54-A018-45C2-9B34-14014FC18C23"
+                string notificationName = "billboard_Tatuus_01"
+                double startTime = 48
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Tatuus_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "50BF5A67-4B13-42A3-B851-17A821BDB8FB"
+                string notificationName = "billboard_Tatuus_02"
+                double startTime = 58
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Tatuus_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9788CB50-B371-40C7-86BE-1E4BD7531CF3"
+                string notificationName = "billboard_Tatuus_04"
+                double startTime = 84
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_Tatuus_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2B0E7791-726C-4530-B55C-A650680E76C1"
+                string notificationName = "billboard_Tatuus_03"
+                double startTime = 71
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "End_A_Tatuus"
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["SwitchTatuusTra", "hide_Tatuus", "EndModule_B"]
+            def RealityKitAction "SwitchTatuusTra"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "1EA076CA-3BD5-4559-A8D2-53D2DA85EB6F"
+                string notificationName = "SwitchTatuusTra"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (1110, 149.5)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "hide_Tatuus"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "187FDD73-33DB-4202-963F-B0A5597F4843"
+                string notificationName = "hide_Tatuus"
+                double startTime = 4
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (1110, 149.5)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "EndModule_B"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "B83DE3AF-5307-4612-B119-D3830BA8F4D2"
+                string notificationName = "EndModule_B"
+                double startTime = 10
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (1110, 149.5)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+
+    def Xform "MusicAudioSource_A_Tatuus_2" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (3, 1.45, -4)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "MusicAudioSource_A_Tatuus_3" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (80, 80)
+        int ui:nodegraph:node:stackingOrder = 4
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-3, 1.45, 4)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def Xform "VoiceAudioSource_A_Tatuus"
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (4.656613e-10, 1.45, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+}
+

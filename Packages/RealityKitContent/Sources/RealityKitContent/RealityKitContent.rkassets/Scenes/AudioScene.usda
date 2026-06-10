@@ -1,0 +1,346 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Intro_bg_drone_wav", "Forced_Farewell_mp3", "Epoch_bg_all_wav", "Sit_Down_Request_mp3", "PanelAppearing_wav", "Small_car_appearing_wav", "Space_appearing_wav", "PopSphere_wav", "Disappearing_wav", "Billboards_Tatuus", "Billboards_VallelungaDiorama", "ActivationPanel_wav", "DeactivationPanel_wav", "GuideToWireframe_wav", "GuideWireframeToScreen_wav", "OpeningPanels_wav", "touchLogo_wav", "AI", "Billboards_AlfaRomeoP3", "Billboards_Ferrari375", "Billboards_MonzaDiorama", "Billboards_Stratos", "Billboards_DeltaIntegrale", "EpochTracks", "EngineSounds"]
+    def RealityKitAudioFile "PanelAppearing_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/PanelAppearing.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Small_car_appearing_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/Small_car_appearing.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Space_appearing_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/Space_appearing.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "PopSphere_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/PopSphere.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Disappearing_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/Disappearing.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def Xform "Billboards_Tatuus" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP03_PAN08_Music_Tatuus_wav", "EP03_PAN08_Voice_Tatuus_mp3"]
+        def RealityKitAudioFile "EP03_PAN08_Music_Tatuus_wav"
+        {
+            uniform float absoluteCalibration = 80.25347
+            uniform token calibrationMode = "absolute"
+            uniform asset file = @../Audio/AudioFiles/BillboardsTatuus/EP03_PAN08_Music_Tatuus_3D_Model.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP03_PAN08_Voice_Tatuus_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsTatuus/EP03_PAN08_Voice_Tatuus_3D_Model.mp3@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "Billboards_VallelungaDiorama" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP03_PAN09_Music_Vallelunga_Diorama_wav", "EP03_PAN09_Voice_Vallelunga_Diorama_wav"]
+        def RealityKitAudioFile "EP03_PAN09_Music_Vallelunga_Diorama_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/EP03_PAN09_Music_Vallelunga_Diorama.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP03_PAN09_Voice_Vallelunga_Diorama_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsVallelunga/EP03_PAN09_Voice_Vallelunga_Diorama.wav@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def RealityKitAudioFile "ActivationPanel_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/ActivationPanel.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "DeactivationPanel_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/DeactivationPanel.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "GuideToWireframe_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/GuideToWireframe.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "GuideWireframeToScreen_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/GuideWireframeToScreen.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "OpeningPanels_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/OpeningPanels.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "touchLogo_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/touchLogo.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def Xform "AI" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Listening_start_wav", "Thinking_wav"]
+        def RealityKitAudioFile "Listening_start_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/Listening_start.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "Thinking_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/Thinking.wav@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "Billboards_AlfaRomeoP3" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP01_PAN09_Voice_Alfa_Romeo_P3_mp3", "EP01_PAN09_Music_Alfa_Romeo_P3_mp3", "MODULO_B___EP01___1_mp3", "MODULO_B___EP01___2_mp3", "MODULO_B___EP01___3_mp3", "MODULO_B___EP01___4_mp3"]
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitAudioFile "EP01_PAN09_Music_Alfa_Romeo_P3_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsAlfaRomeoP3/EP01_PAN09_Music_Alfa-Romeo-P3.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP01_PAN09_Voice_Alfa_Romeo_P3_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsAlfaRomeoP3/EP01_PAN09_Voice_Alfa-Romeo-P3.mp3@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "Billboards_Ferrari375" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP01_PAN08_Music_Ferrari_375__mp3", "EP01_PAN08_Voice_Ferrari_375__mp3", "EP02___MODULO_B___1_mp3", "EP02___MODULO_B___2_mp3", "EP02___MODULO_B___3_mp3"]
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitAudioFile "EP01_PAN08_Music_Ferrari_375__mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardFerrari375/EP01_PAN08_Music_Ferrari-375 .mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP01_PAN08_Voice_Ferrari_375__mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardFerrari375/EP01_PAN08_Voice_Ferrari-375 .mp3@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "Billboards_MonzaDiorama" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP01_PAN10_Music_Monza_Diorama_wav", "EP01_PAN10_Voice_Monza_Diorama_wav"]
+        def RealityKitAudioFile "EP01_PAN10_Music_Monza_Diorama_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsMonzaDiorama/EP01_PAN10_Music_Monza-Diorama.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP01_PAN10_Voice_Monza_Diorama_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsMonzaDiorama/EP01_PAN10_Voice_Monza-Diorama.wav@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "Billboards_Stratos" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP02_PAN08_Music_Lancia_Stratos_mp3", "EP02_PAN08_Voice_Lancia_Stratos_mp3", "EP03___MODULO_B___1_mp3", "EP03___MODULO_B___2_mp3", "EP03___MODULO_B___3_mp3", "EP03___MODULO_B___4_mp3", "EP03___MODULO_B___5_mp3", "EP03___MODULO_B___6_mp3"]
+        def RealityKitAudioFile "EP02_PAN08_Music_Lancia_Stratos_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsStratos/EP02_PAN08_Music_3DModel_Lancia-Stratos.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP02_PAN08_Voice_Lancia_Stratos_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsStratos/EP02_PAN08_Voice_3DModel_Lancia-Stratos.mp3@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "Billboards_DeltaIntegrale" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EP02_PAN09_Music_Lancia_Delta_mp3", "EP02_PAN09_Voice_Lancia_Delta_mp3", "EP03___MODULO_B____1_mp3", "EP03___MODULO_B____2_mp3", "EP03___MODULO_B____3_mp3", "EP03___MODULO_B____4_mp3", "EP03___MODULO_B____5_mp3"]
+        def RealityKitAudioFile "EP02_PAN09_Music_Lancia_Delta_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsDeltaIntegrale/EP02_PAN09_Music_3DModel_Lancia-Delta.mp3@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EP02_PAN09_Voice_Lancia_Delta_mp3"
+        {
+            uniform asset file = @../Audio/AudioFiles/BillboardsDeltaIntegrale/EP02_PAN09_Voice_3DModel_Lancia-Delta.mp3@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "EpochTracks" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Epoch_1_wav", "Epoch_2_wav", "Epoch_3_wav", "Epoch_5_wav", "Epoch_6_wav"]
+        def RealityKitAudioFile "Epoch_1_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/EpochTracks/Epoch_1.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "Epoch_2_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/EpochTracks/Epoch_2.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "Epoch_3_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/EpochTracks/Epoch_3.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "Epoch_5_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/EpochTracks/Epoch_5.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "Epoch_6_wav"
+        {
+            uniform asset file = @../Audio/AudioFiles/EpochTracks/Epoch_6.wav@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def Xform "EngineSounds" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["EngineSound_A_AlfaRomeo_wav", "EngineSound_A_DeltaIntegrale_wav", "EngineSound_A_Ferrari_wav", "EngineSound_A_LanciaStratos_wav", "EngineSound_A_Tatuus_wav"]
+        def RealityKitAudioFile "EngineSound_A_AlfaRomeo_wav"
+        {
+            uniform float absoluteCalibration = 100
+            uniform token calibrationMode = "absolute"
+            uniform asset file = @../Audio/AudioFiles/CarsEngine/EngineSound_A_AlfaRomeo.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EngineSound_A_DeltaIntegrale_wav"
+        {
+            uniform float absoluteCalibration = 100
+            uniform token calibrationMode = "absolute"
+            uniform asset file = @../Audio/AudioFiles/CarsEngine/EngineSound_A_DeltaIntegrale.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EngineSound_A_Ferrari_wav"
+        {
+            uniform float absoluteCalibration = 100
+            uniform token calibrationMode = "absolute"
+            uniform asset file = @../Audio/AudioFiles/CarsEngine/EngineSound_A_Ferrari.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EngineSound_A_LanciaStratos_wav"
+        {
+            uniform float absoluteCalibration = 100
+            uniform token calibrationMode = "absolute"
+            uniform asset file = @../Audio/AudioFiles/CarsEngine/EngineSound_A_LanciaStratos.wav@
+            uniform bool shouldLoop = 0
+        }
+
+        def RealityKitAudioFile "EngineSound_A_Tatuus_wav"
+        {
+            uniform float absoluteCalibration = 100
+            uniform token calibrationMode = "absolute"
+            uniform asset file = @../Audio/AudioFiles/CarsEngine/EngineSound_A_Tatuus.wav@
+            uniform bool shouldLoop = 0
+        }
+    }
+
+    def RealityKitAudioFile "Sit_Down_Request_mp3"
+    {
+        uniform asset file = @../Audio/AudioFiles/Sit-Down_Request.mp3@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Epoch_bg_all_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/Epoch_bg_all.wav@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Forced_Farewell_mp3"
+    {
+        uniform asset file = @../Audio/AudioFiles/Forced_Farewell.mp3@
+        uniform bool shouldLoop = 0
+    }
+
+    def RealityKitAudioFile "Intro_bg_drone_wav"
+    {
+        uniform asset file = @../Audio/AudioFiles/Intro_bg_drone.wav@
+        uniform bool shouldLoop = 0
+    }
+}
+

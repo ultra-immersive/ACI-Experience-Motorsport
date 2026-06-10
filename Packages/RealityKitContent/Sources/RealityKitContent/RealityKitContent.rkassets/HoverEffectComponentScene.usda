@@ -1,0 +1,137 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    def Cube "HoverEffectComponentScene" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        rel material:binding = </Root/HoverEffectComponentScene/HoverEffectOpacity>
+        double size = 0.2
+
+        def Material "HoverEffectOpacity"
+        {
+            color3f inputs:Color = (0, 0, 0) (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-675.91705, -41.042534)
+                        int stackingOrderInSubgraph = 48
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex.connect = None
+            token outputs:surface.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity/DefaultSurfaceShader.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (493.69504, 42.306866)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 44
+
+            def Shader "DefaultSurfaceShader" (
+                active = false
+            )
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoat
+                float inputs:clearcoatRoughness
+                color3f inputs:diffuseColor.connect = None
+                color3f inputs:emissiveColor
+                float inputs:ior
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:occlusion.connect = None
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-251.40457, 255.76431)
+                int ui:nodegraph:node:stackingOrder = 219
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+
+            def Shader "HoverState"
+            {
+                uniform token info:id = "ND_realitykit_hover_state"
+                float outputs:intensity
+                bool outputs:isActive
+                float3 outputs:position
+                float outputs:timeSinceHoverStart
+                float2 ui:nodegraph:node:pos = (-734.3164, 229.84766)
+                int ui:nodegraph:node:stackingOrder = 6
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_2_0_vertexshader"
+                float3 inputs:bitangent
+                color4f inputs:color
+                float3 inputs:modelPositionOffset.connect = None
+                float3 inputs:normal
+                float2 inputs:uv0
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (70.64428, 469.45288)
+                int ui:nodegraph:node:stackingOrder = 42
+            }
+
+            def Shader "Position"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "world"
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-461.84116, 414.29034)
+                int ui:nodegraph:node:stackingOrder = 211
+            }
+
+            def Shader "Multiply_1"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = None
+                float3 inputs:in2.connect = None
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-512.18866, 456.6045)
+                int ui:nodegraph:node:stackingOrder = 210
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                delete float inputs:in1.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity/HoverState.outputs:intensity>
+                delete float inputs:in2.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity/HoverState.outputs:intensity>
+                delete float inputs:in3.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity/HoverState.outputs:intensity>
+                float3 outputs:out
+                float2 ui:nodegraph:node:pos = (-460.11316, 356.85242)
+                int ui:nodegraph:node:stackingOrder = 64
+            }
+
+            def Shader "UnlitSurface"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity.inputs:Color>
+                bool inputs:hasPremultipliedAlpha
+                float inputs:opacity.connect = </Root/HoverEffectComponentScene/HoverEffectOpacity/HoverState.outputs:intensity>
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-104.36085, -33.445477)
+                int ui:nodegraph:node:stackingOrder = 221
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+            }
+        }
+    }
+}
+

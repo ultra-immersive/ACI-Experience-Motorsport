@@ -1,0 +1,1215 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.8.1)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["M_LanciaStratos", "Materials", "Model_Sorting_Group", "A_FloatingPlane", "RCP_BehaviorsContainer", "OnNotification", "Billboards", "OnNotification2", "OnNotification3", "OnNotification4", "OnNotification5", "Transform", "A_ShadowCatcher", "Begin_A_LanciaStratos", "Begin_A_LanciaStratos_FullSize", "BillboardSequence_A_LanciaStratos", "BillboardSequence_A_LanciaStratos_FullSize", "Engine_A_LanciaStratos", "A_SoundIcon_A_LanciaStratos", "MusicAudioSource_A_LanciaStratos_1", "VoiceAudioSource_A_LanciaStratos", "End_A_LanciaStratos"]
+    def "M_LanciaStratos" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        references = @../Geometry/M_LanciaStratos.usdc@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "A_CarBodyBack" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_A_CarBodyBack> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "A_ME_CarBodyBack"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 7
+                }
+            }
+        }
+
+        over "C_BackWheels" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_C_BackWheels> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "C_ME_BackWheels"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 2
+                }
+            }
+        }
+
+        over "A_CarBodyFront" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_A_CarBodyFront> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "A_ME_CarBodyFront"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 6
+                }
+            }
+        }
+
+        over "E_AccessoriesFuel" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_E_AcessoriesFuel> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "E_ME_AccessoriesFuel"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 5
+                }
+            }
+        }
+
+        over "B_BacklightsGlass" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_B_BlackLightsGlass> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "B_ME_BacklightsGlass"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 4
+                }
+            }
+        }
+
+        over "Z_CarBottom" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_Z_CarBottom> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "Z_ME_CarBottom"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 1
+                }
+            }
+        }
+
+        over "D_Seatbelt1" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </Root/Materials/M_Transition/MI_TRA_D_SeatBelt> (
+                bindMaterialAs = "weakerThanDescendants"
+            )
+
+            over "D_ME_Seatbelt1"
+            {
+                def RealityKitComponent "MeshSorting"
+                {
+                    rel group = </Root/Model_Sorting_Group>
+                    token info:id = "RealityKit.MeshSorting"
+                    int priorityInGroup = 3
+                }
+            }
+        }
+    }
+
+    def Scope "Materials" (
+        active = true
+    )
+    {
+        def "M_Transition" (
+            active = true
+            references = @../Materials/MaterialSets/LanciaStratos/MS_TRA_LanciaStratos.usda@
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MM_TransitionPBR"
+            {
+                float inputs:TransitionAmount = 0
+            }
+
+            over "MI_TRA_A_CarBodyFront"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_A_CarBodyBack"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_B_BlackLightsGlass"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_C_BackWheels"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_D_SeatBelt"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_E_AcessoriesFuel"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+
+            over "MI_TRA_Z_CarBottom"
+            {
+                float inputs:TransitionAmount = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (-7269.8247, -990.0266)
+                            int stackingOrderInSubgraph = 19052
+                        }
+                    }
+                )
+            }
+        }
+    }
+
+    def RealityKitMeshSortingGroup "Model_Sorting_Group" (
+        active = true
+    )
+    {
+        token depthPass = "None"
+    }
+
+    def "A_FloatingPlane" (
+        active = true
+        references = @A_FloatingPlane.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (60, 60)
+        int ui:nodegraph:node:stackingOrder = 3
+        float3 xformOp:scale = (5, 1, 5)
+        float3 xformOp:translate = (0, -0.035, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "M_FloatingPlane"
+        {
+            over "FloatingPlane"
+            {
+                over "Mesh"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+
+                over "ME_FloatingPlane"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 0
+                    }
+                }
+            }
+
+            over "FloatingPOutline"
+            {
+                over "FloatingPlane_001"
+                {
+                    def RealityKitComponent "MeshSorting"
+                    {
+                        rel group = </Root/Model_Sorting_Group>
+                        token info:id = "RealityKit.MeshSorting"
+                        int priorityInGroup = 1
+                    }
+                }
+            }
+        }
+
+        over "MI_GroundMask"
+        {
+            int inputs:ID = 1
+            float inputs:Pop = 0 (
+                customData = {
+                    dictionary realitykit = {
+                        float2 positionInSubgraph = (-500.23923, 225.74406)
+                        int stackingOrderInSubgraph = 3233
+                    }
+                }
+            )
+        }
+
+        over "SpotLight"
+        {
+            over "SpotLight"
+            {
+                float intensity = 0
+
+                def RealityKitStruct "Shadow"
+                {
+                }
+            }
+        }
+
+        over "M_GroundMask"
+        {
+            int inputs:ID = 1
+            float inputs:Pop = 0
+
+            over "UnlitSurface"
+            {
+                bool inputs:applyPostProcessToneMap = 0
+                int ui:nodegraph:node:stackingOrder = 3237
+            }
+
+            over "Multiply"
+            {
+                float inputs:in2 = 0.25
+                int ui:nodegraph:node:stackingOrder = 3239
+            }
+        }
+    }
+
+    def Scope "Billboards" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["A_Billboard_01", "A_Billboard_02", "A_Billboard_03", "A_Billboard_04", "A_Billboard_05", "A_Billboard_06"]
+        def "A_Billboard_01" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0.55302405, 0.9929081, 0.030694276)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsStratus/T_Billboard_Stratos_01.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                over "Billboard"
+                {
+                    float blendFactor = 1
+                }
+            }
+        }
+
+        def "A_Billboard_02" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (20, 20)
+            int ui:nodegraph:node:stackingOrder = 1
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 0.86013424, 1.390264)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsStratus/T_Billboard_Stratos_02.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                over "Billboard"
+                {
+                    float blendFactor = 1
+                }
+            }
+        }
+
+        def "A_Billboard_03" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (40, 40)
+            int ui:nodegraph:node:stackingOrder = 2
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 1.1992724, 0.37779647)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsStratus/T_Billboard_Stratos_03.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                over "Billboard"
+                {
+                    float blendFactor = 1
+                }
+            }
+        }
+
+        def "A_Billboard_04" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (60, 60)
+            int ui:nodegraph:node:stackingOrder = 3
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (-0.7902863, 0.8295658, 0.15211993)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsStratus/T_Billboard_Stratos_04.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                over "Billboard"
+                {
+                    float blendFactor = 1
+                }
+            }
+        }
+
+        def "A_Billboard_05" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (80, 80)
+            int ui:nodegraph:node:stackingOrder = 4
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 1.02625, -0.5790263)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsStratus/T_Billboard_Stratos_05.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                over "Billboard"
+                {
+                    float blendFactor = 1
+                }
+            }
+        }
+
+        def "A_Billboard_06" (
+            active = true
+            references = @A_Billboard.usda@
+        )
+        {
+            float2 ui:nodegraph:node:pos = (100, 100)
+            int ui:nodegraph:node:stackingOrder = 5
+            float3 xformOp:scale = (2, 2, 2)
+            float3 xformOp:translate = (0, 0.8217988, -1.7739325)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "MI_Billboard"
+            {
+                asset inputs:Mask = @../Textures/BillboardsStratus/T_Billboard_Stratos_06.jpg@
+            }
+
+            over "HierarchicalFade"
+            {
+                float opacity = 0
+            }
+
+            over "Transform_Billboard"
+            {
+                over "Billboard"
+                {
+                    float blendFactor = 1
+                }
+            }
+        }
+    }
+
+    def "A_ShadowCatcher" (
+        active = true
+        references = @A_ShadowCatcher.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        float3 xformOp:scale = (1, 1, 1)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        over "MM_ShadowCatcher"
+        {
+            asset inputs:ShadowCatcher = @../Materials/Textures/ShadowCatchers/T_SC_LanciaStratos.png@
+        }
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def RealityKitTimeline "Begin_A_LanciaStratos"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3"]
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Show_LanciaStratos", "SwitchLanciaStratos", "RemoveLanciaStratos"]
+            def RealityKitAction "Show_LanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "5077B51C-9B0D-4528-A4FF-595106E0EC6B"
+                string notificationName = "Show_LanciaStratos"
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "SwitchLanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "AC0B82DC-4EBF-4228-B537-7988F6C36DFF"
+                string notificationName = "SwitchLanciaStratos"
+                double startTime = 5.1
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "RemoveLanciaStratos"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "EC5A46AE-2681-4349-AE3B-563DDAEB7090"
+                string notificationName = "RemoveLanciaStratos"
+                double startTime = 10.5
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "BillboardSequence_A_LanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "65C12A61-6847-4EEC-B0B8-4AA9B696942D"
+                string notificationName = "BillboardSequence_A_LanciaStratos"
+                double startTime = 5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "Begin_A_LanciaStratos_FullSize"
+    {
+        reorder nameChildren = ["Track", "Track2"]
+        float2 ui:nodegraph:node:pos = (-5598.4956, -1103.4943)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["Show_LanciaStratos", "SwitchLanciaStratos", "RemoveLanciaStratos"]
+            def RealityKitAction "Show_LanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "5077B51C-9B0D-4528-A4FF-595106E0EC6B"
+                string notificationName = "Show_LanciaStratos"
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "SwitchLanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "AC0B82DC-4EBF-4228-B537-7988F6C36DFF"
+                string notificationName = "SwitchLanciaStratos"
+                double startTime = 5.1
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "RemoveLanciaStratos"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "EC5A46AE-2681-4349-AE3B-563DDAEB7090"
+                string notificationName = "RemoveLanciaStratos"
+                double startTime = 10.5
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "BillboardSequence_A_LanciaStratos_FullSize"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "65C12A61-6847-4EEC-B0B8-4AA9B696942D"
+                string notificationName = "BillboardSequence_A_LanciaStratos_FullSize"
+                double startTime = 5
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_LanciaStratos"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5", "Track"]
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["billboard_LanciaStratos_05", "billboard_LanciaStratos_06", "VoiceOverEnded_A_LanciaStratos", "audio_LanciaStratos_01", "billboard_LanciaStratos_01", "billboard_LanciaStratos_02", "billboard_LanciaStratos_03", "billboard_LanciaStratos_04"]
+            def RealityKitAction "billboard_LanciaStratos_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "86A93661-506D-4A1C-A0C1-BF35F8EBBE89"
+                bool isActive = 1
+                string notificationName = "billboard_LanciaStratos_05"
+                double startTime = 80
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_06"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "86A93661-506D-4A1C-A0C1-BF35F8EBBE89"
+                bool isActive = 1
+                string notificationName = "billboard_LanciaStratos_06"
+                double startTime = 90
+                rel target = </Root>
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_LanciaStratos"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC60D94B-0209-48A6-AA59-085AADBB4CA5"
+                string notificationName = "VoiceOverEnded_A_LanciaStratos"
+                double startTime = 115
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+
+            def RealityKitAction "audio_LanciaStratos_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "61215B87-5390-482C-B503-0AC64B6AD591"
+                string notificationName = "audio_LanciaStratos_01"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "02B0DE54-A018-45C2-9B34-14014FC18C23"
+                string notificationName = "billboard_LanciaStratos_01"
+                double startTime = 24
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "50BF5A67-4B13-42A3-B851-17A821BDB8FB"
+                string notificationName = "billboard_LanciaStratos_02"
+                double startTime = 52
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2B0E7791-726C-4530-B55C-A650680E76C1"
+                string notificationName = "billboard_LanciaStratos_03"
+                double startTime = 59
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9788CB50-B371-40C7-86BE-1E4BD7531CF3"
+                string notificationName = "billboard_LanciaStratos_04"
+                double startTime = 71
+                rel target = </Root>
+            }
+        }
+    }
+
+    def RealityKitTimeline "End_A_LanciaStratos"
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["SwitchLanciaStratos", "Hide_LanciaStratos", "EndModule_B"]
+            def RealityKitAction "SwitchLanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "1EA076CA-3BD5-4559-A8D2-53D2DA85EB6F"
+                string notificationName = "SwitchLanciaStratos"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (1110, 149.5)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "Hide_LanciaStratos"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "187FDD73-33DB-4202-963F-B0A5597F4843"
+                string notificationName = "Hide_LanciaStratos"
+                double startTime = 4
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (1110, 149.5)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "EndModule_B"
+            {
+                string actionKind = "notification"
+                uniform token info:id = "B83DE3AF-5307-4612-B119-D3830BA8F4D2"
+                string notificationName = "EndModule_B"
+                double startTime = 10
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (1110, 149.5)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+        }
+    }
+
+    def RealityKitTimeline "BillboardSequence_A_LanciaStratos_FullSize"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5", "Track"]
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+
+        def RealityKitTrack "Track"
+        {
+            reorder nameChildren = ["billboard_LanciaStratos_05", "billboard_LanciaStratos_06", "VoiceOverEnded_A_LanciaStratos", "audio_LanciaStratos_01", "billboard_LanciaStratos_01", "billboard_LanciaStratos_02", "billboard_LanciaStratos_03", "billboard_LanciaStratos_04"]
+            def RealityKitAction "billboard_LanciaStratos_05"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "86A93661-506D-4A1C-A0C1-BF35F8EBBE89"
+                bool isActive = 1
+                string notificationName = "billboard_LanciaStratos_05"
+                double startTime = 80
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_06"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "86A93661-506D-4A1C-A0C1-BF35F8EBBE89"
+                bool isActive = 1
+                string notificationName = "billboard_LanciaStratos_06"
+                double startTime = 90
+                rel target = </Root>
+            }
+
+            def RealityKitAction "VoiceOverEnded_A_LanciaStratos"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "AC60D94B-0209-48A6-AA59-085AADBB4CA5"
+                string notificationName = "VoiceOverEnded_A_LanciaStratos"
+                double startTime = 115
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (40, 40)
+                int ui:nodegraph:node:stackingOrder = 2
+            }
+
+            def RealityKitAction "audio_LanciaStratos_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "61215B87-5390-482C-B503-0AC64B6AD591"
+                string notificationName = "audio_LanciaStratos_01"
+                double startTime = 0
+                rel target = </Root>
+                float2 ui:nodegraph:node:pos = (20, 20)
+                int ui:nodegraph:node:stackingOrder = 1
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_01"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "02B0DE54-A018-45C2-9B34-14014FC18C23"
+                string notificationName = "billboard_LanciaStratos_01"
+                double startTime = 24
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_02"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "50BF5A67-4B13-42A3-B851-17A821BDB8FB"
+                string notificationName = "billboard_LanciaStratos_02"
+                double startTime = 52
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_03"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "2B0E7791-726C-4530-B55C-A650680E76C1"
+                string notificationName = "billboard_LanciaStratos_03"
+                double startTime = 59
+                rel target = </Root>
+            }
+
+            def RealityKitAction "billboard_LanciaStratos_04"
+            {
+                string actionKind = "notification"
+                double duration = 0
+                uniform token info:id = "9788CB50-B371-40C7-86BE-1E4BD7531CF3"
+                string notificationName = "billboard_LanciaStratos_04"
+                double startTime = 71
+                rel target = </Root>
+            }
+        }
+    }
+
+    def Cube "Engine_A_LanciaStratos" (
+        active = true
+        prepend apiSchemas = ["MaterialBindingAPI"]
+        customData = {
+            float3 rotationEulerHint = (0, 3.1460981, 0)
+        }
+    )
+    {
+        reorder nameChildren = ["DefaultMaterial", "Collider", "VFXEmitter", "ParticleRingusda"]
+        rel material:binding = None (
+            bindMaterialAs = "weakerThanDescendants"
+        )
+        double size = 0
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (-0.0022528586, 0, 0.99999744, 0)
+        float3 xformOp:scale = (2.6, 0.7999999, 2.1999998)
+        float3 xformOp:translate = (-0.00526, 0.72907, -1.22707)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def Material "DefaultMaterial"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Root/Engine_A_LanciaStratos/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+
+            def Shader "DefaultSurfaceShader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (1, 1, 1)
+                float inputs:roughness = 0.75
+                token outputs:surface
+            }
+        }
+
+        def RealityKitComponent "Collider"
+        {
+            uint group = 1
+            uniform token info:id = "RealityKit.Collider"
+            uint mask = 4294967295
+            token type = "Default"
+
+            def RealityKitStruct "Shape"
+            {
+                float3 extent = (0.4, 0.5, 0.5)
+                float height = 1.25
+                float radius = 0.125
+                token shapeType = "Capsule"
+
+                def RealityKitStruct "pose"
+                {
+                }
+            }
+        }
+
+        def "ParticleRingusda" (
+            active = true
+            references = @ParticleRingusda.usda@
+        )
+        {
+            quatf xformOp:orient = (0.0026624617, 0, 0.9999965, 0)
+            float3 xformOp:scale = (0.38461697, 1.2500001, 0.4545442)
+            float3 xformOp:translate = (-6.9849193e-10, 0.07070732, 1.8812716e-7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            over "Particle"
+            {
+                float3 xformOp:translate = (0, 0.023555875, 0)
+
+                over "VFXEmitter"
+                {
+                    over "currentState"
+                    {
+                        bool isEmitting = 0
+                    }
+                }
+            }
+        }
+    }
+
+    def "A_SoundIcon_A_LanciaStratos" (
+        active = true
+        customData = {
+            float3 rotationEulerHint = (0, 1.5707963, 0)
+        }
+        references = @A_SoundIcon.usda@
+    )
+    {
+        float2 ui:nodegraph:node:pos = (40, 40)
+        int ui:nodegraph:node:stackingOrder = 2
+        quatf xformOp:orient = (0.7139868, 0, 0.70015913, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (-0.00526, 0.8, -1.22707)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "HierarchicalFade"
+        {
+            uniform token info:id = "RealityKit.HierarchicalFade"
+            float opacity = 0
+        }
+    }
+
+    def Xform "VoiceAudioSource_A_LanciaStratos" (
+        active = true
+    )
+    {
+        float2 ui:nodegraph:node:pos = (20, 20)
+        int ui:nodegraph:node:stackingOrder = 1
+        quatf xformOp:orient = (1, 0, 0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        float3 xformOp:translate = (4.656613e-10, 1.473803, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+    }
+
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = [
+            </Root/OnNotification>,
+            </Root/OnNotification2>,
+            </Root/OnNotification3>,
+            </Root/OnNotification4>,
+            </Root/OnNotification5>,
+        ]
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnNotification"
+    {
+        rel actions = </Root/OnNotification/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_LanciaStratos"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_LanciaStratos>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification2"
+    {
+        rel actions = </Root/OnNotification2/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification2/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "Begin_A_LanciaStratos_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Begin_A_LanciaStratos_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification2/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification3"
+    {
+        rel actions = </Root/OnNotification3/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification3/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_LanciaStratos"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_LanciaStratos>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification3/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification4"
+    {
+        rel actions = </Root/OnNotification4/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification4/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "BillboardSequence_A_LanciaStratos_FullSize"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/BillboardSequence_A_LanciaStratos_FullSize>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification4/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Preliminary_Behavior "OnNotification5"
+    {
+        rel actions = </Root/OnNotification5/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnNotification5/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            string identifier = "End_A_LanciaStratos"
+            token info:id = "Notification"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/End_A_LanciaStratos>
+            rel animationLibraryKeyOverrideKey = </Root/OnNotification5/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def Xform "Transform" (
+        active = true
+    )
+    {
+    }
+}
+
+def Xform "MusicAudioSource_A_LanciaStratos_2" (
+    active = true
+)
+{
+    float2 ui:nodegraph:node:pos = (40, 40)
+    int ui:nodegraph:node:stackingOrder = 2
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    float3 xformOp:translate = (3, 1.473803, -4)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+}
+
+def Xform "MusicAudioSource_A_LanciaStratos_3" (
+    active = true
+)
+{
+    float2 ui:nodegraph:node:pos = (40, 40)
+    int ui:nodegraph:node:stackingOrder = 2
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    float3 xformOp:translate = (-3, 1.473803, 4)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+}
+
+def Xform "MusicAudioSource_A_LanciaStratos_1" (
+    active = true
+)
+{
+    float2 ui:nodegraph:node:pos = (20, 20)
+    int ui:nodegraph:node:stackingOrder = 1
+    quatf xformOp:orient = (1, 0, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    float3 xformOp:translate = (4.656613e-10, 1.473803, 0)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+}
+
